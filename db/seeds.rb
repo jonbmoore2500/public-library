@@ -24,7 +24,16 @@ users = User.all
         hardback: Faker::Boolean.boolean, notes: Faker::Lorem.sentence(word_count: 10), checked_out: false, hidden: false
     )
 end
+# byebug
+books = Book.all
+books0 = Book.all.select {|b| b.user_id == users[0].id}
+books1 = Book.all.select {|b| b.user_id == users[1].id}
+books2 = Book.all.select {|b| b.user_id == users[2].id}
 
+Exchange.create(user_id: users[0].id, book_id: books1[rand(0..10)].id, approved: true, received: false, complete: false)
+Exchange.create(user_id: users[1].id, book_id: books2[rand(0..10)].id, approved: false, received: true, complete: false)
+Exchange.create(user_id: users[2].id, book_id: books1[rand(0..10)].id, approved: true, received: false, complete: false)
+Exchange.create(user_id: users[3].id, book_id: books0[rand(0..10)].id, approved: true, received: true, complete: true)
 
 
 puts "✅ Done seeding!"

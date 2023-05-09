@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_08_034747) do
+ActiveRecord::Schema.define(version: 2023_05_09_022608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2023_05_08_034747) do
     t.string "notes"
     t.boolean "checked_out"
     t.boolean "hidden"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.boolean "approved"
+    t.boolean "received"
+    t.boolean "complete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
