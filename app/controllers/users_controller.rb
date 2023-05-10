@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    wrap_parameters format: []
+    before_action :authorize, only: [:show]
 
     def index
         users = User.all
@@ -6,8 +8,11 @@ class UsersController < ApplicationController
     end 
 
     def show
-        user = User.find_by(id: params[:id])
-        render json: user
-    end 
+        render json: @current_user
+    end
+
+    def create
+
+    end
 
 end
