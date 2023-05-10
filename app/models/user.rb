@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    validates :username, presence: true, uniqueness: true
-    validates :neighborhood, presence: true, inclusion: {in: @@allowed_hoods}
-    # validates :phone_num, length: {is: 10}
-    validates :fav_genre, presence: true, inclusion: {in: @@allowed_genres}
+    # validates :username, presence: true, uniqueness: true
+    # validates :neighborhood, presence: true, inclusion: {in: @@allowed_hoods}
+    # validates :phone_num, length: {is: 10}, allow_blank: true
+    # validates :fav_genre, presence: true, inclusion: {in: @@allowed_genres}
 end
