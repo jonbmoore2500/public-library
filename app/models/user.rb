@@ -14,4 +14,8 @@ class User < ApplicationRecord
     validates :fav_genre, presence: true, inclusion: {in: @@allowed_genres}
     validates :fav_author, presence: true
 
+    def num_ex_complete
+        self.exchanges.select{|e| e.complete == true}.length
+    end
+
 end
