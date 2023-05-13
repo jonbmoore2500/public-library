@@ -11,6 +11,7 @@ import UserExchangesCont from "./components/UserExchangesCont.js"
 import Home from "./components/Home.js"
 
 import './App.css';
+import './modal.css'
 
 
 function App() {

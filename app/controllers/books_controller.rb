@@ -16,6 +16,16 @@ class BooksController < ApplicationController
         end
     end
 
+    def destroy
+        book = @current_user.owned_books.find_by(id: params[:id])
+        if book
+            book.destroy
+            head :no_content
+        else
+            render json: {error: "not authorized"}, status: :unauthorized
+        end
+    end
+
     private
 
     def new_book_params

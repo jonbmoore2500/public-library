@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext.js"
 
 function BookFormNew() {
 
-    const {updateUserBooks} = useContext(UserContext)
+    const {addUserBooks} = useContext(UserContext)
     const [newTitle, setNewTitle] = useState("")
     const [newAuthor, setNewAuthor] = useState("")
     const [newGenre, setNewGenre] = useState("")
@@ -25,7 +25,7 @@ function BookFormNew() {
             hidden: newHidden === "true",
             checked_out: false
         }
-        console.log(newBookObj)
+        // console.log(newBookObj)
         fetch("/books", {
             method: "POST",
             headers: {
@@ -35,7 +35,7 @@ function BookFormNew() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then(book => updateUserBooks(book))
+                r.json().then(book => addUserBooks(book))
             } else {
                 r.json().then(errors => console.log(errors))
             }
