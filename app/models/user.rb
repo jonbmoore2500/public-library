@@ -15,7 +15,7 @@ class User < ApplicationRecord
     validates :fav_author, presence: true
 
     def num_ex_complete
-        self.exchanges.select{|e| e.complete == true}.length
+        self.exchanges.count{|e| e.complete == true}
     end
 
 end

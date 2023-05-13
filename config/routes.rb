@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
   resources :books
   resources :users
+  resources :exchanges
+
+  # login/out routes
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   post "/signup", to: "users#create"
