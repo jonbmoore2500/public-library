@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  
+  get "/user_exchanges", to: "exchanges#active_exchanges"
+
   resources :books
   resources :users
   resources :exchanges
-
   # login/out routes
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
