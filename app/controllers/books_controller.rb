@@ -16,6 +16,20 @@ class BooksController < ApplicationController
         end
     end
 
+    def update
+        book = @current_user.owned_books.find_by(id: params[:id])
+        if book 
+            book.update(update_book_params)
+            if book.valid?
+                render json: book, status: :created
+            else
+                render json: {errors: book.errors.full_messages}, status: :unprocessable_entity
+            end
+        else 
+            render json: {error: "Not authorized"}, status: :unauthorized
+        end
+    end
+
     def destroy
         book = @current_user.owned_books.find_by(id: params[:id])
         if book
@@ -30,6 +44,10 @@ class BooksController < ApplicationController
 
     def new_book_params
         params.permit(:user_id, :title, :author, :genre, :num_pages, :hardback, :hidden, :checked_out, :notes)
+    end
+
+    def update_book_params
+        params.permit(:id, :notes, :hidden, :checked_out)
     end
 
 end

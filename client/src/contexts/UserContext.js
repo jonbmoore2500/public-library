@@ -24,8 +24,18 @@ function UserProvider({children}) {
         let newBooks = user.owned_books.filter(b => b.id !== deleteID)
         setUser({...user, owned_books: newBooks})
     }
+
+    function updateUserBook(book) {
+        let newBooks = user.owned_books.map((b) => {
+            if (b.id === book.id) {
+                return book
+            }
+            return b
+        })
+        setUser({...user, owned_books: newBooks})
+    }
     console.log(user)
-    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext.js"
 
 function BookFormEdit({setShowModal, book}) {
 
-    const {deleteUserBook} = useContext(UserContext)
+    const {deleteUserBook, updateUserBook} = useContext(UserContext)
 
     const [newNotes, setNewNotes] = useState(book.notes)
     const [newHidden, setNewHidden] = useState(book.hidden)
@@ -12,8 +12,26 @@ function BookFormEdit({setShowModal, book}) {
     
     function handleEditSubmit(e) {
         e.preventDefault()
-        console.log(book)
-        console.log({notes: newNotes, hidden: newHidden, checked_out: newCheckedOut})
+        // console.log(book)
+        // console.log({notes: newNotes, hidden: newHidden, checked_out: newCheckedOut})
+        fetch(`/books/${book.id}`, {
+            method: "PATCH", 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({notes: newNotes, hidden: newHidden, checked_out: newCheckedOut})
+        })
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((book) => {
+                    updateUserBook(book)
+                    setShowModal(false)
+                })
+            } else {
+                r.json().then(e => console.log(e))
+            }
+        })
+
         setShowModal(false)
     }
 
