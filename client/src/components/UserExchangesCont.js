@@ -1,9 +1,15 @@
 import React, {useState, useContext, useEffect} from "react"
 import { UserContext } from "../contexts/UserContext.js"
+import ExchangeCardLend from "./ExchangeCardLend.js"
+import ExchangeCardBorrow from "./ExchangeCardBorrow.js"
 
 function UserExchangesCont() {
 
-    const [exchangeObj, setExchangeObj] = useState({})
+    const {user} = useContext(UserContext)
+    const [exchangeArr, setExchangeObj] = useState([])
+    const lent = exchangeArr.filter((e) => e.user_id !== user.id)
+    const borrowed = exchangeArr.filter((e) => e.user_id === user.id)
+
     useEffect(() => {
         fetch("/user_exchanges").then((r) => {
             if (r.ok) {
@@ -13,18 +19,18 @@ function UserExchangesCont() {
             }
         })
     }, [])
-    
+
     return(
         <div>
             <h3>user exchanges container</h3>
 
-            <h3>Lent to others: </h3>
-            {exchangeObj.lent.map((e) => (
-                <h4 key={e.id}>You borrowed {e.book_id}</h4>
+            <h3>Lending: </h3>
+            {lent.map((e) => (
+                <ExchangeCardLend key={e.id} exchange={e}/>
             ))}
-            <h3>Borrowed from others: </h3>
-            {exchangeObj.borrowed.map((e) => (
-                <h4 key={e.id}>You lent out {e.book_id}</h4>
+            <h3>Borrowing: </h3>
+            {borrowed.map((e) => (
+                <ExchangeCardBorrow key={e.id} exchange={e}/>
             ))}
             
         </div>
