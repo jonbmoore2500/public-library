@@ -2,15 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { UserProvider } from "./contexts/UserContext";
+import { ExchangesProvider } from './contexts/ExchangesContext';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <UserProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ExchangesProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ExchangesProvider>
   </UserProvider>
   
   ,

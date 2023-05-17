@@ -1,24 +1,16 @@
 import React, {useState, useContext, useEffect} from "react"
 import { UserContext } from "../contexts/UserContext.js"
+import { ExchangesContext } from "../contexts/ExchangesContext.js"
 import ExchangeCardLend from "./ExchangeCardLend.js"
 import ExchangeCardBorrow from "./ExchangeCardBorrow.js"
 
 function UserExchangesCont() {
 
     const {user} = useContext(UserContext)
-    const [exchangeArr, setExchangeObj] = useState([])
-    const lent = exchangeArr.filter((e) => e.user_id !== user.id)
-    const borrowed = exchangeArr.filter((e) => e.user_id === user.id)
+    const {exchanges} = useContext(ExchangesContext)
 
-    useEffect(() => {
-        fetch("/user_exchanges").then((r) => {
-            if (r.ok) {
-                r.json().then((data) => {
-                    setExchangeObj(data)
-                })
-            }
-        })
-    }, [])
+    const lent = exchanges.filter((e) => e.user_id !== user.id)
+    const borrowed = exchanges.filter((e) => e.user_id === user.id)
 
     return(
         <div>
