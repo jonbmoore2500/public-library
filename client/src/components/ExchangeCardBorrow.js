@@ -1,6 +1,6 @@
 import React from "react"
 
-function ExchangeCardBorrow({exchange}) {
+function ExchangeCardBorrow({exchange, updateExchanges}) {
 
     function handleUpdate(param) {
         let updateObj = {returned: true}
@@ -17,10 +17,11 @@ function ExchangeCardBorrow({exchange}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
-                    console.log("patched", exch)
+                    updateExchanges(exch)
                 })
             }
         })
+        // move to context
     }
     
     function renderSwitch(param) {

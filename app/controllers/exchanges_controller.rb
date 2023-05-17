@@ -19,7 +19,7 @@ class ExchangesController < ApplicationController
     def update
         exchange = Exchange.find_by(id: params[:id])
         exchange.update(update_exch_params)
-        render json: exchange
+        render json: exchange, include: {book: {only: [:title, :author, :user_id]}, user: {only: [:username]}}, methods: [:exch_status]
     end
 
     def destroy
