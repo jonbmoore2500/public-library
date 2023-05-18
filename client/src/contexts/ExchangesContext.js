@@ -16,6 +16,10 @@ function ExchangesProvider({children}) {
         })
     }, [])
 
+    function handleNewExch(newExch) {
+        setExchanges([...exchanges, newExch])
+    }
+
     function handleExchEdit(updatedExch) {
         let newExchanges = exchanges.map((e) => {
             if (e.id === updatedExch.id) {
@@ -26,7 +30,7 @@ function ExchangesProvider({children}) {
         setExchanges(newExchanges)
     }
 
-    return <ExchangesContext.Provider value={{exchanges, setExchanges, handleExchEdit}}>{children}</ExchangesContext.Provider>
+    return <ExchangesContext.Provider value={{exchanges, setExchanges, handleNewExch, handleExchEdit}}>{children}</ExchangesContext.Provider>
 }
 
 export {ExchangesContext, ExchangesProvider}

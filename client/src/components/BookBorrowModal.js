@@ -1,6 +1,12 @@
-import React from "react"
+import React, {useContext} from "react"
+import { LibraryContext } from "../contexts/LibraryContext.js"
+import { ExchangesContext } from "../contexts/ExchangesContext.js"
+
 
 function BookBorrowModal({setShowModal, book}) {
+
+    const {handleExchanged} = useContext(LibraryContext)
+    const {handleNewExch} = useContext(ExchangesContext)
 
     function handleSubmitRequest() {
         console.log("submit")
@@ -10,19 +16,14 @@ function BookBorrowModal({setShowModal, book}) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                book_id: book.id,
-                approved: false,
-                received: false,
-                returned: false,
-                complete: false
+                book_id: book.id
             })
-            // add default false booleans in back end, don't need to include in this step
         })
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
-                    console.log(data)
-                    // add to user's exchanges
+                    handleExchanged(book.id)
+                    handleNewExch(data)
                 })
             } else {
                 r.json().then(errors => console.log(errors))

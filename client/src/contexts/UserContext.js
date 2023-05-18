@@ -6,7 +6,6 @@ const UserContext = React.createContext()
 function UserProvider({children}) {
 
     const [user, setUser] = useState(null)
-    // const [exchanges, setExchanges] = useState(null)
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
@@ -14,14 +13,6 @@ function UserProvider({children}) {
                     console.log("current user", user)
                     setUser(user)
                 })
-                // .then(fetch("/user_exchanges").then((r) => {
-                //     if (r.ok) {
-                //         r.json().then((data) => {
-                //             setExchanges(data)
-                //         })
-                //     }
-                // }))
-                // best way? way to streamline? need to know the current user in order to grab the correct exchanges
             }
         })
     }, [])

@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     end 
 
     def available_books
-        books = Book.all.select{|b| ((b.user_id != @current_user.id) && (b.hidden == false)) && b.exchanges.select{|e| e.complete == false && e.user_id == @current_user.id}.empty?}
+        books = Book.all.select{|b| ((b.user_id != @current_user.id) && (b.hidden == false)) && b.exchanges.index{|e| e.complete == false } == nil}
         render json: books
     end
 

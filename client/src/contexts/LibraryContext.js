@@ -16,8 +16,12 @@ function LibraryProvider({children}) {
         })
     }, [])
     // console.log(books)
+    function handleExchanged(idToRemove) {
+        let newBooks = books.filter((b) => b.id != idToRemove)
+        setBooks(newBooks)
+    }
 
-    return <LibraryContext.Provider value={{books, setBooks}}>{children}</LibraryContext.Provider>
+    return <LibraryContext.Provider value={{books, setBooks, handleExchanged}}>{children}</LibraryContext.Provider>
 }
 
 export {LibraryContext, LibraryProvider}

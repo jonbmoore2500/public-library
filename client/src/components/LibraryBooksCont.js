@@ -1,4 +1,5 @@
 import React, {useContext} from "react"
+import { UserContext } from "../contexts/UserContext.js"
 import { LibraryContext } from "../contexts/LibraryContext.js"
 import BookCard from "./BookCard.js"
 
@@ -6,6 +7,7 @@ function LibraryBooksCont() {
 
     // add infinite scroll!
     const {books} = useContext(LibraryContext)
+
 
     return(
         <div>
