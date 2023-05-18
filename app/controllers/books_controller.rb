@@ -7,6 +7,11 @@ class BooksController < ApplicationController
         render json: books
     end 
 
+    def available_books
+        books = Book.all.select{|b| ((b.user_id != @current_user.id) && (b.hidden == false)) && b.exchanges.select{|e| e.complete == false && e.user_id == @current_user.id}.empty?}
+        render json: books
+    end
+
     def create
         book = @current_user.owned_books.create(new_book_params)
         if book.valid?

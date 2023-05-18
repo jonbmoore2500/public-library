@@ -11,6 +11,7 @@ function UserProvider({children}) {
         fetch("/me").then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
+                    console.log("current user", user)
                     setUser(user)
                 })
                 // .then(fetch("/user_exchanges").then((r) => {
@@ -43,7 +44,7 @@ function UserProvider({children}) {
         })
         setUser({...user, owned_books: newBooks})
     }
-    console.log(user)
+
     return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook}}>{children}</UserContext.Provider>
 }
 

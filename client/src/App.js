@@ -7,6 +7,7 @@ import Layout from "./components/Layout.js"
 import UserProfile from "./components/UserProfile.js"
 import UserBooksCont from "./components/UserBooksCont.js"
 import UserExchangesCont from "./components/UserExchangesCont.js"
+import LibraryBooksCont from "./components/LibraryBooksCont.js"
 
 import Home from "./components/Home.js"
 
@@ -29,6 +30,7 @@ function App() {
               <Route index element={<UserProfile />} />
               <Route path="user_books" element={<UserBooksCont />} />
               <Route path="exchanges" element={<UserExchangesCont />} />
+              <Route path="library_books" element={<LibraryBooksCont />} />
             </Route>
           </Routes>
         </BrowserRouter> 

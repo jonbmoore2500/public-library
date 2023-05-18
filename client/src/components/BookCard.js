@@ -1,22 +1,38 @@
 import React, {useState} from "react"
 import BookFormEdit from "./BookFormEdit"
+import BookBorrowModal from "./BookBorrowModal"
 
 
-function BookCard({book}) {
+function BookCard({book, owned = true}) {
 
-    const [showModal, setShowModal] = useState(false)
+    const [showEditModal, setShowEditModal] = useState(false)
+    const [showBorrowModal, setShowBorrowModal] = useState(false)
 
     return(
         <>
-            <div key={book.id} onClick={() => setShowModal(true)}>
+            <div>
                 <h3>{book.title}</h3>
                 <h4>{book.author}</h4>
+                <h3>{book.id}</h3>
                 <h5>{book.genre}, {book.num_pages} pages, hardback: {book.hardback.toString()}</h5>
-                <h5>hidden: {book.hidden.toString()}</h5>
+                {owned ? 
+                <>
+                    <h5>hidden: {book.hidden.toString()}</h5> 
+                    <button onClick={() => setShowEditModal(true)}>Edit Book</button>
+                </>
+                : 
+                <>
+                    <h5>info about owner goes here</h5>
+                    <button onClick={() => setShowBorrowModal(true)}>See more? </button>
+                </>
+                }
             </div>
-            {showModal && (
-                <BookFormEdit setShowModal={setShowModal} book={book}/>
-            )}
+            {owned && showEditModal ? (
+                <BookFormEdit setShowModal={setShowEditModal} book={book}/>
+            ) : null}
+            {!owned && showBorrowModal ? (
+                <BookBorrowModal setShowModal={setShowBorrowModal} book={book}/>
+            ) : null}
         </>
     )
 }

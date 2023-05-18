@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { UserProvider } from "./contexts/UserContext";
 import { ExchangesProvider } from './contexts/ExchangesContext';
+import { LibraryProvider } from './contexts/LibraryContext';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -10,9 +11,11 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <UserProvider>
     <ExchangesProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <LibraryProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </LibraryProvider>
     </ExchangesProvider>
   </UserProvider>
   

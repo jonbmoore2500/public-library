@@ -1,4 +1,5 @@
 class ExchangesController < ApplicationController
+    wrap_parameters format: []
     before_action :authorize
 
     def index
@@ -13,7 +14,11 @@ class ExchangesController < ApplicationController
 
     def create
         exchange = @current_user.exchanges.create(create_exch_params)
-        render json: exchange
+        if exchange.valid?
+            render json: exchange
+        else
+            render json: {errors: exchange.errors.full_messages}, status: :unprocessable_entity
+        end
     end
 
     def update

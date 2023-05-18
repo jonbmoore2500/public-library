@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
     belongs_to :owner, class_name: "User", foreign_key: "user_id"
 
-    has_many :exhanges
+    has_many :exchanges
     has_many :users, through: :exchanges
 
     validates :user_id, presence: true

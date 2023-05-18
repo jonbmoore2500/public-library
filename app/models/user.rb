@@ -18,4 +18,8 @@ class User < ApplicationRecord
         self.exchanges.count{|e| e.complete == true}
     end
 
+    def active_exchanges
+        exchanges = self.exchanges.select{|e| e.complete == false}
+    end
+
 end
