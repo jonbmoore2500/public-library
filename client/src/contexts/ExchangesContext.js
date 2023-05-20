@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-// could incorporate into UserContext, since they all belong to user. keep Library and Messages separate
+// could incorporate into UserContext, since they all belong to user. keep Library and Messages separate - do this
 const ExchangesContext = React.createContext()
 
 function ExchangesProvider({children}) {
@@ -10,6 +10,7 @@ function ExchangesProvider({children}) {
         fetch("/user_exchanges").then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
+                    console.log(data)
                     setExchanges(data)
                 })
             }

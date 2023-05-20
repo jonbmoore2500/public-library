@@ -14,4 +14,6 @@ class Book < ApplicationRecord
     validates :hidden, inclusion: [true, false]
     validates :notes, length: {maximum: 1000}, allow_blank: true
 
+    # instance method, current user id argument
+
 end

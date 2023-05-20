@@ -31,7 +31,6 @@ function BookBorrowModal({setShowModal, book}) {
         })
     }
 
-console.log(book)
     return(
         <div className="modal">
             <div onClick={() => setShowModal(false)} className="overlay"></div> 
@@ -48,7 +47,5 @@ console.log(book)
         </div>
     )
 }
-
-
 
 export default BookBorrowModal

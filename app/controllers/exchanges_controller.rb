@@ -37,10 +37,12 @@ class ExchangesController < ApplicationController
         end
     end
 
-    def active_exchanges
-        exchanges = (Exchange.all.select{|e| (e.book.user_id == @current_user.id) && (e.complete == false)} + @current_user.exchanges.select{|e| e.complete == false}).sort_by{|e| e.book.title}
-        render json: exchanges, status: :created, include: {book: {only: [:title, :author, :user_id]}, user: {only: [:username]}}, methods: [:exch_status]
-    end
+    # def active_exchanges
+    #     exchanges = (Exchange.all.select{|e| (e.book.user_id == @current_user.id) && (e.complete == false)}
+    #      + @current_user.exchanges.select{|e| e.complete == false}).sort_by{|e| e.book.title}
+    #     render json: exchanges, status: :created, include: {book: {only: [:title, :author, :user_id]}, user: {only: [:username]}}, methods: [:exch_status]
+    # end
+    # # include in user context, split into lent and borrowed sets due to lack of relationship between the two
 
     private
     

@@ -22,6 +22,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             }
         })
         // move to context
+        // if exch.complete = true, remove from exchanges. else update in exchange array.
     }
 
     function renderSwitch(param) {
@@ -42,6 +43,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
                     <>
                         <h3>{exchange.user.username} has requested to borrow this book. Approve the request?</h3>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
+                        <button onClick={() => handleUpdate("denied")}>Deny</button>
                     </>
                 )
         }

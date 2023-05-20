@@ -18,8 +18,12 @@ class User < ApplicationRecord
         self.exchanges.count{|e| e.complete == true}
     end
 
-    def active_exchanges
-        exchanges = self.exchanges.select{|e| e.complete == false}
+    def exchanges_borrow
+        exchanges = self.exchanges.select{|e| e.complete == false}.sort_by{|e| e.book.title}
+    end
+
+    def exchanges_lend
+        exchanges = Exchange.all.select{|e| (e.book.user_id == self.id) && (e.complete == false)}.sort_by{|e| e.book.title}
     end
 
 end

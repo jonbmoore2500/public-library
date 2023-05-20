@@ -4,7 +4,7 @@ class Exchange < ApplicationRecord
     belongs_to :book
 
     validates :complete, uniqueness: {scope: :book_id}, on: :create
-    # this should prevent new exchanges from being created for a book unless it has no incomplete exchanges
+    validates :book_id, presence: true
 
     def exch_status
         if self.complete
@@ -19,5 +19,9 @@ class Exchange < ApplicationRecord
             "requested"
         end
     end     
+
+    def title_author
+        "#{self.book.title}, by #{self.book.author}"
+    end
 
 end

@@ -17,7 +17,7 @@ function LibraryProvider({children}) {
     }, [])
     // console.log(books)
     function handleExchanged(idToRemove) {
-        let newBooks = books.filter((b) => b.id != idToRemove)
+        let newBooks = books.filter((b) => b.id !== idToRemove)
         setBooks(newBooks)
     }
 
