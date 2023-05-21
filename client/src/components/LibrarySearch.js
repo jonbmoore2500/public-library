@@ -21,7 +21,6 @@ function LibrarySearch() {
     return(
         <div>
             <h3>search</h3>
-            {/* <BookSort /> */}
             <BookSearch handleSearchGet={handleSearchGet}/>
             {dispBooks.length >= 1 ? 
             <>
