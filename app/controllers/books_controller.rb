@@ -12,6 +12,12 @@ class BooksController < ApplicationController
         render json: books
     end
 
+    def search_results
+        books = Book.all.select{|b| b.genre.include?(params[:genre]) && 
+        (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))} 
+        render json: books
+    end
+
     def create
         book = @current_user.owned_books.create(new_book_params)
         if book.valid?

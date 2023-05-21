@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "/user_exchanges", to: "exchanges#active_exchanges"
   get "/library", to: "books#available_books"
+  get "/book_search", to: "books#search_results"
   resources :books
   resources :users
   resources :exchanges
