@@ -9,7 +9,8 @@ class BooksController < ApplicationController
 
     def available_books
         books = Book.all.select{|b| ((b.user_id != @current_user.id) && (b.hidden == false)) && b.exchanges.index{|e| e.complete == false } == nil}
-        paginated_books = Kaminari.paginate_array(books).page(params[:page]).per(10)
+        # want a random selection, but not re-randomized every time I request a page
+        paginated_books = Kaminari.paginate_array(books).page(params[:page]).per(20)
         render json: paginated_books
     end
 
