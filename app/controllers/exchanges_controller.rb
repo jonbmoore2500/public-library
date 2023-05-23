@@ -9,7 +9,7 @@ class ExchangesController < ApplicationController
 
     def show
         exchange = Exchange.find_by(id: params[:id])
-        render json: exchange
+        render json: exchange, include: :book
     end 
 
     def create

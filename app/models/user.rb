@@ -4,6 +4,11 @@ class User < ApplicationRecord
     has_many :exchanges
     has_many :books, through: :exchanges
 
+    has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
+    has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
+    has_many :conversations, through: :messages
+    # has_many :conversations, through: :received_messages
+
     has_secure_password
 
     validates :username, presence: true, uniqueness: true
@@ -13,6 +18,10 @@ class User < ApplicationRecord
     validates :email, allow_blank: true, uniqueness: true
     validates :fav_genre, presence: true, inclusion: {in: @@allowed_genres}
     validates :fav_author, presence: true
+
+    def messages 
+        Message.all.select{|m| m.sender_id == self.id || m.recipient_id == self.id}
+    end
 
     def num_ex_complete
         self.exchanges.count{|e| e.complete == true}
