@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { UserProvider } from "./contexts/UserContext";
-import { ExchangesProvider } from './contexts/ExchangesContext';
+// import { ExchangesProvider } from './contexts/ExchangesContext';
 import { LibraryProvider } from './contexts/LibraryContext';
 
 import App from './App';
@@ -10,13 +10,13 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <UserProvider>
-    <ExchangesProvider>
+    {/* <ExchangesProvider> */}
       <LibraryProvider>
         <React.StrictMode>
           <App />
         </React.StrictMode>
       </LibraryProvider>
-    </ExchangesProvider>
+    {/* </ExchangesProvider> */}
   </UserProvider>
   
   ,
