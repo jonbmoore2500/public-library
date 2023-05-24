@@ -11,4 +11,9 @@ class UserSerializer < ActiveModel::Serializer
     JSON.parse(borrowed.to_json(include: { book: {only: [:title, :user_id]}}, methods: [:exch_status]))
   end
 
+  attribute :convos do
+    conversations = Conversation.joins(:messages).where('messages.sender_id = ? OR messages.recipient_id = ?', self.object.id, self.object.id)
+    JSON.parse(conversations.to_json(include: :messages))
+  end
+
 end
