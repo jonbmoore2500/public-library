@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   resources :exchanges
+  resources :messages
+  resources :conversations
+  # be sure to limit the above resources
   # login/out routes
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

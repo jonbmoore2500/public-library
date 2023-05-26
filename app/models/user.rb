@@ -13,7 +13,8 @@ class User < ApplicationRecord
     # has_many :conversations, through: :s_messages
     # has_many :conversations, through: :r_messages
 
-    # can only get a convo if both sent and received a message. fixed with custom serializer method, kind of janky
+    # can only get a convo if received a message 
+    # fixed with custom serializer method, kind of janky - DOESN'T WORK, includes multiple copies
 
     has_secure_password
 

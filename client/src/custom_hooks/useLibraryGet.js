@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react"
-import axios from "axios"
 
 function useLibraryGet(pageNum) {
 
@@ -21,7 +20,7 @@ function useLibraryGet(pageNum) {
             setBooks(prevBooks => {
                 return [...prevBooks, ...data]
             })
-            setHasMore(data.length == 20) // make sure to match changes to page size in back end pagination
+            setHasMore(data.length === 20) // make sure to match changes to page size in back end pagination
             setLoading(false)
         })
     }, [pageNum])

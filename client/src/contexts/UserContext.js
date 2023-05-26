@@ -42,9 +42,9 @@ function UserProvider({children}) {
     }
 
     function handleExchUpdate(data, type) {
-        if (type == "borrowed") {
+        if (type === "borrowed") {
             let updatedExchs = user.exchanges_borrow.map((e) => {
-                if (e.id == data.id) {
+                if (e.id === data.id) {
                     return data
                 }
                 return e
@@ -52,7 +52,7 @@ function UserProvider({children}) {
             setUser({...user, exchanges_borrow: updatedExchs})
         } else {
             let updatedExchs = user.exchanges_lend.map((e) => {
-                if (e.id == data.id) {
+                if (e.id === data.id) {
                     return data
                 }
                 return e

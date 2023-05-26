@@ -21,7 +21,6 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
                 })
             }
         })
-        // move to context
     }
     
     function renderSwitch(param) {
