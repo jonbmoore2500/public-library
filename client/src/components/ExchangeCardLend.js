@@ -17,7 +17,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
-                    updateExchanges(exch)
+                    updateExchanges(exch, "lent")
                 })
             }
         })

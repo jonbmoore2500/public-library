@@ -18,14 +18,13 @@ function Layout() {
                     <li>
                         <Link to ="/library_books">Public Library</Link>
                     </li>
-                    {/* 
-                    // <li>
-                    //     <Link to ="/profiles">Explore Profiles</Link>
-                    // </li>
-                    // <li>
-                    //     <Link to ="/messages">Messaging Center</Link>
-                    // </li>
-                    */}
+                    
+                    {/* <li>
+                        <Link to ="/profiles">Explore Profiles</Link>
+                    </li> */}
+                    <li>
+                        <Link to ="/messages">Messaging Center</Link>
+                    </li>
                 </ul>
             </nav>
 

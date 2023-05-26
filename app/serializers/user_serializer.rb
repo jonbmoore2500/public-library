@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :neighborhood, :bio, :fav_author, :fav_genre, :num_ex_complete, :owned_books
 
   attribute :exchanges_lend do
-    lended = self.object.exchanges.joins(:book).where('exchanges.complete = ? AND books.user_id = ?', false, self.object.id)
+    lended = Exchange.joins(:book).where('exchanges.complete = ? AND books.user_id = ?', false, self.object.id)
     JSON.parse(lended.to_json(include: {book: {only: [:title, :user_id]}}, methods: [:exch_status]))
   end
 

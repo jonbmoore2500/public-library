@@ -7,7 +7,7 @@ import BookCard from "./BookCard.js"
 
 function LibraryBooksCont() {
 
-    // add infinite scroll!
+    // CAN DELETE THIS COMPONENT
     const {books} = useContext(LibraryContext)
 
 

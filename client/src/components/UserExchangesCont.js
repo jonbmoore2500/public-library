@@ -5,10 +5,10 @@ import ExchangeCardBorrow from "./ExchangeCardBorrow.js"
 
 function UserExchangesCont() {
 
-    const {user} = useContext(UserContext)
+    const {user, handleExchUpdate} = useContext(UserContext)
 
-    function updateExchanges(updatedExch) {
-        console.log(updatedExch)
+    function updateExchanges(updatedExch, type) {
+        handleExchUpdate(updatedExch, type)
     }
 
     return(

@@ -36,7 +36,32 @@ function UserProvider({children}) {
         setUser({...user, owned_books: newBooks})
     }
 
-    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook}}>{children}</UserContext.Provider>
+    function handleNewExch(newExch) {
+        let updatedExchs = [...user.exchanges_borrow, newExch]
+        setUser({...user, exchanges_borrow: updatedExchs})
+    }
+
+    function handleExchUpdate(data, type) {
+        if (type == "borrowed") {
+            let updatedExchs = user.exchanges_borrow.map((e) => {
+                if (e.id == data.id) {
+                    return data
+                }
+                return e
+            })
+            setUser({...user, exchanges_borrow: updatedExchs})
+        } else {
+            let updatedExchs = user.exchanges_lend.map((e) => {
+                if (e.id == data.id) {
+                    return data
+                }
+                return e
+            })
+            setUser({...user, exchanges_lend: updatedExchs})
+        }
+    }
+
+    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

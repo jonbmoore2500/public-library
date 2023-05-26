@@ -1,12 +1,12 @@
 import React, {useContext} from "react"
 import { LibraryContext } from "../contexts/LibraryContext.js"
-import { ExchangesContext } from "../contexts/ExchangesContext.js"
+import { UserContext } from "../contexts/UserContext.js"
 
 
 function BookBorrowModal({setShowModal, book}) {
 
     const {handleExchanged} = useContext(LibraryContext)
-    const {handleNewExch} = useContext(ExchangesContext)
+    const {handleNewExch} = useContext(UserContext)
 
     function handleSubmitRequest() {
         console.log("submit")
