@@ -8,6 +8,15 @@ class MessagesController < ApplicationController
     end
 
     def create
+        message = Message.create(message_params)
+        if message.valid?
+            render json: message, status: :created
+        else
+            render json: {errors: message.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+
+    def new_message
         message = @current_user.s_messages.create(message_params)
         if message.valid?
             render json: message, status: :created
