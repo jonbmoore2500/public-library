@@ -1,17 +1,19 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 
 
 const UserContext = React.createContext()
 
 function UserProvider({children}) {
 
+
     const [user, setUser] = useState(null)
+    const [convos, setConvos] = useState(null)
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
-                    console.log("current user", user)
                     setUser(user)
+                    setConvos(user.convos)
                 })
             }
         })

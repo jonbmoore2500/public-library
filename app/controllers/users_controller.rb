@@ -12,7 +12,19 @@ class UsersController < ApplicationController
     end
 
     def create
+        user = User.create(create_user_params)
+        if user.valid?
+            session[:user_id] = user.id
+            render json: user, status: :created
+        else
+            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
 
+    private
+
+    def create_user_params
+        params.permit(:username, :neighborhood, :password, :password_confirmation, :bio, :fav_genre, :fav_author, :phone_num, :email)
     end
 
 end
