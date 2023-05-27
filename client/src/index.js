@@ -4,20 +4,20 @@ import './index.css';
 import { UserProvider } from "./contexts/UserContext";
 // import { ExchangesProvider } from './contexts/ExchangesContext';
 import { LibraryProvider } from './contexts/LibraryContext';
-import { ConvosProvider } from './contexts/ConvosContext';
+// import { ConvosProvider } from './contexts/ConvosContext';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <UserProvider>
-    <ConvosProvider>
+    {/* <ConvosProvider> */}
       <LibraryProvider>
         <React.StrictMode>
           <App />
         </React.StrictMode>
       </LibraryProvider>
-    </ConvosProvider>
+    {/* </ConvosProvider> */}
   </UserProvider>
   
   ,

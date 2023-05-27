@@ -13,7 +13,7 @@ class UserSerializer < ActiveModel::Serializer
 
   attribute :convos do
     conversations = (self.object.s_conversations + self.object.r_conversations).uniq
-    JSON.parse(conversations.to_json(include: :messages))
+    JSON.parse(conversations.to_json(include: :messages, methods: [:two_users]))
   end
 
 end

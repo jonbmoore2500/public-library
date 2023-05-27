@@ -1,29 +1,29 @@
-import React, {useState, useEffect, useContext} from "react"
-import { UserContext } from "./UserContext"
+// import React, {useState, useEffect, useContext} from "react"
+// import { UserContext } from "./UserContext"
 
-// import usercontext, assign from user.convos
-// move fetch to userocntext, can still hold in this context
-const ConvosContext = React.createContext()
+// // import usercontext, assign from user.convos
+// // move fetch to userocntext, can still hold in this context
+// const ConvosContext = React.createContext()
 
-function ConvosProvider({children}) {
+// function ConvosProvider({children}) {
 
-    const {user} = useContext(UserContext)
+//     const {user} = useContext(UserContext)
 
-    const [convos, setConvos] = useState(user.convos)
+//     const [convos, setConvos] = useState(user.convos)
 
-    // useEffect(() => {
-    //     fetch("/user_convos").then((r) => {
-    //         if (r.ok) {
-    //             r.json().then((data) => {
-    //                 // console.log("current user", user)
-    //                 setConvos(data)
-    //             })
-    //         }
-    //     })
-    // }, [])
+//     // useEffect(() => {
+//     //     fetch("/user_convos").then((r) => {
+//     //         if (r.ok) {
+//     //             r.json().then((data) => {
+//     //                 // console.log("current user", user)
+//     //                 setConvos(data)
+//     //             })
+//     //         }
+//     //     })
+//     // }, [])
 
 
-    return <ConvosContext.Provider value={{convos, setConvos}}>{children}</ConvosContext.Provider>
-}
+//     return <ConvosContext.Provider value={{convos, setConvos}}>{children}</ConvosContext.Provider>
+// }
 
-export {ConvosContext, ConvosProvider}
+// export {ConvosContext, ConvosProvider}

@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     end
 
     def create
-        message = Message.create(message_params)
+        message = @current_user.s_messages.create(message_params)
         if message.valid?
             render json: message, status: :created
         else

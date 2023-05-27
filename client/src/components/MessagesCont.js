@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react"
 import { UserContext } from "../contexts/UserContext.js"
-import { ConvosContext } from "../contexts/ConvosContext.js"
+// import { ConvosContext } from "../contexts/ConvosContext.js"
 import ConvoCard from "./ConvoCard.js"
 import ConvoContainer from "./ConvoContainer.js"
 
@@ -20,7 +20,7 @@ function MessagesCont() {
             {/* <ConvoContainer selected={selectedConvo}/> */}
             <div>
                 {selectedConvo ? 
-                    <ConvoContainer selected={selectedConvo}/>
+                    <ConvoContainer selected={selectedConvo} userID={user.id}/>
                 :
                     <>Select a Conversation</>
                 }
