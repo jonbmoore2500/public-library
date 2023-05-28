@@ -3,6 +3,7 @@ import React, {useState} from "react"
 function NewMessageForm({handleSendMessage, recipient, convo}) {
 
     const [message, setMessage] = useState("")
+    
     function handleMessagePost(e) {
         e.preventDefault()
         let messageObj = {
@@ -10,7 +11,7 @@ function NewMessageForm({handleSendMessage, recipient, convo}) {
             recipient_id: recipient,
             text: message
         }
-        fetch("/messages", {
+        fetch("/new_message", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -20,7 +21,8 @@ function NewMessageForm({handleSendMessage, recipient, convo}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
-                    console.log(data)
+                    handleSendMessage(data)
+                    setMessage("")
                 })
             } else {
                 r.json().then((err) => console.log(err))

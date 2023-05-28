@@ -3,12 +3,12 @@ class UserSerializer < ActiveModel::Serializer
 
   attribute :exchanges_lend do
     lended = Exchange.joins(:book).where('exchanges.complete = ? AND books.user_id = ?', false, self.object.id)
-    JSON.parse(lended.to_json(include: {book: {only: [:title, :user_id]}}, methods: [:exch_status]))
+    JSON.parse(lended.to_json(include: { book: {only: [:title, :author]}, user: {only: [:username, :id]}}, methods: [:exch_status]))
   end
 
   attribute :exchanges_borrow do
     borrowed = self.object.exchanges.joins(:book).where('exchanges.complete = ?', false).where.not('books.user_id = ?', self.object.id)
-    JSON.parse(borrowed.to_json(include: { book: {only: [:title, :user_id]}}, methods: [:exch_status]))
+    JSON.parse(borrowed.to_json(include: { book: {include: {owner: {only: [:username, :id]}}, only: [:title, :author]}}, methods: [:exch_status]))
   end
 
   attribute :convos do

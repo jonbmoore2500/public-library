@@ -63,7 +63,18 @@ function UserProvider({children}) {
         }
     }
 
-    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate}}>{children}</UserContext.Provider>
+    function handleSendMessage(msg) {
+        let updatedConvos = user.convos.map((c) => {
+            if (msg.conversation_id === c.id) {
+                c.messages = [...c.messages, msg]
+                return c
+            }
+            return c
+        })
+        setUser({...user, convos: updatedConvos})
+    }
+
+    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate, handleSendMessage}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

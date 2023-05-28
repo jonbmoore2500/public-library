@@ -1,20 +1,17 @@
 import React from "react"
+import MessageCard from "./MessageCard"
 import NewMessageForm from "./NewMessageForm"
 
 
-function ConvoContainer({selected, userID}) {
+function ConvoContainer({selected, userID, handleSendMessage}) {
 
     const otherUser = selected.two_users.find(u => u.id != userID)
-    function handleSendMessage(e) {
-        e.preventDefault()
-        console.log(e.target.value)
-    }
 
     return(
         <div>
            <h3>Conversation with {otherUser.username}</h3>
            {selected.messages.map((m) => (
-            <p key={m.id}>{m.text}</p>
+            <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} />
            ))}
            <div>
             <NewMessageForm handleSendMessage={handleSendMessage} recipient={otherUser.id} convo={selected.id}/>
