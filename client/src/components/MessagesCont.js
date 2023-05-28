@@ -5,7 +5,7 @@ import ConvoContainer from "./ConvoContainer.js"
 
 function MessagesCont() {
 
-    const {user, handleSendMessage} = useContext(UserContext)
+    const {user} = useContext(UserContext)
 
     const [selectedConvo, setSelectedConvo] = useState(null)
 
@@ -18,7 +18,7 @@ function MessagesCont() {
             ))}
             <div>
                 {selectedConvo ? 
-                    <ConvoContainer selected={selectedConvo} userID={user.id} handleSendMessage={handleSendMessage}/>
+                    <ConvoContainer selected={selectedConvo} userID={user.id}/>
                 :
                     <>Select a Conversation</>
                 }

@@ -3,7 +3,7 @@ import MessageCard from "./MessageCard"
 import NewMessageForm from "./NewMessageForm"
 
 
-function ConvoContainer({selected, userID, handleSendMessage}) {
+function ConvoContainer({selected, userID}) {
 
     const otherUser = selected.two_users.find(u => u.id != userID)
 
@@ -11,10 +11,10 @@ function ConvoContainer({selected, userID, handleSendMessage}) {
         <div>
            <h3>Conversation with {otherUser.username}</h3>
            {selected.messages.map((m) => (
-            <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} />
+                <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} />
            ))}
            <div>
-            <NewMessageForm handleSendMessage={handleSendMessage} recipient={otherUser.id} convo={selected.id}/>
+                <NewMessageForm recipient={otherUser.id} convoID={selected.id}/>
            </div>
         </div>
     )

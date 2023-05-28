@@ -32,9 +32,6 @@ function BookBorrowModal({setShowModal, book}) {
         })
     }
 
-    function handleSendMessage() {
-
-    }
 
     return(
         <div className="modal">
@@ -48,7 +45,7 @@ function BookBorrowModal({setShowModal, book}) {
                 {/* add link to user's profile 
                 add option to message user */}
                 <label>Send Message to {book.owner.username}?</label>
-                <NewMessageForm handleSendMessage={handleSendMessage} recipient={book.user_id}/>
+                <NewMessageForm recipient={book.user_id}/>
                 <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
             </div>
         </div>

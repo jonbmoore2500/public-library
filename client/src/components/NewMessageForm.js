@@ -1,10 +1,10 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext"
 
-function NewMessageForm({handleSendMessage, recipient, convo = null}) {
+function NewMessageForm({recipient, convoID = null}) {
 
     const [message, setMessage] = useState("")
-    const {user} = useContext(UserContext)
+    const {user, handleNewMsg, handleNewConvo} = useContext(UserContext)
 
     let messageBase = {
         recipient_id: recipient,
@@ -22,7 +22,7 @@ function NewMessageForm({handleSendMessage, recipient, convo = null}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
-                    handleSendMessage(data)
+                    handleNewConvo(data)
                     setMessage("")
                 })
             } else {
@@ -31,18 +31,18 @@ function NewMessageForm({handleSendMessage, recipient, convo = null}) {
         })
     }
 
-    function newMessage() {
+    function newMessage(convoID) {
         fetch("/new_message", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({...messageBase, conversation_id: convo})
+            body: JSON.stringify({...messageBase, conversation_id: convoID})
         })
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
-                    handleSendMessage(data)
+                    handleNewMsg(data)
                     setMessage("")
                 })
             } else {
@@ -51,24 +51,23 @@ function NewMessageForm({handleSendMessage, recipient, convo = null}) {
         })
     }
 
-    function handleSendMessage(e) {
+    function handleMessagePost(e) {
         e.preventDefault()
-        if (user.convos.some((c) => c.two_users.find((u) => u.id !== user.id).id === recipient)) {
-            newMessage()
-            // console.log("just new message")
+        if (!convoID) {
+            let convo = user.convos.find((c) => c.two_users.find((u) => u.id !== user.id).id === recipient)
+            if (convo) {
+                newMessage(convo.id)
+            } else {
+                newConvoMessage()
+            }
         } else {
-            newConvoMessage()
-            // console.log("new convo")
+            newMessage(convoID)
         }
     }
 
-
-
-
-
     return(
         <div>
-            <form onSubmit={handleSendMessage}>
+            <form onSubmit={handleMessagePost}>
                 <input onChange={(e) => setMessage(e.target.value)} value={message} />
                 <button type="submit">Send</button>
             </form>
