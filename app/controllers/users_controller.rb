@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
     wrap_parameters format: []
-    before_action :authorize, only: [:show]
+    before_action :authorize, only: [:show, :index]
 
     def index
-        users = User.all
+        users = User.all.select{|u| u.id != @current_user.id}
         render json: users
     end 
 

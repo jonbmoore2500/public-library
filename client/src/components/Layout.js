@@ -18,10 +18,9 @@ function Layout() {
                     <li>
                         <Link to ="/library_books">Public Library</Link>
                     </li>
-                    
-                    {/* <li>
+                    <li>
                         <Link to ="/profiles">Explore Profiles</Link>
-                    </li> */}
+                    </li>
                     <li>
                         <Link to ="/messages">Messaging Center</Link>
                     </li>

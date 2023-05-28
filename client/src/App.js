@@ -11,6 +11,8 @@ import UserExchangesCont from "./components/UserExchangesCont.js"
 import LibraryBooksCont from "./components/LibraryBooksCont.js"
 import LibraryBrowse from "./components/LibraryBrowse.js"
 import LibrarySearch from "./components/LibrarySearch.js"
+import ProfilesLayout from "./components/ProfilesLayout.js"
+import ProfileCont from "./components/ProfileCont.js"
 import MessagesCont from "./components/MessagesCont.js"
 
 import Home from "./components/Home.js"
@@ -38,7 +40,10 @@ function App() {
                 <Route index element={<LibraryBrowse/>} />
                 <Route path="search" element={<LibrarySearch />} />
               </Route>
-              <Route path="messages" element={<MessagesCont />}/>
+              <Route path="profiles" element={<ProfilesLayout />} >
+                <Route path=":userID" element={<ProfileCont />} />
+              </Route>
+              <Route path="messages" element={<MessagesCont />} />
             </Route>
           </Routes>
         </BrowserRouter> 
