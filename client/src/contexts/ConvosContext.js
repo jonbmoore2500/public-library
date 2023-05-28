@@ -1,15 +1,24 @@
 // import React, {useState, useEffect, useContext} from "react"
 // import { UserContext } from "./UserContext"
 
-// // import usercontext, assign from user.convos
-// // move fetch to userocntext, can still hold in this context
 // const ConvosContext = React.createContext()
 
 // function ConvosProvider({children}) {
 
-//     const {user} = useContext(UserContext)
+//     const {user, setUser} = useContext(UserContext)
 
-//     const [convos, setConvos] = useState(user.convos)
+//     let convos = user.convos
+
+//     function handleSendMessage(msg) {
+//         let updatedConvos = convos.map((c) => {
+//             if (msg.conversation_id === c.id) {
+//                 c.messages = [...c.messages, msg]
+//                 return c
+//             }
+//             return c
+//         })
+//         setUser({...user, convos: updatedConvos})
+//     }
 
 //     // useEffect(() => {
 //     //     fetch("/user_convos").then((r) => {
@@ -23,7 +32,7 @@
 //     // }, [])
 
 
-//     return <ConvosContext.Provider value={{convos, setConvos}}>{children}</ConvosContext.Provider>
+//     return <ConvosContext.Provider value={{convos, handleSendMessage}}>{children}</ConvosContext.Provider>
 // }
 
 // export {ConvosContext, ConvosProvider}

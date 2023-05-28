@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-// change into custom library infinite scroll hook
+// change into custom library infinite scroll hook 
+// CAN DELETE THIS CONTEXT FILE
 const LibraryContext = React.createContext()
 
 function LibraryProvider({children}) {

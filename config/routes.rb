@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/book_search", to: "books#search_results"
   get "/user_convos", to: "conversations#user_convos"
   post "/new_message", to: "messages#new_message"
+  post "/new_convo", to: "conversations#new_convo"
   resources :books
   resources :users
   resources :exchanges

@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import { LibraryContext } from "../contexts/LibraryContext.js"
 import { UserContext } from "../contexts/UserContext.js"
+import NewMessageForm from "./NewMessageForm.js"
 
 
 function BookBorrowModal({setShowModal, book}) {
@@ -31,6 +32,10 @@ function BookBorrowModal({setShowModal, book}) {
         })
     }
 
+    function handleSendMessage() {
+
+    }
+
     return(
         <div className="modal">
             <div onClick={() => setShowModal(false)} className="overlay"></div> 
@@ -39,9 +44,11 @@ function BookBorrowModal({setShowModal, book}) {
                 <h4>{book.author}</h4>
                 <h5>{book.genre}, {book.num_pages} pages, hardback: {book.hardback.toString()}</h5>
                 <p>{book.notes}</p>
-                <h4>Owner: info here</h4>
+                <h4>Owner: {book.owner.username}</h4>
                 {/* add link to user's profile 
                 add option to message user */}
+                <label>Send Message to {book.owner.username}?</label>
+                <NewMessageForm handleSendMessage={handleSendMessage} recipient={book.user_id}/>
                 <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
             </div>
         </div>

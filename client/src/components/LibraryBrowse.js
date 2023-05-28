@@ -24,9 +24,9 @@ function LibraryBrowse() {
             <h3>browse</h3>
             {books.map((b, i) => {
                 if (books.length === i + 1) {
-                    return <div ref={lastBookRef} key={b.id}> <BookCard book={b} /> </div>
+                    return <div ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} /> </div>
                 } else {
-                return <div key={b.id}> <BookCard book={b} /> </div>
+                return <div key={b.id}> <BookCard book={b} owned={false}/> </div>
                 }
             })}
             <div>{ loading ? "Loading..." : null }</div>
