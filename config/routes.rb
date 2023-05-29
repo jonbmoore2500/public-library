@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :conversations
   # be sure to limit the above resources
   # login/out routes
-  get "/me", to: "users#show"
+  get "/me", to: "users#logged_user"
   post "/login", to: "sessions#create"
   post "/signup", to: "users#create"
   delete "/logout", to: "sessions#destroy"

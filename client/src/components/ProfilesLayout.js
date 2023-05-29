@@ -12,7 +12,7 @@ function ProfilesLayout() {
                 <ul>
                     {profiles.map((p) => (
                     <li key={p.id}>
-                        <Link to ="/profiles/:userID">{p.username}</Link>
+                        <Link to={"/profiles/" + p.id}>{p.username}</Link>
                     </li>
                     ))}
                 </ul>
