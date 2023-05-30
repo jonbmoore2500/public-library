@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     wrap_parameters format: []
-    before_action :authorize, only: [:logged_user, :index]
+    before_action :authorize, only: [:logged_user, :index, :update]
 
     def index
         users = User.all.select{|u| u.id != @current_user.id}
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: params[:id])
-        # byebug
         if user
             render json: user
         else
@@ -31,10 +30,28 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        user = User.find_by(id: params[:id])
+        if user.id == @current_user.id
+            user.update(update_user_params)
+            if user.valid?
+                render json: user
+            else
+                render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+            end
+        else
+            render json: {error: "must be logged in"}, status: :unauthorized
+        end
+    end
+
     private
 
     def create_user_params
         params.permit(:username, :neighborhood, :password, :password_confirmation, :bio, :fav_genre, :fav_author, :phone_num, :email)
+    end
+
+    def update_user_params
+        params.permit(:id, :bio, :neighborhood, :fav_author, :fav_genre)
     end
 
 end

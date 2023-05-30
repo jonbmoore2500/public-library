@@ -5,7 +5,7 @@ import NewMessageForm from "./NewMessageForm"
 
 function ConvoContainer({selected, userID}) {
 
-    const otherUser = selected.two_users.find(u => u.id != userID)
+    const otherUser = selected.two_users.find(u => u.id !== userID)
 
     return(
         <div>

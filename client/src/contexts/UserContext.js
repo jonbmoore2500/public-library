@@ -7,13 +7,14 @@ function UserProvider({children}) {
 
 
     const [user, setUser] = useState(null)
-    const [convos, setConvos] = useState(null)
+    // const [convos, setConvos] = useState(null)
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
+                    console.log(user)
                     setUser(user)
-                    setConvos(user.convos)
+                    // setConvos(user.convos)
                 })
             }
         })
@@ -78,7 +79,11 @@ function UserProvider({children}) {
         setUser({...user, convos: [...user.convos, convo]})
     }
 
-    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate, handleNewMsg, handleNewConvo}}>{children}</UserContext.Provider>
+    function handleUpdateUser(data) {
+        setUser({...user, bio: data.bio, fav_author: data.fav_author, fav_genre: data.fav_genre, neighborhood: data.neighborhood})
+    }
+
+    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate, handleNewMsg, handleNewConvo, handleUpdateUser}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}
