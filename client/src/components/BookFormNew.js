@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 
 
-function BookFormNew() {
+function BookFormNew({setShowForm}) {
 
     const {addUserBooks} = useContext(UserContext)
     const [newTitle, setNewTitle] = useState("")
@@ -45,7 +45,6 @@ function BookFormNew() {
     return(
         <div>   
             <form onSubmit={handleNewBookSave}>
-                <h3>Add a book to your library: </h3>
                 <label>Title: </label>
                 <input
                     onChange={(e) => setNewTitle(e.target.value)}
@@ -82,6 +81,7 @@ function BookFormNew() {
                     <option value={false}>No, display it</option>
                 </select>
                 <button type="submit">Submit new book</button>
+                <button onClick={() => setShowForm(false)}>Cancel</button>
             </form>
         </div>
     )

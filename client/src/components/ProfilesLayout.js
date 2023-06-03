@@ -8,17 +8,21 @@ function ProfilesLayout() {
 
     return(
         <>
-            <nav>
-                <ul>
-                    {profiles.map((p) => (
-                    <li key={p.id}>
-                        <Link to={"/profiles/" + p.id}>{p.username}</Link>
-                    </li>
-                    ))}
-                </ul>
-            </nav>
-
-            <Outlet />
+            {profiles ? 
+            <>
+                <nav>
+                    <ul>
+                        {profiles.map((p) => (
+                        <li key={p.id}>
+                            <Link to={"/profiles/" + p.id}>{p.username}</Link>
+                        </li>
+                        ))}
+                    </ul>
+                </nav>
+                <Outlet />
+            </>
+            :
+            <>Loading...</>}
         </>
     )
 }

@@ -24,6 +24,12 @@ class ExchangesController < ApplicationController
     def update
         exchange = Exchange.find_by(id: params[:id])
         exchange.update(update_exch_params)
+        if params[:approved]
+            exchange.book.update(checked_out: true)
+        end
+        if params[:complete]
+            exchange.book.update(checked_out: false)
+        end
         render json: exchange, include: {book: {only: [:title, :author, :user_id]}, user: {only: [:username]}}, methods: [:exch_status]
     end
 

@@ -1,13 +1,14 @@
-import React, {useState, useEffect, useContext} from "react"
-
+import React, {useState, useEffect} from "react"
 
 const UserContext = React.createContext()
 
 function UserProvider({children}) {
 
-
     const [user, setUser] = useState(null)
+    // const [userBooks, setUserBooks] = useState(null)
     // const [convos, setConvos] = useState(null)
+    // const [exchs, setExchs] = useState(null)
+
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
@@ -44,23 +45,29 @@ function UserProvider({children}) {
         setUser({...user, exchanges_borrow: updatedExchs})
     }
 
+    function exchUpdateHelper(arr, data) {
+        let results = arr.map((e) => {
+            if (e.id === data.id) {
+                return data
+            }
+            return e
+        })
+        return results
+    }
+
     function handleExchUpdate(data, type) {
         if (type === "borrowed") {
-            let updatedExchs = user.exchanges_borrow.map((e) => {
-                if (e.id === data.id) {
-                    return data
-                }
-                return e
-            })
+            let updatedExchs = exchUpdateHelper(user.exchanges_borrow, data)
             setUser({...user, exchanges_borrow: updatedExchs})
         } else {
-            let updatedExchs = user.exchanges_lend.map((e) => {
-                if (e.id === data.id) {
-                    return data
-                }
-                return e
-            })
+            let updatedExchs = []
+            if (data.complete === true) {
+                updatedExchs = user.exchanges_lend.filter((e) => e.id !== data.id)
+            } else {
+                updatedExchs = exchUpdateHelper(user.exchanges_lend, data)
+            }
             setUser({...user, exchanges_lend: updatedExchs})
+            // update book if needed. what info can be provided to make this happen?
         }
     }
 

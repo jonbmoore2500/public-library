@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext.js"
 
 function Header() {
 
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
 
 
     function handleLogOut(e) {
@@ -17,9 +17,12 @@ function Header() {
     }
 
     return(
-        <div>
-            <h2>Header for Public Library!</h2>
-            <button onClick={handleLogOut}>X</button>
+        <div id="header">
+            <h1>PUBLIC LIBRARY</h1>
+            <div id="logout">
+                <p>User: {user.username}</p>
+                <button onClick={handleLogOut}>Log out</button>
+            </div>
         </div>
     )
 }

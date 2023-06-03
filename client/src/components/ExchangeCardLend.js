@@ -1,11 +1,18 @@
-import React from "react"
+import React, {useState} from "react"
 
 function ExchangeCardLend({exchange, updateExchanges}) {
 
+    const [confirmModal, setConfirmModal] = useState(false)
+
     function handleUpdate(param) {
-        let updateObj = {complete: true}
-        if (param === "approved") {
-            updateObj = {approved: true}
+        let updateObj = {}
+        switch(param) {
+            case "approved":
+                updateObj = {approved: true}
+            case "denied":
+                updateObj = {approved: false, complete: true}
+            default:
+                updateObj = {complete: true}
         }
         fetch(`/exchanges/${exchange.id}`, {
             method: "PATCH",
@@ -22,7 +29,6 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             }
         })
         // move to context
-        // if exch.complete = true, remove from exchanges. else update in exchange array.
     }
 
     function renderSwitch(param) {
@@ -54,6 +60,21 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             <h3>{exchange.book.title} by {exchange.book.author}</h3>
             <h3>Borrower: {exchange.user.username}</h3>
             {renderSwitch(exchange.exch_status)}
+            <label>Cancel this Exchange? </label>
+            <button onClick={() => setConfirmModal(true)}>Cancel</button>
+            
+            {confirmModal && ( 
+            <>
+                <div className="modal">
+                <div onClick={() => setConfirmModal(false)} className="overlay"></div> 
+                <div className="modal-content">
+                    <label>Really cancel the exchange?</label>
+                    <button onClick={() => handleUpdate("cancel")}>Yes</button>
+                    <button onClick={() => setConfirmModal(false)}>No</button>
+                </div>
+                </div>
+            </>
+            )}
         </div>
     )
 }

@@ -13,7 +13,7 @@ function UserExchangesCont() {
 
     return(
         <div>
-            <h3>user exchanges container</h3>
+            <h2>Chapter 3: Your Exchanges</h2>
 
             <h3>Lending: </h3>
             {user.exchanges_lend.map((e) => (

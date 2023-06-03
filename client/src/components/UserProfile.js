@@ -10,11 +10,24 @@ function UserProfile() {
 
     return(
         <div>
-            <h2>{user.username}</h2>
-            <h3>Neighborhood: {user.neighborhood}</h3>
-            <h3>Bio: {user.bio}</h3>
-            <h3>Favorite genre: {user.fav_genre}</h3>
-            <h3>Favorite author: {user.fav_author}</h3>
+            <h2>Chapter 1: Your Profile</h2>
+            <ul>
+                <li>
+                    <h3>Username: {user.username}</h3>
+                </li>
+                <li>
+                    <h3>Neighborhood: {user.neighborhood}</h3>
+                </li>
+                <li>
+                    <h3>Bio: {user.bio}</h3>
+                </li>
+                <li>
+                    <h3>Favorite genre: {user.fav_genre}</h3>
+                </li>
+                <li>
+                    <h3>Favorite author: {user.fav_author}</h3>
+                </li>
+            </ul>
             <button onClick={() => setEditModal(true)}>Edit Profile</button>
             {editModal && (
                 <EditUserModal setEditModal={setEditModal} user={user} handleUpdate={handleUpdateUser}/>
