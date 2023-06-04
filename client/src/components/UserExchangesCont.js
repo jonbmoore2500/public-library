@@ -14,7 +14,6 @@ function UserExchangesCont() {
     return(
         <div>
             <h2>Chapter 3: Your Exchanges</h2>
-
             <h3>Lending: </h3>
             {user.exchanges_lend.map((e) => (
                 <ExchangeCardLend key={e.id} exchange={e} updateExchanges={updateExchanges}/>

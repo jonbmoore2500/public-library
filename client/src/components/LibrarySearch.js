@@ -20,20 +20,23 @@ function LibrarySearch() {
 
     return(
         <div>
-            <h3>search</h3>
+            <h2>Chapter 4: Public Library</h2>
+            <h3>Search</h3>
             <BookSearch handleSearchGet={handleSearchGet}/>
             {dispBooks.length >= 1 ? 
-            <>
+            <ul>
                 {dispBooks.map((b) => (
-                    <BookCard key={b.id} book={b} />
+                    <li key={b.id}>
+                        <BookCard book={b} owned={false}/>
+                    </li>
                 ))}
-            </>
+            </ul>
             :    
             <>
                 {searched ? 
                 <h3>No results</h3>
                 :
-                <h3>Enter search terms or a filter category to display books</h3>
+                <h3>Enter search terms and/or choose a genre to display books</h3>
                 }
             </>
             }

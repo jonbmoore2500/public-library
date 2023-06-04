@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef, useCallback} from "react"
+import React, {useState, useRef, useCallback} from "react"
 import useLibraryGet from "../custom_hooks/useLibraryGet"
 import BookCard from "./BookCard"
 
@@ -21,14 +21,17 @@ function LibraryBrowse() {
     
     return(
         <div>
-            <h3>browse</h3>
-            {books.map((b, i) => {
-                if (books.length === i + 1) {
-                    return <div ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} /> </div>
-                } else {
-                return <div key={b.id}> <BookCard book={b} owned={false}/> </div>
-                }
-            })}
+            <h2>Chapter 4: Public Library</h2>
+            <h3>Browse</h3>
+            <ul>
+                {books.map((b, i) => {
+                    if (books.length === i + 1) {
+                        return <li ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} /> </li>
+                    } else {
+                    return <li key={b.id}> <BookCard book={b} owned={false}/> </li>
+                    }
+                })}
+            </ul>
             <div>{ loading ? "Loading..." : null }</div>
         </div>
     )

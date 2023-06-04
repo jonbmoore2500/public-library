@@ -15,9 +15,7 @@ function BookSearch({handleSearchGet}) {
         <>
             <h3>Sort by: </h3>
             <form onSubmit={handleSearchSubmit}>
-                <input onChange={(e) => setSearchText(e.target.value)} value={searchText}>
-
-                </input>
+                <input onChange={(e) => setSearchText(e.target.value)} value={searchText} />
                 <select onChange={(e) => setGenre(e.target.value)} value={genre}>
                     <option value="">All genres</option>
                     {allowed_genres.map((g) => (

@@ -10,7 +10,7 @@ function ProfilesLayout() {
         <>
             {profiles ? 
             <>
-                <nav>
+                <nav className="leftnav">
                     <ul>
                         {profiles.map((p) => (
                         <li key={p.id}>

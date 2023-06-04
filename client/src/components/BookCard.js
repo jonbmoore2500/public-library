@@ -10,20 +10,18 @@ function BookCard({book, owned = true}) {
 
     return(
         <>
-            <div>
+            <div onClick={owned ? () => setShowEditModal(true) : () => setShowBorrowModal(true)}>
                 <h3>{book.title}</h3>
                 <h4>{book.author}</h4>
-                <h3>{book.id}</h3>
-                <h5>{book.genre}, {book.num_pages} pages, hardback: {book.hardback.toString()}</h5>
+                <h5>{book.genre}</h5>
+                {/* <h5>{book.num_pages} pages, hardback: {book.hardback.toString()}</h5> */}
                 {owned ? 
                 <>
-                    <h5>hidden: {book.hidden.toString()}</h5> 
-                    <button onClick={() => setShowEditModal(true)}>Edit Book</button>
+                    <h5>Hidden: {book.hidden.toString()}</h5> 
                 </>
                 : 
                 <>
-                    <h5>info about owner goes here</h5>
-                    <button onClick={() => setShowBorrowModal(true)}>See more? </button>
+                    <h5>Owned by: {book.owner.username}</h5>
                 </>
                 }
             </div>
