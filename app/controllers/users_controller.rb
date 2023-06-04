@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: params[:id])
         if user
-            render json: user
+            render json: user, serializer: UserSearchedSerializer
             # set up serializers to only include displayed info, including filtering books
         else
             render json: {error: "user not found"}, status: :unprocessable_entity

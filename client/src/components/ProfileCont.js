@@ -21,6 +21,7 @@ function ProfileCont() {
             <>
                 <h3>{dispUser.username}</h3>
                 <h4>Neighborhood: {dispUser.neighborhood}</h4>
+                <h4>Bio: {dispUser.bio}</h4>
                 <h4>Favorite Genre: {dispUser.fav_genre}</h4>
                 <h4>Favorite Author: {dispUser.fav_author}</h4>
                 <h4>Completed Exchanges: {dispUser.num_ex_complete}</h4>
@@ -29,8 +30,7 @@ function ProfileCont() {
 
                     {dispUser.owned_books.map((b) => (
                         <li key={b.id}>
-                            <BookCard book={b}  /> 
-                            {/* need owned to be false */}
+                            <BookCard book={b} owned={false} owner={dispUser} /> 
                         </li>
                     ))}
 

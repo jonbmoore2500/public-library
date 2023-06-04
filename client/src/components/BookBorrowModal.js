@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext.js"
 import NewMessageForm from "./NewMessageForm.js"
 
 
-function BookBorrowModal({setShowModal, book}) {
+function BookBorrowModal({setShowModal, book, owner}) {
 
     const {handleExchanged} = useContext(LibraryContext)
     const {handleNewExch} = useContext(UserContext)
@@ -41,10 +41,10 @@ function BookBorrowModal({setShowModal, book}) {
                 <h4>{book.author}</h4>
                 <h5>{book.genre}, {book.num_pages} pages, hardback: {book.hardback.toString()}</h5>
                 <p>{book.notes}</p>
-                <h4>Owner: {book.owner.username}</h4>
+                <h4>Owner: {owner.username}</h4>
                 {/* add link to user's profile 
                 add option to message user */}
-                <label>Send Message to {book.owner.username}?</label>
+                <label>Send Message to {owner.username}?</label>
                 <NewMessageForm recipient={book.user_id}/>
                 <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
             </div>

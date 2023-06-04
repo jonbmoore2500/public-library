@@ -3,7 +3,7 @@ import BookFormEdit from "./BookFormEdit"
 import BookBorrowModal from "./BookBorrowModal"
 
 
-function BookCard({book, owned = true}) {
+function BookCard({book, owned = true, owner = book.owner}) {
 
     const [showEditModal, setShowEditModal] = useState(false)
     const [showBorrowModal, setShowBorrowModal] = useState(false)
@@ -21,7 +21,7 @@ function BookCard({book, owned = true}) {
                 </>
                 : 
                 <>
-                    <h5>Owned by: {book.owner.username}</h5>
+                    <h5>Owned by: {owner.username}</h5>
                 </>
                 }
             </div>
@@ -29,7 +29,7 @@ function BookCard({book, owned = true}) {
                 <BookFormEdit setShowModal={setShowEditModal} book={book}/>
             ) : null}
             {!owned && showBorrowModal ? (
-                <BookBorrowModal setShowModal={setShowBorrowModal} book={book}/>
+                <BookBorrowModal setShowModal={setShowBorrowModal} book={book} owner={owner}/>
             ) : null}
         </>
     )
