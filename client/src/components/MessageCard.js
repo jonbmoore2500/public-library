@@ -1,11 +1,21 @@
-import React from "react"
+import React, {useState} from "react"
 
 function MessageCard({message, loggedUser}) {
 
+    const [showDate, setShowDate] = useState(false)
+
     return(
-        <div className={loggedUser ? "loggedUserMessage" : "otherUserMessage"}>
-            {message.text}
-            {loggedUser ? <>You</> : <>Other User</>}
+        <div>
+            <div 
+            className={loggedUser ? "chat-bubble-right tri-right round border right-top" : "chat-bubble-left tri-right round border left-top"}
+            onClick={() => setShowDate(!showDate)}
+            >
+                <div className="chat-text">
+                    {message.text}
+                    {/* {loggedUser ? <>You</> : <>Other User</>} */}
+                </div>
+            </div>
+            {showDate ? <h5>Sent at: {message.created_at.slice(0, 10)}</h5> : null }
         </div>
     )
 }
