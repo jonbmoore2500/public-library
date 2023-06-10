@@ -25,6 +25,7 @@ function BookBorrowModal({setShowModal, book, owner}) {
             if (r.ok) {
                 r.json().then((data) => {
                     // handleExchanged(book.id)
+                    console.log(data)
                     handleNewExch(data)
                 })
             } else {

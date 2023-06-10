@@ -15,7 +15,7 @@ class ExchangesController < ApplicationController
     def create
         exchange = @current_user.exchanges.create(create_exch_params)
         if exchange.valid?
-            render json: exchange, status: :created
+            render json: exchange, include: ['book', 'book.owner']
         else
             render json: {errors: exchange.errors.full_messages}, status: :unprocessable_entity
         end

@@ -5,6 +5,7 @@ import BookBorrowModal from "./BookBorrowModal"
 
 function BookCard({book, owned = true, owner = book.owner}) {
 
+    console.log(book)
     const [showEditModal, setShowEditModal] = useState(false)
     const [showBorrowModal, setShowBorrowModal] = useState(false)
 
