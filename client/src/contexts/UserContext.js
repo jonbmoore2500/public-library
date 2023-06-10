@@ -57,8 +57,7 @@ function UserProvider({children}) {
 
     function handleExchUpdate(data, type) {
         if (type === "borrowed") {
-            let updatedExchs = exchUpdateHelper(user.exchanges_borrow, data)
-            setUser({...user, exchanges_borrow: updatedExchs})
+            setUser({...user, exchanges_borrow: exchUpdateHelper(user.exchanges_borrow, data)})
         } else {
             let updatedExchs = []
             let updatedBooks = []

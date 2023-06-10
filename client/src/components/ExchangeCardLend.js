@@ -10,13 +10,10 @@ function ExchangeCardLend({exchange, updateExchanges}) {
 
     function handleUpdate(param) {
         let updateObj = {}
-        switch(param) {
-            case "approved":
-                updateObj = {approved: true}
-            case "denied":
-                updateObj = {approved: false, complete: true}
-            default:
-                updateObj = {complete: true}
+        if (param === "approved") {
+            updateObj = {approved: true}
+        } else {
+            updateObj = {complete: true}
         }
         fetch(`/exchanges/${exchange.id}`, {
             method: "PATCH",
@@ -28,6 +25,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
+                    console.log(exch)
                     updateExchanges(exch, "lent")
                 })
             }
