@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     end
 
     def logged_user
-        render json: @current_user, include: {conversations: {include: :messages}}
+        render json: @current_user
     end
 
     def create

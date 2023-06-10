@@ -61,13 +61,27 @@ function UserProvider({children}) {
             setUser({...user, exchanges_borrow: updatedExchs})
         } else {
             let updatedExchs = []
+            let updatedBooks = []
             if (data.complete === true) {
                 updatedExchs = user.exchanges_lend.filter((e) => e.id !== data.id)
+                updatedBooks = user.owned_books.map((b) => {
+                    if (data.book_id === b.id) {
+                        b.checked_out = false
+                        return b
+                    }
+                    return b
+                })
             } else {
                 updatedExchs = exchUpdateHelper(user.exchanges_lend, data)
+                updatedBooks = user.owned_books.map((b) => {
+                    if (data.book_id === b.id) {
+                        b.checked_out = true
+                        return b
+                    }
+                    return b
+                })
             }
-            setUser({...user, exchanges_lend: updatedExchs})
-            // update book if needed. what info can be provided to make this happen?
+            setUser({...user, exchanges_lend: updatedExchs, owned_books: updatedBooks})
         }
     }
 
