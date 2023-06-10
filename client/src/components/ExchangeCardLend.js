@@ -1,8 +1,12 @@
 import React, {useState} from "react"
+import { Link } from "react-router-dom"
+import NewMessageForm from "./NewMessageForm"
+
 
 function ExchangeCardLend({exchange, updateExchanges}) {
 
     const [confirmModal, setConfirmModal] = useState(false)
+    const [showMessage, setShowMessage] = useState(false)
 
     function handleUpdate(param) {
         let updateObj = {}
@@ -40,14 +44,14 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             case "returned":
                 return (
                     <>
-                        <h3>Borrower has returned the book. Complete the exchange?</h3>
+                        <h4>Borrower has returned the book. Complete the exchange?</h4>
                         <button onClick={() => handleUpdate("complete")}>Complete</button>
                     </>
                 )
             default :
                 return (
                     <>
-                        <h3>{exchange.user.username} has requested to borrow this book. Approve the request?</h3>
+                        <h4>{exchange.user.username} has requested to borrow this book. Approve the request?</h4>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
                         <button onClick={() => handleUpdate("denied")}>Deny</button>
                     </>
@@ -56,12 +60,15 @@ function ExchangeCardLend({exchange, updateExchanges}) {
     }
 
     return(
-        <div>
-            <h3>{exchange.book.title} by {exchange.book.author}</h3>
-            <h3>Borrower: {exchange.user.username}</h3>
+        <div className="exchange-card">
+            <h4><strong>{exchange.book.title} by {exchange.book.author}</strong></h4>
+            <h4>Borrower: <Link to={"/profiles/" + exchange.user.id}>{exchange.user.username}</Link></h4>
             {renderSwitch(exchange.exch_status)}
             <label>Cancel this Exchange? </label>
             <button onClick={() => setConfirmModal(true)}>Cancel</button>
+            {showMessage && (
+                <NewMessageForm recipient={exchange.user.id}/>
+            )}
             
             {confirmModal && ( 
             <>

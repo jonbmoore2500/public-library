@@ -1,7 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
+import { Link } from "react-router-dom"
+import NewMessageForm from "./NewMessageForm"
 
 function ExchangeCardBorrow({exchange, updateExchanges}) {
 
+    const [showMessage, setShowMessage] = useState(false)
     function handleUpdate(param) {
         let updateObj = {returned: true}
         if (param === "received") {
@@ -28,29 +31,32 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
             case "approved":
                 return (
                     <>
-                        <h3>Request approved. Mark as received?</h3>
+                        <h4>Request approved. Mark as received?</h4>
                         <button onClick={() => handleUpdate("received")}>Received</button>
                     </>
                 )
             case "received":
                 return (
                     <>
-                        <h3>Book received. Mark as returned?</h3>
+                        <h4>Book received. Mark as returned?</h4>
                         <button onClick={() => handleUpdate("returned")}>Returned</button>
                     </>
                 )
             case "returned":
-                return <h3>Book returned. Awaiting owner to complete the exchange</h3>
+                return <h4>Book returned. Awaiting owner to complete the exchange</h4>
             default :
-                return <h3>Requested on {exchange.updated_at}. Awaiting approval</h3>
+                return <h4>Requested on {exchange.updated_at}. Awaiting approval</h4>
         }
     }
 
     return(
-        <div>
-            <h3>{exchange.book.title} by {exchange.book.author}</h3>
-            <h3>Owner: {exchange.book.user_id}</h3>
+        <div className="exchange-card" onClick={() => setShowMessage(!showMessage)}>
+            <h4>{exchange.book.title} by {exchange.book.author}</h4>
+            <h4>Owner: <Link to={"/profiles/" + exchange.book.owner.id}>{exchange.book.owner.username}</Link></h4>
             {renderSwitch(exchange.exch_status)}
+            {showMessage && (
+                <NewMessageForm recipient={exchange.book.owner.id}/>
+            )}
         </div>
     )
 }

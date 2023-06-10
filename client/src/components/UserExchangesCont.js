@@ -15,14 +15,25 @@ function UserExchangesCont() {
         <div>
             <h2>Chapter 3: Your Exchanges</h2>
             <h3>Lending: </h3>
-            {user.exchanges_lend.map((e) => (
-                <ExchangeCardLend key={e.id} exchange={e} updateExchanges={updateExchanges}/>
-            ))}
+            {user.exchanges_lend.length > 0 ?
+            <>
+                {user.exchanges_lend.map((e) => (
+                    <ExchangeCardLend key={e.id} exchange={e} updateExchanges={updateExchanges}/>
+                ))}
+            </>
+            : 
+                <h4>You aren't lending any books at the moment</h4> 
+            }
             <h3>Borrowing: </h3>
-            {user.exchanges_borrow.map((e) => (
-                <ExchangeCardBorrow key={e.id} exchange={e} updateExchanges={updateExchanges}/>
-            ))}
-            
+            {user.exchanges_borrow.length > 0 ?
+            <>
+                {user.exchanges_borrow.map((e) => (
+                    <ExchangeCardBorrow key={e.id} exchange={e} updateExchanges={updateExchanges}/>
+                ))}
+            </>    
+            :
+                <h4>You aren't borrowing any books at the moment</h4>
+            }
         </div>
     )
 }
