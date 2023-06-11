@@ -15,6 +15,7 @@ class ExchangesController < ApplicationController
     def create
         exchange = @current_user.exchanges.create(create_exch_params)
         if exchange.valid?
+            exchange.book.update(checked_out:true)
             render json: exchange, include: ['book', 'book.owner']
         else
             render json: {errors: exchange.errors.full_messages}, status: :unprocessable_entity
@@ -23,10 +24,8 @@ class ExchangesController < ApplicationController
 
     def update
         exchange = Exchange.find_by(id: params[:id])
+        # byebug
         exchange.update(update_exch_params)
-        if params[:approved]
-            exchange.book.update(checked_out: true)
-        end
         if params[:complete]
             exchange.book.update(checked_out: false)
         end

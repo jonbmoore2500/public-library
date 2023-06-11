@@ -24,7 +24,12 @@ function useLibraryGet(pageNum) {
             setLoading(false)
         })
     }, [pageNum])
-    return {loading, error, books, hasMore}
+
+    function handleExchanged(bookID) {
+        setBooks(books.filter(b => b.id !== bookID))
+    }
+
+    return {loading, error, books, hasMore, handleExchanged}
 }
 
 export default useLibraryGet

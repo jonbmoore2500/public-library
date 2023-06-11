@@ -1,6 +1,5 @@
 import React, {useState} from "react"
 import BookCard from "./BookCard"
-// import BookSort from "./BookSort"
 import BookSearch from "./BookSearch"
 
 function LibrarySearch() {
@@ -18,6 +17,10 @@ function LibrarySearch() {
         })
     }
 
+    function handleExchanged(bookID) {
+        setDispBooks(dispBooks.filter(b => b.id !== bookID))
+    }
+
     return(
         <div>
             <h2>Chapter 4: Public Library</h2>
@@ -27,7 +30,7 @@ function LibrarySearch() {
             <ul>
                 {dispBooks.map((b) => (
                     <li key={b.id}>
-                        <BookCard book={b} owned={false}/>
+                        <BookCard book={b} owned={false} handleExchanged={handleExchanged}/>
                     </li>
                 ))}
             </ul>

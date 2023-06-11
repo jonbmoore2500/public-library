@@ -13,7 +13,18 @@ function ProfileCont() {
         .then(r => r.json())
         .then(data => setDispUser(data))
     }, [userID])
-    if (dispUser) console.log(dispUser)
+    // if (dispUser) console.log(dispUser)
+
+    function handleExchanged(bookID) {
+        let newBooks = dispUser.owned_books.map((b) => {
+            if (b.id === bookID) {
+                b.checked_out = true 
+                return b
+            }
+            return b
+        })
+        setDispUser({...dispUser, owned_books: newBooks})
+    }
 
     return(
         <div className="rightcontent">
@@ -30,7 +41,7 @@ function ProfileCont() {
 
                     {dispUser.owned_books.map((b) => (
                         <li key={b.id}>
-                            <BookCard book={b} owned={false} owner={dispUser} /> 
+                            <BookCard book={b} owned={false} owner={dispUser} handleExchanged={handleExchanged}/> 
                         </li>
                     ))}
 

@@ -5,7 +5,7 @@ import BookCard from "./BookCard"
 function LibraryBrowse() {
 
     const [pageNum, setPageNum] = useState(1)
-    const {books, hasMore, loading, error} = useLibraryGet(pageNum)
+    const {books, hasMore, loading, error, handleExchanged} = useLibraryGet(pageNum)
     const observer = useRef()
     
     const lastBookRef = useCallback(node => {
@@ -18,7 +18,7 @@ function LibraryBrowse() {
         })
         if (node) observer.current.observe(node)
     }, [loading, hasMore])
-    
+
     return(
         <div>
             <h2>Chapter 4: Public Library</h2>
@@ -26,9 +26,9 @@ function LibraryBrowse() {
             <ul>
                 {books.map((b, i) => {
                     if (books.length === i + 1) {
-                        return <li ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} /> </li>
+                        return <li ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </li>
                     } else {
-                    return <li key={b.id}> <BookCard book={b} owned={false}/> </li>
+                    return <li key={b.id}> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </li>
                     }
                 })}
             </ul>
