@@ -30,7 +30,7 @@ class ExchangesController < ApplicationController
         if params[:complete]
             exchange.book.update(checked_out: false)
         end
-        render json: exchange, include: {book: {only: [:title, :author, :user_id]}, user: {only: [:username]}}, methods: [:exch_status]
+        render json: exchange, include: ['book', 'book.owner', 'user']
     end
 
     def destroy

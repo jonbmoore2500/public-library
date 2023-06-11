@@ -13,17 +13,14 @@ import LibrarySearch from "./components/LibrarySearch.js"
 import ProfilesLayout from "./components/ProfilesLayout.js"
 import ProfileCont from "./components/ProfileCont.js"
 import MessagesCont from "./components/MessagesCont.js"
-
 import Home from "./components/Home.js"
 
 import './App.css';
 import './modal.css'
 
-
 function App() {
 
   const {user} = useContext(UserContext)
-
 
   return (
     <div className="App">

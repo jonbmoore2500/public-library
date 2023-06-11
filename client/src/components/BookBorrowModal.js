@@ -24,7 +24,7 @@ function BookBorrowModal({setShowModal, book, owner}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
-                    // handleExchanged(book.id)
+                    // handleExchanged(book.id) in library context, change checked_out value
                     console.log(data)
                     handleNewExch(data)
                 })

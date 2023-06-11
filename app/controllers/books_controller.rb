@@ -33,6 +33,10 @@ class BooksController < ApplicationController
         book = @current_user.owned_books.find_by(id: params[:id])
         if book 
             book.update(update_book_params)
+            if update_book_params[:checked_out] == false
+                exch = book.exchanges.find {|e| e.approved == true && e.complete == false}
+                exch.update(returned: true, complete: true)
+            end
             if book.valid?
                 render json: book, status: :created
             else

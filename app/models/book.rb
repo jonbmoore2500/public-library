@@ -15,5 +15,8 @@ class Book < ApplicationRecord
     validates :notes, length: {maximum: 1000}, allow_blank: true
 
     # instance method, current user id argument
+    def complete_exchs
+        self.exchanges.count {|e| e.complete == true && e.returned == true} 
+    end
 
 end

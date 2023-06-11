@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useContext} from "react"
 
-
 const ProfilesContext = React.createContext()
 
 function ProfilesProvider({children}) {
-
 
     const [profiles, setProfiles] = useState(null)
 
@@ -17,7 +15,6 @@ function ProfilesProvider({children}) {
             }
         })
     }, [])
-    
 
     return <ProfilesContext.Provider value={{profiles, setProfiles}}>{children}</ProfilesContext.Provider>
 }

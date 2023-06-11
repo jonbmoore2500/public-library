@@ -20,7 +20,12 @@ class User < ApplicationRecord
     validates :fav_author, presence: true
 
     def num_ex_complete
+        # borrowed
         self.exchanges.count{|e| e.complete == true}
+    end
+
+    def num_lend_complete
+        self.owned_books.sum {|b| b.complete_exchs }
     end
 
 end

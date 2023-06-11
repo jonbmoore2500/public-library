@@ -25,7 +25,8 @@ function ExchangeCardLend({exchange, updateExchanges}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
-                    console.log(exch)
+                    // console.log(exch)
+                    // consider dropping nested data from backend and just updating based on what is already in state
                     updateExchanges(exch, "lent")
                 })
             }

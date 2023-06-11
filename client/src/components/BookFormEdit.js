@@ -1,7 +1,6 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 
-
 function BookFormEdit({setShowModal, book}) {
 
     const {deleteUserBook, updateUserBook} = useContext(UserContext)
@@ -12,8 +11,6 @@ function BookFormEdit({setShowModal, book}) {
     
     function handleEditSubmit(e) {
         e.preventDefault()
-        // console.log(book)
-        // console.log({notes: newNotes, hidden: newHidden, checked_out: newCheckedOut})
         fetch(`/books/${book.id}`, {
             method: "PATCH", 
             headers: {
@@ -25,14 +22,13 @@ function BookFormEdit({setShowModal, book}) {
             if (r.ok) {
                 r.json().then((book) => {
                     updateUserBook(book)
+                    // if checking in or deleting, complete exchange (if relevant)
                     setShowModal(false)
                 })
             } else {
                 r.json().then(e => console.log(e))
             }
         })
-
-        setShowModal(false)
     }
 
     function handleDeleteBook() {
@@ -63,7 +59,7 @@ function BookFormEdit({setShowModal, book}) {
                     </label>
                     {book.checked_out ? 
                     <label>
-                        <input type="checkbox" onChange={() => setNewCheckedOut(true)}/>
+                        <input type="checkbox" onChange={() => setNewCheckedOut(!newCheckedOut)}/>
                         Check in?
                     </label> : null}
                     <button type="submit">Save Edits?</button>
@@ -74,6 +70,5 @@ function BookFormEdit({setShowModal, book}) {
         </div>
     )
 }
-
 
 export default BookFormEdit
