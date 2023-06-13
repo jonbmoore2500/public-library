@@ -36,7 +36,10 @@ class BooksController < ApplicationController
             book.update(update_book_params)
             if update_book_params[:checked_out] == false
                 exch = book.exchanges.find {|e| e.approved == true && e.complete == false}
-                exch.update(returned: true, complete: true)
+                if exch
+                    exch.update(returned: true, complete: true)
+                end
+                # replace with method cancel_exchanges, return canceled or no exchanges
             end
             if book.valid?
                 render json: book, status: :created
