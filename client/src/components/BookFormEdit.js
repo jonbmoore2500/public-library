@@ -49,9 +49,10 @@ function BookFormEdit({setShowModal, book}) {
                 <h3>Edit "{book.title}": </h3>
                 <form onSubmit={handleEditSubmit}>
                     <label>Edit Notes: </label>
-                    <input 
+                    <textarea 
                         onChange={(e) => setNewNotes(e.target.value)}
                         value={newNotes}
+                        rows="4"
                     />
                     <label>
                         <input type="checkbox" onChange={() => setNewHidden(!newHidden)}/>
@@ -64,6 +65,7 @@ function BookFormEdit({setShowModal, book}) {
                     </label> : null}
                     <button type="submit">Save Edits?</button>
                 </form>
+                <br></br>
                 <button onClick={() => handleDeleteBook()}>Delete Book</button>
                 <button onClick={() => setShowModal(false)}>Close</button>
             </div>

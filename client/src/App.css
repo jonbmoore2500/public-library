@@ -1,5 +1,5 @@
 .App {
-  /* text-align: center; */
+  text-align: center;
   font-family: "Copperplate", "Papyrus", fantasy;
   background-color: #f2dcb1;
   position: absolute;
@@ -121,4 +121,50 @@
   /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
+}
+
+#profile-home {
+  width: 80%;
+  margin-left: 10%;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* text-align: center; */
+}
+
+ul {
+  list-style: none;
+  /* font-size: medium */
+}
+
+li.profile::before {
+  content: "\2767";
+  /* font-weight: bold; */
+  font-size: 20px;
+  padding-right: 10px;
+}
+li.profile {
+  font-size: 40px;
+}
+
+.bio {
+  font-size: 30px;
+}
+
+.book-card{
+  width: 80%;
+  margin-left:10%;
+  border: 2px solid black;
+  height: fit-content;
+}
+
+.title-author{
+  width: 25%;
+  float: left;
+  margin-left: 10%;
+}
+
+.other-book-info{
+  width: 60%;
+  margin-left: 35%
 }

@@ -48,17 +48,22 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
                             <option key={i} value={h}>{h}</option>
                         ))}
                     </select>
+                    <br></br>
                     <label>Change your Bio: </label>
-                    <input 
+                    <textarea 
                         onChange={(e) => setNewBio(e.target.value)}
                         value={newBio}
+                        rows="4"
+                        colums="1000"
                     />
+                    <br></br>
                     <label>Change your Favorite Genre: </label>
                     <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre}>
                         {genres.map((g, i) => (
                             <option key={i} value={g}>{g}</option>
                         ))}
                     </select>
+                    <br></br>
                     <label>Change your Favorite Author: </label>
                     <input 
                         onChange={(e) => setNewAuthor(e.target.value)}

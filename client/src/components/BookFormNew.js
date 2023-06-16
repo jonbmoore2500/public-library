@@ -66,9 +66,10 @@ function BookFormNew({setShowForm}) {
                     value={newNumPages}
                 />
                 <label>Notes: </label>
-                <input
+                <textarea
                     onChange={(e) => setNewNotes(e.target.value)}
                     value={newNotes}
+                    rows="4"
                 />
                 <label>Book type: </label>
                 <select onChange={(e) => setNewHardback(e.target.value)}>

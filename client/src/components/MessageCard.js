@@ -12,10 +12,9 @@ function MessageCard({message, loggedUser}) {
             >
                 <div className="chat-text">
                     {message.text}
-                    {/* {loggedUser ? <>You</> : <>Other User</>} */}
                 </div>
             </div>
-            {showDate ? <h5>Sent at: {message.created_at.slice(0, 10)}</h5> : null }
+            {showDate ? <h5>Sent on: {message.created_at.slice(0, 10)}</h5> : null }
         </div>
     )
 }

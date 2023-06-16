@@ -10,6 +10,7 @@ function ProfilesLayout() {
         <>
             {profiles ? 
             <>
+            <h2>Chapter 5: Other Users</h2>
                 <nav className="leftnav">
                     <ul>
                         {profiles.map((p) => (

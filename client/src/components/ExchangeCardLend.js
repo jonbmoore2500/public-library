@@ -65,6 +65,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             {renderSwitch(exchange.exch_status)}
             <label>Cancel this Exchange? </label>
             <button onClick={() => setConfirmModal(true)}>Cancel</button>
+            <button onClick={() => setShowMessage(!showMessage)}>Message the borrower?</button>
             {showMessage && (
                 <NewMessageForm recipient={exchange.user.id}/>
             )}

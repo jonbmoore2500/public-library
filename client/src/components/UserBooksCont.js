@@ -14,23 +14,23 @@ function UserBooksCont() {
         <div>
             <h2>Chapter 2: Your Books</h2>
             
-            <ul>
+            <div>
             {showForm ?
-                <li>
+                <div>
                     <BookFormNew setShowForm={setShowForm}/>
-                </li>
+                </div>
                 :
-                <li>
+                <div>
                     <label>Add a book to your library </label>
                     <button onClick={() => setShowForm(true)}>Open form</button>
-                </li>
+                </div>
             }
             {user.owned_books.map((book) => (
-                <li key={book.id}>
+                <div key={book.id} className="book-card">
                     <BookCard book={book}/>
-                </li>
+                </div>
             ))}
-            </ul>
+            </div>
         </div>
     )
 }

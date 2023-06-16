@@ -52,10 +52,11 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
     }
 
     return(
-        <div className="exchange-card" onClick={() => setShowMessage(!showMessage)}>
+        <div className="exchange-card" >
             <h4>{exchange.book.title} by {exchange.book.author}</h4>
             <h4>Owner: <Link to={"/profiles/" + exchange.book.owner.id}>{exchange.book.owner.username}</Link></h4>
             {renderSwitch(exchange.exch_status)}
+            <button onClick={() => setShowMessage(!showMessage)} >Message the owner?</button>
             {showMessage && (
                 <NewMessageForm recipient={exchange.book.owner.id}/>
             )}

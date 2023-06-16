@@ -9,23 +9,27 @@ function UserProfile() {
     const [editModal, setEditModal] = useState(false)
 
     return(
-        <div>
+        <div id="profile-home">
             <h2>Chapter 1: Your Profile</h2>
             <ul>
-                <li>
-                    <h3>Username: {user.username}</h3>
+                <li className="profile">
+                    Username:<br></br> <strong>{user.username}</strong>
                 </li>
-                <li>
-                    <h3>Neighborhood: {user.neighborhood}</h3>
+                <br></br>
+                <li className="profile">
+                    Neighborhood:<br></br> <strong>{user.neighborhood}</strong>
                 </li>
-                <li>
-                    <h3>Bio: {user.bio}</h3>
+                <br></br>
+                <li className="profile bio">
+                    Bio:<br></br> <div className="bio"><strong>{user.bio}</strong></div>
                 </li>
-                <li>
-                    <h3>Favorite genre: {user.fav_genre}</h3>
+                <br></br>
+                <li className="profile">
+                    Favorite Genre:<br></br> <strong>{user.fav_genre}</strong>
                 </li>
-                <li>
-                    <h3>Favorite author: {user.fav_author}</h3>
+                <br></br>
+                <li className="profile">
+                    Favorite Author:<br></br> <strong>{user.fav_author}</strong>
                 </li>
             </ul>
             <button onClick={() => setEditModal(true)}>Edit Profile</button>
