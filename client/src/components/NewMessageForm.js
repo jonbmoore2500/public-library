@@ -32,7 +32,7 @@ function NewMessageForm({recipient, convoID = null}) {
     }
 
     function newMessage(convoID) {
-        fetch("/new_message", {
+        fetch("/messages", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
