@@ -17,14 +17,18 @@ class MessagesController < ApplicationController
     end
 
     def new_message
-        # message = @current_user.s_messages.create(message_params) - doesn't work, says sender must exist. this works in postman, but not in webapp
-        message = Message.create(sender_id: @current_user.id, recipient_id: message_params[:recipient_id], conversation_id: message_params[:conversation_id], text: message_params[:text]) #works, less than ideal.
+        message = @current_user.s_messages.create(message_params) 
+        byebug
+        # - doesn't work, says sender must exist. this works in postman, but not in webapp
+        # message = Message.create(sender_id: @current_user.id, recipient_id: message_params[:recipient_id], conversation_id: message_params[:conversation_id], text: message_params[:text]) 
+        #works, less than ideal.
         if message.valid?
             render json: message, status: :created
         else
             render json: {errors: message.errors.full_messages}, status: :unprocessable_entity
         end
     end
+    # check structure from client
 
     private
 

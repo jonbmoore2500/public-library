@@ -2,7 +2,6 @@ import React, {useContext, useState} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 import EditUserModal from "./EditUserModal.js"
 
-
 function UserProfile() {
 
     const {user, handleUpdateUser} = useContext(UserContext)
@@ -13,29 +12,30 @@ function UserProfile() {
             <h2>Chapter 1: Your Profile</h2>
             <ul>
                 <li className="profile">
-                    Username:<br></br> <strong>{user.username}</strong>
+                    Username:<br></br> <strong className="prof-info">{user.username}</strong>
                 </li>
                 <br></br>
                 <li className="profile">
-                    Neighborhood:<br></br> <strong>{user.neighborhood}</strong>
+                    Neighborhood:<br></br> <strong className="prof-info">{user.neighborhood}</strong>
                 </li>
                 <br></br>
                 <li className="profile bio">
-                    Bio:<br></br> <div className="bio"><strong>{user.bio}</strong></div>
+                    Bio:<br></br> <div className="bio"><strong className="prof-info">{user.bio}</strong></div>
                 </li>
                 <br></br>
                 <li className="profile">
-                    Favorite Genre:<br></br> <strong>{user.fav_genre}</strong>
+                    Favorite Genre:<br></br> <strong className="prof-info">{user.fav_genre}</strong>
                 </li>
                 <br></br>
                 <li className="profile">
-                    Favorite Author:<br></br> <strong>{user.fav_author}</strong>
+                    Favorite Author:<br></br> <strong className="prof-info">{user.fav_author}</strong>
                 </li>
             </ul>
             <button onClick={() => setEditModal(true)}>Edit Profile</button>
             {editModal && (
                 <EditUserModal setEditModal={setEditModal} user={user} handleUpdate={handleUpdateUser}/>
             )}
+            <br></br>
         </div>
     )
 }
