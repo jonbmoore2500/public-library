@@ -21,18 +21,18 @@ function LibraryBrowse() {
 
     return(
         <div>
-            <h2>Chapter 4: Public Library</h2>
-            <h3>Browse</h3>
-            <ul>
+            <h3><u>Browse</u></h3>
+            <div>
                 {books.map((b, i) => {
                     if (books.length === i + 1) {
-                        return <li ref={lastBookRef} key={b.id}> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </li>
+                        return <div ref={lastBookRef} key={b.id} className="book-card"> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </div>
                     } else {
-                    return <li key={b.id}> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </li>
+                    return <div key={b.id} className="book-card"> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </div>
                     }
                 })}
-            </ul>
+            </div>
             <div>{ loading ? "Loading..." : null }</div>
+            <br></br>
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import { useParams } from "react-router-dom"
 import BookCard from "./BookCard"
 
-
 function ProfileCont() {
 
     let userID = useParams()
@@ -13,7 +12,6 @@ function ProfileCont() {
         .then(r => r.json())
         .then(data => setDispUser(data))
     }, [userID])
-    // if (dispUser) console.log(dispUser)
 
     function handleExchanged(bookID) {
         let newBooks = dispUser.owned_books.map((b) => {
@@ -27,31 +25,30 @@ function ProfileCont() {
     }
 
     return(
-        <div className="rightcontent">
+        <div className="rightcontent other-profile">
             {dispUser ? 
             <>
-                <h3>{dispUser.username}</h3>
+                <h2>{dispUser.username}</h2>
                 <h4>Neighborhood: {dispUser.neighborhood}</h4>
                 <h4>Bio: {dispUser.bio}</h4>
                 <h4>Favorite Genre: {dispUser.fav_genre}</h4>
                 <h4>Favorite Author: {dispUser.fav_author}</h4>
                 <h4>Completed Exchanges: {dispUser.num_ex_complete}</h4>
                 <h4>Books:</h4>
-                <ul>
-
+                <div>
                     {dispUser.owned_books.map((b) => (
-                        <li key={b.id}>
+                        <div key={b.id} className="book-card">
                             <BookCard book={b} owned={false} owner={dispUser} handleExchanged={handleExchanged}/> 
-                        </li>
+                        </div>
                     ))}
-
-                </ul>
+                </div>
             </>
             :
             <>
-            Loading...
+                Loading...
             </>
             }
+            <br></br>
         </div>
     )
 }

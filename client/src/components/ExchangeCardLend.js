@@ -37,20 +37,32 @@ function ExchangeCardLend({exchange, updateExchanges}) {
     function renderSwitch(param) {
         switch(param) {
             case "approved":
-                return <h3>Request approved. Awaiting borrower to mark as received.</h3>
+                return (
+                    <>
+                        <h4>Request approved</h4>
+                        <h4>Awaiting borrower to mark as received.</h4>
+                    </>
+                )
             case "received":
-                return <h3>Borrower has received the book. Awaiting borrower to mark as returned.</h3>
+                return (
+                    <>
+                        <h4>Borrower has received the book</h4>
+                        <h4>Awaiting borrower to mark as returned.</h4>
+                    </>
+                )
             case "returned":
                 return (
                     <>
-                        <h4>Borrower has returned the book. Complete the exchange?</h4>
+                        <h4>Borrower has returned the book</h4>
+                        <h4>Complete the exchange?</h4>
                         <button onClick={() => handleUpdate("complete")}>Complete</button>
                     </>
                 )
             default :
                 return (
                     <>
-                        <h4>{exchange.user.username} has requested to borrow this book. Approve the request?</h4>
+                        <h4>{exchange.user.username} has requested to borrow this book</h4>
+                        <h4>Approve the request?</h4>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
                         <button onClick={() => handleUpdate("denied")}>Deny</button>
                     </>
@@ -60,16 +72,22 @@ function ExchangeCardLend({exchange, updateExchanges}) {
 
     return(
         <div className="exchange-card">
-            <h4><strong>{exchange.book.title} by {exchange.book.author}</strong></h4>
-            <h4>Borrower: <Link to={"/profiles/" + exchange.user.id}>{exchange.user.username}</Link></h4>
-            {renderSwitch(exchange.exch_status)}
-            <label>Cancel this Exchange? </label>
-            <button onClick={() => setConfirmModal(true)}>Cancel</button>
-            <button onClick={() => setShowMessage(!showMessage)}>Message the borrower?</button>
-            {showMessage && (
-                <NewMessageForm recipient={exchange.user.id}/>
-            )}
-            
+            <div className="exchange-left">
+                <h2>{exchange.book.title}</h2>
+                <h3>{exchange.book.author}</h3>
+            </div>
+            <div className="exchange-right">
+                <h4>Borrower: <Link to={"/profiles/" + exchange.user.id}>{exchange.user.username}</Link></h4>
+                {renderSwitch(exchange.exch_status)}
+                <label>Cancel this Exchange? </label>
+                <button onClick={() => setConfirmModal(true)}>Cancel</button>
+                <br></br>
+                <button onClick={() => setShowMessage(!showMessage)}>{!showMessage ? "Message the borrower?" : "Cancel the message"}</button>
+                {showMessage && (
+                    <NewMessageForm recipient={exchange.user.id}/>
+                )}
+            </div>
+            <br></br>
             {confirmModal && ( 
             <>
                 <div className="modal">

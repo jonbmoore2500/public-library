@@ -21,21 +21,39 @@
   color: white;
 }
 
+.nav-bar-link{
+  padding-left: 10px;
+  padding-right:10px
+}
+
 .App-link {
   color: #61dafb;
 }
 
 .leftnav {
-  width: 25%;
+  width: 22%;
   float: left;
-  position: relative
+  position: relative;
+  border-right:5px dotted black;
+  height:70%;
+  overflow: auto
+}
+.user-link{
+  font-size: x-large;
+  height:40px
+}
+
+.convo-link{
+  font-size: large;
+  height:50px
 }
 
 .rightcontent{
-  width: 75%;
+  width: 72%;
   float: right;
   position: relative;
-  height:max-content
+  height:70%;
+  overflow: auto
 }
 
 /* messaging */
@@ -51,7 +69,7 @@
   margin: 40px;
   display: block;
   position: relative;
-	width: .75;
+	width: .5;
 	height: auto;
   background-color: rgb(169, 212, 230);
 }
@@ -157,9 +175,31 @@ li.profile {
 	border: 5px dashed black;
 	color: black;
   margin-top: 10px;
-  border-radius:10px
+  border-radius:10px;
+  overflow: auto;
+  text-align: center
 }
 
+.exchange-card{
+  width: 80%;
+  margin-left: 10%;
+	border: 2px dashed black;
+	color: black;
+  margin-top: 10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  overflow: auto
+}
+.exchange-left{
+  width: 25%;
+  float: left;
+  margin-left: 10%;
+  margin-top: 5px
+}
+.exchange-right{
+  width: 60%;
+  margin-left: 45%;
+}
 
 .title-author{
   width: 25%;
@@ -170,5 +210,9 @@ li.profile {
 .other-book-info{
   width: 60%;
   margin-left: 45%;
-  border-left: 5px dashed black;;
+  border-left: 5px dashed black;
+}
+
+.other-profile{
+  text-align:left
 }

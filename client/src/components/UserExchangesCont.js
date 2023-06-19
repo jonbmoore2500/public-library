@@ -14,7 +14,7 @@ function UserExchangesCont() {
     return(
         <div>
             <h2>Chapter 3: Your Exchanges</h2>
-            <h3>Lending: </h3>
+            <h3><u>Lending: </u></h3>
             {user.exchanges_lend.length > 0 ?
             <>
                 {user.exchanges_lend.map((e) => (
@@ -24,7 +24,8 @@ function UserExchangesCont() {
             : 
                 <h4>You aren't lending any books at the moment</h4> 
             }
-            <h3>Borrowing: </h3>
+            <br></br>
+            <h3><u>Borrowing: </u></h3>
             {user.exchanges_borrow.length > 0 ?
             <>
                 {user.exchanges_borrow.map((e) => (
@@ -32,11 +33,10 @@ function UserExchangesCont() {
                 ))}
             </>    
             :
-                <h4>You aren't borrowing any books at the moment</h4>
+                <h3>You aren't borrowing any books at the moment</h3>
             }
         </div>
     )
 }
-
 
 export default UserExchangesCont

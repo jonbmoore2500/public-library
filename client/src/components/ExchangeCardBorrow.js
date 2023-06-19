@@ -40,26 +40,44 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
             case "received":
                 return (
                     <>
-                        <h4>Book received. Mark as returned?</h4>
+                        <h4>Book received</h4>
+                        <h4>Mark as returned?</h4>
                         <button onClick={() => handleUpdate("returned")}>Returned</button>
                     </>
                 )
             case "returned":
-                return <h4>Book returned. Awaiting owner to complete the exchange</h4>
+                return (
+                    <>
+                        <h4>Book returned</h4>
+                        <h4>Awaiting owner to complete the exchange</h4>
+                    </>
+                )
             default :
-                return <h4>Requested on {exchange.updated_at}. Awaiting approval</h4>
+                return (
+                    <>
+                        <h4>Requested on {exchange.updated_at}</h4>
+                        <h4>Awaiting approval</h4>
+                    </>
+                )
         }
     }
 
     return(
         <div className="exchange-card" >
-            <h4>{exchange.book.title} by {exchange.book.author}</h4>
-            <h4>Owner: <Link to={"/profiles/" + exchange.book.owner.id}>{exchange.book.owner.username}</Link></h4>
-            {renderSwitch(exchange.exch_status)}
-            <button onClick={() => setShowMessage(!showMessage)} >Message the owner?</button>
-            {showMessage && (
-                <NewMessageForm recipient={exchange.book.owner.id}/>
-            )}
+            <div className="exchange-left">
+                <h2>{exchange.book.title}</h2>
+                <h3>{exchange.book.author}</h3>
+            </div>
+            <div className="exchange-right">
+                <h4>Owner: <Link to={"/profiles/" + exchange.book.owner.id}>{exchange.book.owner.username}</Link></h4>
+                {renderSwitch(exchange.exch_status)}
+                <br></br>
+                <button onClick={() => setShowMessage(!showMessage)} >{!showMessage ? "Message the owner?" : "Cancel the message"}</button>
+                {showMessage && (
+                    <NewMessageForm recipient={exchange.book.owner.id}/>
+                )}
+            </div>
+            <br></br>
         </div>
     )
 }

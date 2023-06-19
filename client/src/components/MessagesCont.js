@@ -22,7 +22,7 @@ function MessagesCont() {
                 {selectedConvo ? 
                     <ConvoContainer selected={selectedConvo} userID={user.id}/>
                 :
-                    <>Select a Conversation</>
+                    <h2>Select a Conversation</h2>
                 }
             </div>
         </div>

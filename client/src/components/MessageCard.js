@@ -7,8 +7,8 @@ function MessageCard({message, loggedUser}) {
     return(
         <div>
             <div 
-            className={loggedUser ? "chat-bubble-right tri-right round border right-top" : "chat-bubble-left tri-right round border left-top"}
-            onClick={() => setShowDate(!showDate)}
+                className={loggedUser ? "chat-bubble-right tri-right round border right-top" : "chat-bubble-left tri-right round border left-top"}
+                onClick={() => setShowDate(!showDate)}
             >
                 <div className="chat-text">
                     {message.text}

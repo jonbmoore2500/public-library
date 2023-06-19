@@ -23,17 +23,16 @@ function LibrarySearch() {
 
     return(
         <div>
-            <h2>Chapter 4: Public Library</h2>
-            <h3>Search</h3>
+            <h3><u>Search</u></h3>
             <BookSearch handleSearchGet={handleSearchGet}/>
             {dispBooks.length >= 1 ? 
-            <ul>
+            <div>
                 {dispBooks.map((b) => (
-                    <li key={b.id}>
+                    <div key={b.id} className="book-card">
                         <BookCard book={b} owned={false} handleExchanged={handleExchanged}/>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
             :    
             <>
                 {searched ? 
@@ -43,6 +42,7 @@ function LibrarySearch() {
                 }
             </>
             }
+            <br></br>
         </div>
     )
 }

@@ -23,9 +23,10 @@ function ConvoContainer({selected, userID}) {
             {selected.messages.map((m) => (
                 <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} />
             ))}
-            <div ref={divRef}>
+            <div>
                 <NewMessageForm recipient={otherUser.id} convoID={selected.id}/>
             </div>
+            <br ref={divRef}></br>
         </div>
     )
 }
