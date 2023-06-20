@@ -27,6 +27,7 @@ function App() {
       {user ? 
         <BrowserRouter>
           <Header />
+          <div id="app-content">
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<UserProfile />} />
@@ -42,6 +43,7 @@ function App() {
               <Route path="messages" element={<MessagesCont />} />
             </Route>
           </Routes>
+          </div>
         </BrowserRouter> 
       :
         <Home />

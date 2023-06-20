@@ -21,8 +21,10 @@ function Header() {
 
     return(
         <div id="header">
-            <h1>PUBLIC LIBRARY</h1>
-            <div id="logout">
+            <div id="header-left">
+                <h1>PUBLIC LIBRARY</h1>
+            </div>
+            <div id="header-right">
                 <p>User: {user.username}</p>
                 <button onClick={handleLogOut}>Log out</button>
             </div>
