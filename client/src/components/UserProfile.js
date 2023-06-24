@@ -9,7 +9,7 @@ function UserProfile() {
 
     return(
         <div id="profile-home">
-            <h2>Chapter 1: Your Profile</h2>
+            <h2 className="chapter-header">Chapter 1: Your Profile</h2>
             <ul>
                 <li className="profile">
                     Username:<br></br> <strong className="prof-info">{user.username}</strong>

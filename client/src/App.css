@@ -37,10 +37,12 @@
   position:fixed;
   width:100%;
   height:30px;
-  padding-top:-10px
+  top:120px;
+  opacity: 1;
+  z-index: 100;
 }
 #navs-content{
-  padding-top:30px
+  padding-top:20px
 }
 .nav-bar-link{
   margin-left: 10px;
@@ -48,9 +50,35 @@
   margin-right:10px;
   padding-right:10px;
   background-color: #8da683;
-  padding-top:50px;
+  padding-top:20px;
   padding-bottom:10px;
   border-radius: 10px;
+  position: relative;
+  top:5px
+}
+.nav-bar-link-sub{
+  margin-left: 10px;
+  padding-left:10px;
+  margin-right:10px;
+  padding-right:10px;
+  background-color: #8da683;
+  padding-top:10px;
+  padding-bottom:10px;
+  border-radius: 10px;
+  position: relative;
+  top:5px
+}
+#lib-header{
+  position:fixed;
+  top: 160px;
+  text-align: center;
+  width:100%;
+  background:inherit;
+  opacity: 1;
+  z-index: 20
+}
+#lib-content{
+  margin-top:115px
 }
 
 
@@ -61,10 +89,10 @@
 .leftnav {
   width: 22%;
   float: left;
-  position: relative;
+  position: fixed;
   border-right:5px dotted black;
   height:70%;
-  overflow: auto
+  overflow-y: scroll
 }
 .user-link{
   font-size: x-large;
@@ -81,7 +109,7 @@
   float: right;
   position: relative;
   height:70%;
-  overflow: auto
+  overflow-y: scroll
 }
 
 /* messaging */
@@ -171,11 +199,14 @@
 }
 /* end messaging */
 
+.chapter-header{
+  position:relative;
+  text-align: center;
+  width:100%
+}
 
 #profile-home {
-  width: 80%;
-  margin-left: 10%;
-
+  width: 100%;
 }
 
 ul {

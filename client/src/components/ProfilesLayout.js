@@ -10,7 +10,7 @@ function ProfilesLayout() {
         <>
             {profiles ? 
             <>
-                <h2>Chapter 5: Other Users</h2>
+                <h2 className="chapter-header">Chapter 5: Other Users</h2>
                 <nav className="leftnav">
                     <div>
                         {profiles.map((p) => (

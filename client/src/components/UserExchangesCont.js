@@ -13,7 +13,7 @@ function UserExchangesCont() {
 
     return(
         <div>
-            <h2>Chapter 3: Your Exchanges</h2>
+            <h2 className="chapter-header">Chapter 3: Your Exchanges</h2>
             <h3><u>Lending: </u></h3>
             {user.exchanges_lend.length > 0 ?
             <>

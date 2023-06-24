@@ -10,7 +10,7 @@ function UserBooksCont() {
 
     return(
         <div>
-            <h2>Chapter 2: Your Books</h2>
+            <h2 className="chapter-header">Chapter 2: Your Books</h2>
             <div>
                 {showForm ?
                     <div>
