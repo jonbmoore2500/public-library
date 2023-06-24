@@ -1,10 +1,12 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 
-
 function BookFormNew({setShowForm}) {
 
     const {addUserBooks} = useContext(UserContext)
+
+    const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+
     const [newTitle, setNewTitle] = useState("")
     const [newAuthor, setNewAuthor] = useState("")
     const [newGenre, setNewGenre] = useState("")
@@ -55,10 +57,11 @@ function BookFormNew({setShowForm}) {
                     value={newAuthor}
                 />
                 <label>Genre: </label>
-                <input
-                    onChange={(e) => setNewGenre(e.target.value)}
-                    value={newGenre}
-                />
+                <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre}>
+                    {genres.map((g, i) => (
+                        <option key={i} value={g}>{g}</option>
+                    ))}
+                </select>
                 <label>Number of pages: </label>
                 <input
                     onChange={(e) => setNewNumPages(e.target.value)}

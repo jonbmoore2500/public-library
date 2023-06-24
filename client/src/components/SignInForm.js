@@ -1,7 +1,6 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 
-
 function SignInForm() {
 
     const [loginObj, setLoginObj] = useState({username: "", password: ""})
@@ -39,6 +38,7 @@ function SignInForm() {
                     onChange={(e) => setLoginObj({...loginObj, password: e.target.value})}
                     value={loginObj.password}
                 />
+                <br></br>
                 <button type="submit">Login</button>
             </form>
         </div>

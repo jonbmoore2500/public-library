@@ -5,6 +5,9 @@ function SignUpForm() {
 
     const {setUser} = useContext(UserContext)
 
+    const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+    const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
+
 
     const [signUpObj, setSignUpObj] = useState({
         username: "", 
@@ -44,6 +47,7 @@ function SignUpForm() {
                     onChange={(e) => setSignUpObj({...signUpObj, username: e.target.value})}
                     value={signUpObj.username}
                 />
+                <br></br>
                 <label>Password: </label>
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, password: e.target.value})}
@@ -54,26 +58,37 @@ function SignUpForm() {
                     onChange={(e) => setSignUpObj({...signUpObj, password_confirmation: e.target.value})}
                     value={signUpObj.password_confirmation}
                 />
+                <br></br>
                 <label>Neighborhood: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, neighborhood: e.target.value})}
+                <select 
+                    onChange={(e) => setSignUpObj({...signUpObj, neighborhood: e.target.value})} 
                     value={signUpObj.neighborhood}
-                />
+                >
+                    {hoods.map((h, i) => (
+                        <option key={i} value={h}>{h}</option>
+                    ))}
+                </select>
                 <label>User Bio: </label>
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, bio: e.target.value})}
                     value={signUpObj.bio}
                 />
+                <br></br>
                 <label>Favorite Genre: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, fav_genre: e.target.value})}
+                <select 
+                    onChange={(e) => setSignUpObj({...signUpObj, fav_genre: e.target.value})} 
                     value={signUpObj.fav_genre}
-                />
+                >
+                    {genres.map((g, i) => (
+                        <option key={i} value={g}>{g}</option>
+                    ))}
+                </select>
                 <label>Favorite Author: </label>
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, fav_author: e.target.value})}
                     value={signUpObj.fav_author}
                 />
+                <br></br>
                 <button type="submit">Sign up</button>
             </form>
         </div>
