@@ -5,9 +5,6 @@ const UserContext = React.createContext()
 function UserProvider({children}) {
 
     const [user, setUser] = useState(null)
-    // const [userBooks, setUserBooks] = useState(null)
-    // const [convos, setConvos] = useState(null)
-    // const [exchs, setExchs] = useState(null)
 
     useEffect(() => {
         fetch("/me").then((r) => {
@@ -15,7 +12,6 @@ function UserProvider({children}) {
                 r.json().then((user) => {
                     console.log(user)
                     setUser(user)
-                    // setConvos(user.convos)
                 })
             }
         })
@@ -103,7 +99,7 @@ function UserProvider({children}) {
         setUser({...user, bio: data.bio, fav_author: data.fav_author, fav_genre: data.fav_genre, neighborhood: data.neighborhood})
     }
 
-    return <UserContext.Provider value={{user, setUser, addUserBooks, deleteUserBook, updateUserBook, handleNewExch, handleExchUpdate, handleNewMsg, handleNewConvo, handleUpdateUser}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, setUser, addUserBooks, updateUserBook, deleteUserBook, handleNewExch, handleExchUpdate, handleNewMsg, handleNewConvo, handleUpdateUser}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

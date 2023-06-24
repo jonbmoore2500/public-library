@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { UserContext } from "./contexts/UserContext.js"
+import { ProfilesContext } from "./contexts/ProfilesContext.js"
 
 import Header from "./components/Header.js"
 import Layout from "./components/Layout.js"
@@ -21,32 +22,39 @@ import './modal.css'
 function App() {
 
   const {user} = useContext(UserContext)
+  const {profiles} = useContext(ProfilesContext)
 
   return (
     <div className="App">
-      {user ? 
-        <BrowserRouter>
-          <Header />
-          <div id="app-content">
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<UserProfile />} />
-              <Route path="user_books" element={<UserBooksCont />} />
-              <Route path="exchanges" element={<UserExchangesCont />} />
-              <Route path="library_books" element={<LibraryLayout />}>
-                <Route index element={<LibraryBrowse/>} />
-                <Route path="search" element={<LibrarySearch />} />
+      {profiles ?
+      <>
+        {user ? 
+          <BrowserRouter>
+            <Header />
+            <div id="app-content">
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<UserProfile />} />
+                <Route path="user_books" element={<UserBooksCont />} />
+                <Route path="exchanges" element={<UserExchangesCont />} />
+                <Route path="library_books" element={<LibraryLayout />}>
+                  <Route index element={<LibraryBrowse/>} />
+                  <Route path="search" element={<LibrarySearch />} />
+                </Route>
+                <Route path="profiles" element={<ProfilesLayout />} >
+                  <Route path=":userID" element={<ProfileCont />} />
+                </Route>
+                <Route path="messages" element={<MessagesCont />} />
               </Route>
-              <Route path="profiles" element={<ProfilesLayout />} >
-                <Route path=":userID" element={<ProfileCont />} />
-              </Route>
-              <Route path="messages" element={<MessagesCont />} />
-            </Route>
-          </Routes>
-          </div>
-        </BrowserRouter> 
+            </Routes>
+            </div>
+          </BrowserRouter> 
+        :
+          <Home />
+        }
+      </>
       :
-        <Home />
+        <h1>loading...</h1>
       }
     </div>
   );

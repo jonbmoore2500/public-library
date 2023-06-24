@@ -22,7 +22,6 @@ function BookFormEdit({setShowModal, book}) {
             if (r.ok) {
                 r.json().then((book) => {
                     updateUserBook(book)
-                    // if checking in or deleting, complete exchange (if relevant)
                     setShowModal(false)
                 })
             } else {

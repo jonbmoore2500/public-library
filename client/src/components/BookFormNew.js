@@ -25,7 +25,6 @@ function BookFormNew({setShowForm}) {
             hidden: newHidden === "true",
             checked_out: false
         }
-        // console.log(newBookObj)
         fetch("/books", {
             method: "POST",
             headers: {

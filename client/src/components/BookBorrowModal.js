@@ -1,18 +1,13 @@
 import React, {useContext} from "react"
 import { Link } from "react-router-dom"
-// import { LibraryContext } from "../contexts/LibraryContext.js"
 import { UserContext } from "../contexts/UserContext.js"
 import NewMessageForm from "./NewMessageForm.js"
 
-// comes from: BookCard. that comes from: LibrarySearch, LibraryBrowse, ProfilesCont
-
 function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
 
-    // const {handleExchanged} = useContext(LibraryContext)
     const {handleNewExch} = useContext(UserContext)
 
     function handleSubmitRequest() {
-        console.log("submit")
         fetch("/exchanges", {
             method: "POST",
             headers: {
@@ -26,7 +21,6 @@ function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
             if (r.ok) {
                 r.json().then((data) => {
                     handleExchanged(book.id) 
-                    // console.log(data)
                     handleNewExch(data)
                 })
             } else {
