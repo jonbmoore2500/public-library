@@ -5,7 +5,6 @@ class ConversationsController < ApplicationController
     def index 
         conversations = Conversation.all
         render json: conversations
-        # how to include users with aliases?
     end
 
     def show
@@ -15,7 +14,6 @@ class ConversationsController < ApplicationController
 
     def user_convos
         convos = @current_user.conversations
-        # make sure distinct
         render json: convos
     end
 

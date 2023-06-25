@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext"
 
-function NewMessageForm({recipient, convoID = null}) {
+function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
 
     const [message, setMessage] = useState("")
     const {user, handleNewMsg, handleNewConvo} = useContext(UserContext)
@@ -43,6 +43,9 @@ function NewMessageForm({recipient, convoID = null}) {
             if (r.ok) {
                 r.json().then((data) => {
                     handleNewMsg(data)
+                    if (handleIncrement) {
+                        handleIncrement()
+                    }
                     setMessage("")
                 })
             } else {

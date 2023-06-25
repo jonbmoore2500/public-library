@@ -4,6 +4,7 @@ import { UserContext } from "../contexts/UserContext.js"
 function SignInForm() {
 
     const [loginObj, setLoginObj] = useState({username: "", password: ""})
+    const [error, setError] = useState(null)
     const {setUser} = useContext(UserContext)
 
     function handleLogin(e) {
@@ -19,6 +20,10 @@ function SignInForm() {
             if (r.ok) {
                 r.json().then(user => {
                     setUser(user)
+                })
+            } else {
+                r.json().then(err => {
+                    setError(err)
                 })
             }
         })
@@ -39,6 +44,7 @@ function SignInForm() {
                     value={loginObj.password}
                 />
                 <br></br>
+                { error ? <h4>{error.error}</h4> : null}
                 <button type="submit">Login</button>
             </form>
         </div>

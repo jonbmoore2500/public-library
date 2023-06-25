@@ -24,7 +24,6 @@ class ExchangesController < ApplicationController
 
     def update
         exchange = Exchange.find_by(id: params[:id])
-        # byebug
         exchange.update(update_exch_params)
         if params[:complete]
             exchange.book.update(checked_out: false)

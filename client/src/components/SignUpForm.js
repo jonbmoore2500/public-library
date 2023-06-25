@@ -4,6 +4,7 @@ import { UserContext } from "../contexts/UserContext.js"
 function SignUpForm() {
 
     const {setUser} = useContext(UserContext)
+    const [errors, setErrors] = useState([])
 
     const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
@@ -13,9 +14,9 @@ function SignUpForm() {
         username: "", 
         password: "", 
         password_confirmation: "",
-        neighborhood: "", 
+        neighborhood: "Uptown", 
         bio: "", 
-        fav_genre: "",
+        fav_genre: "Science Fiction",
         fav_author: ""
     })
 
@@ -33,6 +34,10 @@ function SignUpForm() {
             if (r.ok) {
                 r.json().then((user) => {
                     setUser(user)
+                })
+            } else {
+                r.json().then(err => {
+                    setErrors(err.errors)
                 })
             }
         })
@@ -88,6 +93,7 @@ function SignUpForm() {
                     onChange={(e) => setSignUpObj({...signUpObj, fav_author: e.target.value})}
                     value={signUpObj.fav_author}
                 />
+                {errors ? <ul>{errors.map((e) => <li>{e}</li>)}</ul>: null }
                 <br></br>
                 <button type="submit">Sign up</button>
             </form>

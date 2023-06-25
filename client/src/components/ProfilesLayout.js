@@ -11,17 +11,23 @@ function ProfilesLayout() {
             {profiles ? 
             <>
                 <h2 className="chapter-header">Chapter 5: Other Users</h2>
-                <nav className="leftnav">
+                <div className="chapter-content"> 
+                    <nav className="leftnav">
+                        {profiles ? 
+                            <div>
+                                {profiles.map((p) => (
+                                <div key={p.id} className="user-link">
+                                    <Link to={"/profiles/" + p.id} >{p.username}</Link>
+                                </div>
+                                ))}
+                            </div>
+                        :
+                            <h2>loading...</h2>
+                        }
+                    </nav>
                     <div>
-                        {profiles.map((p) => (
-                        <div key={p.id} className="user-link">
-                            <Link to={"/profiles/" + p.id} >{p.username}</Link>
-                        </div>
-                        ))}
+                        <Outlet />
                     </div>
-                </nav>
-                <div>
-                    <Outlet />
                 </div>
             </>
             :

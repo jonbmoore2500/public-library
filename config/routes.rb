@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   get "/library", to: "books#available_books"
   get "/book_search", to: "books#search_results"
   get "/user_convos", to: "conversations#user_convos"
-  # post "/new_message", to: "messages#new_message"
   post "/new_convo", to: "conversations#new_convo"
   resources :books
-  resources :users
+  resources :users, only: [:index, :show, :create, :update]
   resources :exchanges
   resources :messages
   resources :conversations

@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :neighborhood, :bio, :fav_author, :fav_genre, :num_ex_complete 
+  attributes :id, :username, :neighborhood, :bio, :fav_author, :fav_genre, :num_ex_complete, :num_lend_complete 
   has_many :owned_books, serializer: BookSerializer
 
   attribute :exchanges_lend do

@@ -13,17 +13,19 @@ function MessagesCont() {
     return(
         <div>
             <h2 className="chapter-header">Chapter 6: Your Messages</h2>
-            <div className="leftnav">
-                {user.convos.map((c) => (
-                    <ConvoCard key={c.id} convo={c} handleSelect={setSelectedConvo} userID={user.id}/>
-                ))}
-            </div>
-            <div className="rightcontent">
-                {selectedConvo ? 
-                    <ConvoContainer selected={selectedConvo} userID={user.id}/>
-                :
-                    <h2>Select a Conversation</h2>
-                }
+            <div className="chapter-content">
+                <div className="leftnav">
+                    {user.convos.map((c) => (
+                        <ConvoCard key={c.id} convo={c} handleSelect={setSelectedConvo} userID={user.id}/>
+                    ))}
+                </div>
+                <div className="rightcontent">
+                    {selectedConvo ? 
+                        <ConvoContainer selected={selectedConvo} userID={user.id}/>
+                    :
+                        <h2>Select a Conversation</h2>
+                    }
+                </div>
             </div>
         </div>
     )

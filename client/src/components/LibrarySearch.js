@@ -7,7 +7,6 @@ function LibrarySearch() {
     const [dispBooks, setDispBooks] = useState([])
     const [searched, setSearched] = useState(false)
 
-    
     function handleSearchGet(searchGenre, searchText) {
         fetch(`/book_search?genre=${searchGenre}&text=${searchText}`)
         .then(r => r.json())
@@ -22,7 +21,7 @@ function LibrarySearch() {
     }
 
     return(
-        <div>
+        <div className="lib-content">
             <h3><u>Search</u></h3>
             <BookSearch handleSearchGet={handleSearchGet}/>
             {dispBooks.length >= 1 ? 

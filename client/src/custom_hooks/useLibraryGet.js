@@ -3,7 +3,6 @@ import {useEffect, useState} from "react"
 function useLibraryGet(pageNum) {
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
     const [books, setBooks] = useState([])
     const [hasMore, setHasMore] = useState(false)
 
@@ -13,7 +12,6 @@ function useLibraryGet(pageNum) {
 
     useEffect(() => {
         setLoading(true)
-        setError(false)
         fetch(`/library?page=${pageNum}`)
         .then(r => r.json())
         .then((data) => {
@@ -29,7 +27,7 @@ function useLibraryGet(pageNum) {
         setBooks(books.filter(b => b.id !== bookID))
     }
 
-    return {loading, error, books, hasMore, handleExchanged}
+    return {loading, books, hasMore, handleExchanged}
 }
 
 export default useLibraryGet

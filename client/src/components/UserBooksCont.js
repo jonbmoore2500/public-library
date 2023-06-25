@@ -11,7 +11,8 @@ function UserBooksCont() {
     return(
         <div>
             <h2 className="chapter-header">Chapter 2: Your Books</h2>
-            <div>
+            <div className="chapter-content">
+                <br></br>
                 {showForm ?
                     <div>
                         <BookFormNew setShowForm={setShowForm}/>
