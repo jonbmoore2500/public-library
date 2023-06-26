@@ -6,6 +6,7 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
     const [newBio, setNewBio] = useState(user.bio)
     const [newGenre, setNewGenre] = useState(user.fav_genre)
     const [newAuthor, setNewAuthor] = useState(user.fav_author)
+    const [errors, setErrors] = useState([])
 
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
     const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
@@ -30,9 +31,10 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
                 r.json().then((data) => {
                     handleUpdate(data)
                     setEditModal(false)
+                    setErrors([])
                 })
             } else {
-                r.json().then((e) => console.log(e))
+                r.json().then((e) => setErrors(e.errors))
             }
         })
     }
@@ -69,6 +71,7 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
                         onChange={(e) => setNewAuthor(e.target.value)}
                         value={newAuthor}
                     />
+                    {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
                     <br></br>
                     <button type="submit">Submit</button>
                     <button onClick={() => setEditModal(false)}>Cancel</button>

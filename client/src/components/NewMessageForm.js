@@ -5,6 +5,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
 
     const [message, setMessage] = useState("")
     const {user, handleNewMsg, handleNewConvo} = useContext(UserContext)
+    const [errors, setErrors] = useState([])
 
     let messageBase = {
         recipient_id: recipient,
@@ -26,7 +27,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
                     setMessage("")
                 })
             } else {
-                r.json().then((err) => console.log(err))
+                r.json().then((err) => setErrors(err.errors))
             }
         })
     }
@@ -47,9 +48,15 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
                         handleIncrement()
                     }
                     setMessage("")
+                    setErrors([])
                 })
             } else {
-                r.json().then((err) => console.log(err))
+                r.json().then((err) => {
+                    setErrors(err.errors)
+                    if (handleIncrement) {
+                        handleIncrement()
+                    }
+                })
             }
         })
     }
@@ -73,6 +80,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
             <form onSubmit={handleMessagePost}>
                 <input onChange={(e) => setMessage(e.target.value)} value={message} />
                 <button type="submit">Send</button>
+                {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
             </form>
         </div>
     )

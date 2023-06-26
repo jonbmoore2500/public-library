@@ -9,11 +9,12 @@ function BookFormNew({setShowForm}) {
 
     const [newTitle, setNewTitle] = useState("")
     const [newAuthor, setNewAuthor] = useState("")
-    const [newGenre, setNewGenre] = useState("")
+    const [newGenre, setNewGenre] = useState("Science Fiction")
     const [newNumPages, setNewNumPages] = useState("")
     const [newNotes, setNewNotes] = useState("")
     const [newHardback, setNewHardback] = useState(true)
     const [newHidden, setNewHidden] = useState(false)
+    const [errors, setErrors] = useState([])
 
     function handleNewBookSave(e) {
         e.preventDefault()
@@ -36,9 +37,12 @@ function BookFormNew({setShowForm}) {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then(book => addUserBooks(book))
+                r.json().then((book) => {
+                    addUserBooks(book)
+                    setErrors([])
+                })
             } else {
-                r.json().then(errors => console.log(errors))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }
@@ -83,6 +87,8 @@ function BookFormNew({setShowForm}) {
                     <option value={true}>Yes, hide it</option>
                     <option value={false}>No, display it</option>
                 </select>
+                {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
+                <br></br>
                 <button type="submit">Submit new book</button>
                 <button onClick={() => setShowForm(false)}>Cancel</button>
             </form>
