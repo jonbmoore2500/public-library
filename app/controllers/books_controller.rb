@@ -1,13 +1,9 @@
 class BooksController < ApplicationController
     wrap_parameters format: []
     before_action :authorize
-    
-    def index
-        books = Book.all
-        render json: books
-    end 
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unproc_entity
 
-    def available_books
+    def index
         books = Book.all.select{|b| (b.user_id != @current_user.id) && (!b.hidden && !b.checked_out) }
         # tests for presence in active exchange. Alternate checks checked_out status --- b.exchanges.index{|e| e.complete == false } == nil
         # want a random selection, but not re-randomized every time I request a page
@@ -22,30 +18,18 @@ class BooksController < ApplicationController
     end
 
     def create
-        book = @current_user.owned_books.create(new_book_params)
-        if book.valid?
-            render json: book, status: :created
-        else
-            render json: {errors: book.errors.full_messages}, status: :unprocessable_entity
-        end
+        book = @current_user.owned_books.create!(new_book_params)
+        render json: book, status: :created
     end
 
     def update
         book = @current_user.owned_books.find_by(id: params[:id])
         if book 
-            book.update(update_book_params)
+            book.update!(update_book_params)
             if update_book_params[:checked_out] == false
-                exch = book.exchanges.find {|e| e.approved == true && e.complete == false}
-                if exch
-                    exch.update(returned: true, complete: true)
-                end
-                # replace with method cancel_exchanges, return canceled or no exchanges
+                book.cancel_exchange 
             end
-            if book.valid?
-                render json: book, status: :created
-            else
-                render json: {errors: book.errors.full_messages}, status: :unprocessable_entity
-            end
+            render json: book, status: :created
         else 
             render json: {error: "Not authorized"}, status: :unauthorized
         end
@@ -54,6 +38,7 @@ class BooksController < ApplicationController
     def destroy
         book = @current_user.owned_books.find_by(id: params[:id])
         if book
+            book.exchanges.last.update(complete: true)
             book.destroy
             head :no_content
         else
@@ -69,6 +54,10 @@ class BooksController < ApplicationController
 
     def update_book_params
         params.permit(:id, :notes, :hidden, :checked_out)
+    end
+
+    def render_unproc_entity(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 end

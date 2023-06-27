@@ -87,7 +87,7 @@ function BookFormNew({setShowForm}) {
                     <option value={true}>Yes, hide it</option>
                     <option value={false}>No, display it</option>
                 </select>
-                {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
+                {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <br></br>
                 <button type="submit">Submit new book</button>
                 <button onClick={() => setShowForm(false)}>Cancel</button>

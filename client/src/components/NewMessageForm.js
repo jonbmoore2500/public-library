@@ -13,7 +13,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
     }
 
     function newConvoMessage() {
-        fetch("/new_convo", {
+        fetch("/conversations", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,7 +27,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
                     setMessage("")
                 })
             } else {
-                r.json().then((err) => setErrors(err.errors))
+                r.json().then((err) => setErrors(err.m_errors))
             }
         })
     }
@@ -80,7 +80,7 @@ function NewMessageForm({recipient, convoID = null, handleIncrement = null}) {
             <form onSubmit={handleMessagePost}>
                 <input onChange={(e) => setMessage(e.target.value)} value={message} />
                 <button type="submit">Send</button>
-                {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
+                {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
             </form>
         </div>
     )

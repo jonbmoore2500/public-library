@@ -8,6 +8,7 @@ function BookFormEdit({setShowModal, book}) {
     const [newNotes, setNewNotes] = useState(book.notes)
     const [newHidden, setNewHidden] = useState(book.hidden)
     const [newCheckedOut, setNewCheckedOut] = useState(book.checked_out)
+    const [errors, setErrors] = useState([])
     
     function handleEditSubmit(e) {
         e.preventDefault()
@@ -22,6 +23,7 @@ function BookFormEdit({setShowModal, book}) {
             if (r.ok) {
                 r.json().then((book) => {
                     updateUserBook(book)
+                    setErrors([])
                     setShowModal(false)
                 })
             } else {
@@ -35,6 +37,7 @@ function BookFormEdit({setShowModal, book}) {
         .then((r) => {
             if (r.ok) {
                 deleteUserBook(book.id)
+                setErrors([])
             } else {
                 r.json().then((e) => console.log(e))
             }
@@ -53,17 +56,21 @@ function BookFormEdit({setShowModal, book}) {
                         value={newNotes}
                         rows="4"
                     />
+                    <br></br>
                     <label>
                         <input type="checkbox" onChange={() => setNewHidden(!newHidden)}/>
                         {book.hidden ? "Unhide" : "Hide" }?
                     </label>
                     {book.checked_out ? 
-                    <label>
-                        <input type="checkbox" onChange={() => setNewCheckedOut(!newCheckedOut)}/>
-                        Check in?
-                    </label> : null}
+                        <label>
+                            <input type="checkbox" onChange={() => setNewCheckedOut(!newCheckedOut)}/>
+                            Check in?
+                        </label> : null
+                    }
+                    <br></br>
                     <button type="submit">Save Edits?</button>
                 </form>
+                {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <br></br>
                 <button onClick={() => handleDeleteBook()}>Delete Book</button>
                 <button onClick={() => setShowModal(false)}>Close</button>

@@ -18,4 +18,11 @@ class Book < ApplicationRecord
         self.exchanges.count {|e| e.complete && e.returned } 
     end
 
+    def cancel_exchange
+        exch = self.exchanges.find {|e| e.approved == true && e.complete == false}
+        if exch
+            exch.update(returned: true, complete: true)
+        end
+    end
+
 end

@@ -12,7 +12,7 @@ function useLibraryGet(pageNum) {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`/library?page=${pageNum}`)
+        fetch(`/books?page=${pageNum}`)
         .then(r => r.json())
         .then((data) => {
             setBooks(prevBooks => {

@@ -1,30 +1,17 @@
 class ExchangesController < ApplicationController
     wrap_parameters format: []
     before_action :authorize
-
-    def index
-        exchanges = Exchange.all
-        render json: exchanges
-    end 
-
-    def show
-        exchange = Exchange.find_by(id: params[:id])
-        render json: exchange, include: :book
-    end 
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unproc_entity
 
     def create
-        exchange = @current_user.exchanges.create(create_exch_params)
-        if exchange.valid?
-            exchange.book.update(checked_out:true)
-            render json: exchange, include: ['book', 'book.owner']
-        else
-            render json: {errors: exchange.errors.full_messages}, status: :unprocessable_entity
-        end
+        exchange = @current_user.exchanges.create!(create_exch_params)
+        exchange.book.update(checked_out:true)
+        render json: exchange, include: ['book', 'book.owner']
     end
 
     def update
         exchange = Exchange.find_by(id: params[:id])
-        exchange.update(update_exch_params)
+        exchange.update!(update_exch_params)
         if params[:complete]
             exchange.book.update(checked_out: false)
         end
@@ -34,10 +21,9 @@ class ExchangesController < ApplicationController
     def destroy
         exchange = Exchange.find_by(id: params[:id])
         if exchange
+            exchange.book.update(checked_out: false)
             exchange.destroy
             head :no_content
-        else
-            render json: {error: "not authorized"}, status: :unauthorized
         end
     end
 
@@ -49,6 +35,10 @@ class ExchangesController < ApplicationController
 
     def update_exch_params
         params.permit(:id, :approved, :received, :complete, :returned)
+    end
+
+    def render_unproc_entity(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 end 

@@ -71,7 +71,7 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
                         onChange={(e) => setNewAuthor(e.target.value)}
                         value={newAuthor}
                     />
-                    {errors && errors.map((e, i) => <p id={i}>{e}</p>)}
+                    {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                     <br></br>
                     <button type="submit">Submit</button>
                     <button onClick={() => setEditModal(false)}>Cancel</button>
