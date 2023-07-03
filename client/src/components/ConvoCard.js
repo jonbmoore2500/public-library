@@ -1,6 +1,5 @@
 import React from "react"
 
-
 function ConvoCard({convo, handleSelect, userID}) {
 
     const otherUser = convo.two_users.find(u => u.id !== userID)

@@ -27,7 +27,7 @@ function BookFormEdit({setShowModal, book}) {
                     setShowModal(false)
                 })
             } else {
-                r.json().then(e => console.log(e))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }
@@ -39,7 +39,7 @@ function BookFormEdit({setShowModal, book}) {
                 deleteUserBook(book.id)
                 setErrors([])
             } else {
-                r.json().then((e) => console.log(e))
+                r.json().then((e) => setErrors(e.errors))
             }
         })
     }

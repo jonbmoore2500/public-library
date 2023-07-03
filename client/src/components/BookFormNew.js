@@ -24,8 +24,8 @@ function BookFormNew({setShowForm}) {
             genre: newGenre, 
             num_pages: Number.parseInt(newNumPages), 
             notes: newNotes,
-            hardback: newHardback === "true",
-            hidden: newHidden === "true",
+            hardback: newHardback,
+            hidden: newHidden,
             checked_out: false
         }
         fetch("/books", {

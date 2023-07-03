@@ -24,7 +24,6 @@ function ExchangeCardLend({exchange, updateExchanges}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
-                    // consider dropping nested data from backend and just updating based on what is already in state
                     updateExchanges(exch, "lent")
                 })
             }
@@ -58,7 +57,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             default :
                 return (
                     <>
-                        <h4>{exchange.user.username} has requested to borrow this book</h4>
+                        <h4>Requested on {exchange.created_at.slice(0, 10)}</h4>
                         <h4>Approve the request?</h4>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
                         <button onClick={() => handleUpdate("denied")}>Deny</button>

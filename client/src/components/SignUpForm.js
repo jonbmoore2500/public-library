@@ -9,7 +9,6 @@ function SignUpForm() {
     const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
 
-
     const [signUpObj, setSignUpObj] = useState({
         username: "", 
         password: "", 
@@ -93,7 +92,7 @@ function SignUpForm() {
                     onChange={(e) => setSignUpObj({...signUpObj, fav_author: e.target.value})}
                     value={signUpObj.fav_author}
                 />
-                {errors ? <ul>{errors.map((e) => <li>{e}</li>)}</ul>: null }
+                {errors && <ul>{errors.map((e) => <li>{e}</li>)}</ul>}
                 <br></br>
                 <button type="submit">Sign up</button>
             </form>

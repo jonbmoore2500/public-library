@@ -2,7 +2,6 @@ import React, {useState} from "react"
 import BookFormEdit from "./BookFormEdit"
 import BookBorrowModal from "./BookBorrowModal"
 
-
 function BookCard({book, owned = true, owner = book.owner, handleExchanged}) {
 
     const [showEditModal, setShowEditModal] = useState(false)
@@ -30,7 +29,7 @@ function BookCard({book, owned = true, owner = book.owner, handleExchanged}) {
                     }
                 </div>
             </div>
-
+            
             {owned && showEditModal ? (
                 <BookFormEdit setShowModal={setShowEditModal} book={book}/>
             ) : null}

@@ -44,7 +44,7 @@ function SignInForm() {
                     value={loginObj.password}
                 />
                 <br></br>
-                { error ? <h4>{error.error}</h4> : null}
+                {error && <h4>{error.error}</h4>}
                 <button type="submit">Login</button>
             </form>
         </div>

@@ -9,7 +9,6 @@ function MessagesCont() {
 
     const [selectedConvo, setSelectedConvo] = useState(null)
 
-
     return(
         <div>
             <h2 className="chapter-header">Chapter 6: Your Messages</h2>

@@ -12,7 +12,7 @@ class Book < ApplicationRecord
     validates :hardback, inclusion: [true, false]
     validates :checked_out, inclusion: [true, false]
     validates :hidden, inclusion: [true, false]
-    validates :notes, length: {maximum: 1000}, allow_blank: true
+    validates :notes, length: {maximum: 500}, allow_blank: true
 
     def complete_exchs
         self.exchanges.count {|e| e.complete && e.returned } 

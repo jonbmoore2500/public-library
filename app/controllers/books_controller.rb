@@ -38,7 +38,9 @@ class BooksController < ApplicationController
     def destroy
         book = @current_user.owned_books.find_by(id: params[:id])
         if book
-            book.exchanges.last.update(complete: true)
+            if book.checked_out
+                book.exchanges.last.update(complete: true)
+            end
             book.destroy
             head :no_content
         else

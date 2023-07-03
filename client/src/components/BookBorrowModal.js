@@ -1,4 +1,4 @@
-import React, {useContext} from "react"
+import React, {useContext, useState} from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext.js"
 import NewMessageForm from "./NewMessageForm.js"
@@ -6,6 +6,7 @@ import NewMessageForm from "./NewMessageForm.js"
 function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
 
     const {handleNewExch} = useContext(UserContext)
+    const [errors, setErrors] = useState([])
 
     function handleSubmitRequest() {
         fetch("/exchanges", {
@@ -24,7 +25,7 @@ function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
                     handleNewExch(data)
                 })
             } else {
-                r.json().then(errors => console.log(errors))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }
@@ -40,6 +41,7 @@ function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
                 <h4>Owner: <Link to={"/profiles/" + owner.id}>{owner.username}</Link></h4>
                 <label>Send Message to {owner.username}?</label>
                 <NewMessageForm recipient={book.user_id}/>
+                {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
             </div>
         </div>

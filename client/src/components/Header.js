@@ -7,7 +7,6 @@ function Header() {
     const {user, setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
-
     function handleLogOut(e) {
         e.preventDefault()
         fetch("/logout", {method: "DELETE"})
@@ -31,6 +30,5 @@ function Header() {
         </div>
     )
 }
-
 
 export default Header 

@@ -5,6 +5,7 @@ import NewMessageForm from "./NewMessageForm"
 function ExchangeCardBorrow({exchange, updateExchanges}) {
 
     const [showMessage, setShowMessage] = useState(false)
+
     function handleUpdate(param) {
         let updateObj = {returned: true}
         if (param === "received") {
@@ -20,7 +21,6 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((exch) => {
-                    // consider dropping nested data from backend and just updating based on what is already in state
                     updateExchanges(exch, "borrowed")
                 })
             }
@@ -54,7 +54,7 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
             default :
                 return (
                     <>
-                        <h4>Requested on {exchange.updated_at}</h4>
+                        <h4>Requested on {exchange.updated_at.slice(0, 10)}</h4>
                         <h4>Awaiting approval</h4>
                     </>
                 )

@@ -26,7 +26,8 @@ function ProfileCont() {
 
     return(
         <div className="rightcontent other-profile">
-            {dispUser ? 
+            {
+            dispUser ? 
             <>
                 <h2>{dispUser.username}</h2>
                 <h4>Neighborhood: {dispUser.neighborhood}</h4>
