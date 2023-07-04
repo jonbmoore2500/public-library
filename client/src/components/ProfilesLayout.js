@@ -17,7 +17,7 @@ function ProfilesLayout() {
                     <nav className="leftnav">
                         {profiles ? 
                             <div>
-                                {profiles.filter(prof => prof.id != user.id).map((p) => (
+                                {profiles.filter(prof => prof.id !== user.id).map((p) => (
                                 <div key={p.id} className="user-link">
                                     <Link to={"/profiles/" + p.id} >{p.username}</Link>
                                 </div>

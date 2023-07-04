@@ -12,7 +12,7 @@ class BooksController < ApplicationController
     end
 
     def search_results
-        books = Book.all.select{|b| b.genre.include?(params[:genre]) && 
+        books = Book.all.select{|b| (b.genre.include?(params[:genre]) && b.user_id != @current_user.id && !b.hidden ) && 
         (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))} 
         render json: books
     end

@@ -7,7 +7,7 @@ This is the "Public Library" app, fulfilling the requirements of my Phase 5 proj
 Inspired by Little Free Libraries (https://littlefreelibrary.org/), it offers a variety of features that allow users to swap books and track what books they and other people have available. A user can curate a list of books that they own, view books that other users own, handle the details of exchanging books with other users, and message other users. 
 
 A video demonstrating the basic functionality of the app can be accessed at the following link:
-
+https://youtu.be/7isH_3eHTHo 
 
 ### Sessions and Cookies
 
@@ -16,7 +16,7 @@ Logging in assings the :user_id from the User resource as the :user_id in sessio
 ## Deployed
 
 This app is currently deployed through Render at the following URL: 
-
+https://jbm-public-library-app.onrender.com/
 
 However, if you'd like to run it locally perform the following steps:
 
