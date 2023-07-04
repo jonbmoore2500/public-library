@@ -153,9 +153,9 @@ Public Library uses Ruby on Rails as an API, serving JSON data to the React fron
 #### Table Organization
 
 At the current stage Public Library has 5 tables, creating multiple many-to-many relationships branching from Users. A wireframe chart displahing the relationships graphically can be found at the following Google Drive link: 
+https://drive.google.com/file/d/14Et8RNLoJIVXiihuiozMlg_hWk8MOmMn/view?usp=sharing 
 
-
-Possible options for additional tables are identified in the Roadmap section at the end of this README
+Possible options for additional tables are identified in the Roadmap section at the end of this README.
 
 #### Models
 

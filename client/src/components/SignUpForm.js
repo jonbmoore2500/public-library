@@ -1,9 +1,12 @@
 import React, {useState, useContext} from "react"
 import { UserContext } from "../contexts/UserContext.js"
+import { ProfilesContext } from "../contexts/ProfilesContext.js"
 
 function SignUpForm() {
 
     const {setUser} = useContext(UserContext)
+    const {newUser} = useContext(ProfilesContext)
+
     const [errors, setErrors] = useState([])
 
     const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
@@ -21,7 +24,6 @@ function SignUpForm() {
 
     function handleSignUp(e) {
         e.preventDefault()
-        console.log(signUpObj)
         fetch("/signup", {
             method: "POST",
             headers: {
@@ -33,6 +35,7 @@ function SignUpForm() {
             if (r.ok) {
                 r.json().then((user) => {
                     setUser(user)
+                    newUser(user)
                 })
             } else {
                 r.json().then(err => {

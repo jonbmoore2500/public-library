@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        users = User.all.select{|u| u.id != @current_user.id}
+        users = User.all.collect {|u| u = {id: u.id, username: u.username}}
         render json: users
     end 
 

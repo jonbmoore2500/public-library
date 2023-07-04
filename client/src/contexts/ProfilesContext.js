@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react"
+import React, {useState, useEffect} from "react"
 
 const ProfilesContext = React.createContext()
 
@@ -12,11 +12,17 @@ function ProfilesProvider({children}) {
                 r.json().then((data) => {
                     setProfiles(data)
                 })
+            } else {
+                r.json().then(err => console.log(err))
             }
         })
     }, [])
 
-    return <ProfilesContext.Provider value={{profiles, setProfiles}}>{children}</ProfilesContext.Provider>
+    function newUser(data) {
+        setProfiles([...profiles, data])
+    }
+
+    return <ProfilesContext.Provider value={{profiles, setProfiles, newUser}}>{children}</ProfilesContext.Provider>
 }
 
 export {ProfilesContext, ProfilesProvider}

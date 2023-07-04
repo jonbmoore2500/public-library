@@ -1,10 +1,12 @@
 import React, {useContext} from "react"
 import {Outlet, Link} from "react-router-dom"
 import { ProfilesContext } from "../contexts/ProfilesContext"
+import { UserContext } from "../contexts/UserContext"
 
 function ProfilesLayout() {
 
     const {profiles} = useContext(ProfilesContext)
+    const {user} = useContext(UserContext)
 
     return(
         <>
@@ -15,7 +17,7 @@ function ProfilesLayout() {
                     <nav className="leftnav">
                         {profiles ? 
                             <div>
-                                {profiles.map((p) => (
+                                {profiles.filter(prof => prof.id != user.id).map((p) => (
                                 <div key={p.id} className="user-link">
                                     <Link to={"/profiles/" + p.id} >{p.username}</Link>
                                 </div>

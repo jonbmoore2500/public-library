@@ -12,16 +12,6 @@ class ConversationsController < ApplicationController
         render json: convo, include: :messages
     end
 
-    # def new_convo
-    #     convo = Conversation.create()
-    #     msg = convo.messages.create(recipient_id: convo_msg_params[:recipient_id], sender_id: @current_user.id, text: convo_msg_params[:text])
-    #     if msg.valid?
-    #         render json: convo
-    #     else
-    #         convo.destroy
-    #         render json: {c_errors: convo.errors.full_messages, m_errors: msg.errors.full_messages}, status: :unprocessable_entity
-    #     end
-    # end
     def create
         convo = Conversation.create()
         msg = convo.messages.create(recipient_id: convo_msg_params[:recipient_id], sender_id: @current_user.id, text: convo_msg_params[:text])
