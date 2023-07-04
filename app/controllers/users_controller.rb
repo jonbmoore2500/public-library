@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     wrap_parameters format: []
-    before_action :authorize, only: [:logged_user, :index, :update]
+    before_action :authorize, only: [:logged_user, :update]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unproc_entity
 
     def logged_user

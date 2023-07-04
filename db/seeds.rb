@@ -59,19 +59,49 @@ books1 = Book.all.select {|b| b.user_id == users[1].id}
 books2 = Book.all.select {|b| b.user_id == users[2].id}
 books3 = Book.all.select {|b| b.user_id == users[3].id}
 
-Exchange.create(user_id: users[0].id, book_id: books1[rand(0..9)].id, approved: true, received: false, returned: false, complete: false)
-Exchange.create(user_id: users[0].id, book_id: books2[rand(0..9)].id, approved: false, received: false, returned: false, complete: false)
-Exchange.create(user_id: users[0].id, book_id: books1[rand(10..19)].id, approved: false, received: false, returned: false, complete: true)
-Exchange.create(user_id: users[0].id, book_id: books3[rand(0..9)].id, approved: true, received: true, returned: false, complete: false)
+rand_num = rand(0..9)
+Exchange.create(user_id: users[0].id, book_id: books1[rand_num].id, approved: true, received: false, returned: false, complete: false)
+Book.find(books1[rand_num].id).update(checked_out: true)
 
-Exchange.create(user_id: users[1].id, book_id: books0[rand(0..9)].id, approved: true, received: true, returned: true, complete: false)
-Exchange.create(user_id: users[1].id, book_id: books2[rand(10..19)].id, approved: true, received: true, returned: true, complete: true)
-Exchange.create(user_id: users[1].id, book_id: books2[rand(20..29)].id, approved: false, received: false, returned: false, complete: true)
-Exchange.create(user_id: users[1].id, book_id: books0[rand(10..19)].id, approved: false, received: false, returned: false, complete: false)
+rand_num = rand(0..9)
+Exchange.create(user_id: users[0].id, book_id: books2[rand_num].id, approved: false, received: false, returned: false, complete: false)
+Book.find(books2[rand_num].id).update(checked_out: true)
 
-Exchange.create(user_id: users[2].id, book_id: books3[rand(10..19)].id, approved: true, received: true, returned: false, complete: false)
-Exchange.create(user_id: users[2].id, book_id: books1[rand(20..29)].id, approved: true, received: false, returned: false, complete: false)
-Exchange.create(user_id: users[2].id, book_id: books0[rand(30..39)].id, approved: false, received: false, returned: false, complete: false)
+rand_num = rand(10..19)
+Exchange.create(user_id: users[0].id, book_id: books1[rand_num].id, approved: false, received: false, returned: false, complete: true)
+
+rand_num = rand(0..9)
+Exchange.create(user_id: users[0].id, book_id: books3[rand_num].id, approved: true, received: true, returned: false, complete: false)
+Book.find(books3[rand_num].id).update(checked_out: true)
+
+
+rand_num = rand(0..9)
+Exchange.create(user_id: users[1].id, book_id: books0[rand_num].id, approved: true, received: true, returned: true, complete: false)
+Book.find(books0[rand_num].id).update(checked_out: true)
+
+rand_num = rand(10..19)
+Exchange.create(user_id: users[1].id, book_id: books2[rand_num].id, approved: true, received: true, returned: true, complete: true)
+
+rand_num = rand(20..29)
+Exchange.create(user_id: users[1].id, book_id: books2[rand_num].id, approved: false, received: false, returned: false, complete: true)
+
+rand_num = rand(10..19)
+Exchange.create(user_id: users[1].id, book_id: books0[rand_num].id, approved: false, received: false, returned: false, complete: false)
+Book.find(books0[rand_num].id).update(checked_out: true)
+
+
+rand_num = rand(10..19)
+Exchange.create(user_id: users[2].id, book_id: books3[rand_num].id, approved: true, received: true, returned: false, complete: false)
+Book.find(books3[rand_num].id).update(checked_out: true)
+
+rand_num = rand(20..29)
+Exchange.create(user_id: users[2].id, book_id: books1[rand_num].id, approved: true, received: false, returned: false, complete: false)
+Book.find(books1[rand_num].id).update(checked_out: true)
+
+rand_num = rand(30..39)
+Exchange.create(user_id: users[2].id, book_id: books0[rand_num].id, approved: false, received: false, returned: false, complete: false)
+Book.find(books0[rand_num].id).update(checked_out: true)
+
 
 exchs = Exchange.all
 exchs.each {|e| e.book.update(checked_out: true) if (e[:complete] == false)}
