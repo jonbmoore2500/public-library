@@ -96,8 +96,8 @@ function BookFormNew({setShowForm}) {
                 </select>
                 <label>Set as hidden: </label>
                 <select onChange={(e) => setNewHidden(e.target.value)}>
-                    <option value={false}>No, display it</option>
-                    <option value={true}>Yes, hide it</option>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
                 </select>
                 {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <br></br>

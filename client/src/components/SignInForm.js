@@ -5,6 +5,7 @@ function SignInForm() {
 
     const [loginObj, setLoginObj] = useState({username: "", password: ""})
     const [error, setError] = useState(null)
+    const [showPWord, setShowPWord] = useState(false)
     const {setUser} = useContext(UserContext)
 
     function handleLogin(e) {
@@ -42,8 +43,11 @@ function SignInForm() {
                 <input
                     onChange={(e) => setLoginObj({...loginObj, password: e.target.value})}
                     value={loginObj.password}
-                    type="password"
+                    type={showPWord ? "" : "password"}
                 />
+                <label>Show password</label>
+                <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
+                <br></br>
                 <br></br>
                 {error && <h4>{error.error}</h4>}
                 <button type="submit">Login</button>

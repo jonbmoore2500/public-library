@@ -8,6 +8,7 @@ function SignUpForm() {
     const {newUser} = useContext(ProfilesContext)
 
     const [errors, setErrors] = useState([])
+    const [showPWord, setShowPWord] = useState(false)
 
     const genres = [
         "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action & Adventure", "Crime & Mystery", "Romance", "Humor", "Horror",
@@ -62,14 +63,16 @@ function SignUpForm() {
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, password: e.target.value})}
                     value={signUpObj.password}
-                    type="password"
+                    type={showPWord ? "" : "password"}
                 />
                 <label>Confirm Password: </label>
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, password_confirmation: e.target.value})}
                     value={signUpObj.password_confirmation}
-                    type="password"
+                    type={showPWord ? "" : "password"}
                 />
+                <label>Show password</label>
+                <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
                 <br></br>
                 <label>Neighborhood: </label>
                 <select 
