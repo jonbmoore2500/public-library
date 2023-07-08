@@ -39,7 +39,7 @@ function ProfileCont() {
                 <div>
                     {dispUser.owned_books.map((b) => (
                         <div key={b.id} className={b.checked_out ? "book-card unavailable":"book-card"}>
-                            <BookCard book={b} owned={false} owner={dispUser} handleExchanged={handleExchanged}/> 
+                            <BookCard book={b} ownedByOther={false} owner={dispUser} handleExchanged={handleExchanged}/> 
                         </div>
                     ))}
                 </div>
