@@ -7,7 +7,9 @@ function BookSearch({handleSearchGet}) {
 
     function handleSearchSubmit(e) {
         e.preventDefault()
-        handleSearchGet(genre, searchText)
+        if (searchText.length + genre.length > 0) {
+            handleSearchGet(genre, searchText)
+        }
     }
     const genres = [
         "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror",

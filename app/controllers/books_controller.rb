@@ -3,8 +3,7 @@ class BooksController < ApplicationController
     before_action :authorize
     rescue_from ActiveRecord::RecordInvalid, with: :render_unproc_entity
 
-    @@fict_genres = ["Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror","Other (fiction)"]
-    @@non_fict_genres = ["Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"]
+    @@genres = ["Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror","Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"]
 
     def index
         books = Book.all.select{|b| (b.user_id != @current_user.id) && (!b.hidden && !b.checked_out) }
@@ -16,10 +15,13 @@ class BooksController < ApplicationController
 
     def search_results
         genre_params = params[:genre]
-        genre_params = @@fict_genres if "fict" == params[:genre]
-        genre_params = @@non_fict_genres if "non_fict" == params[:genre]
-        books = Book.all.select{|b| (genre_params.include?(b.genre) && b.user_id != @current_user.id && !b.hidden) && 
-            (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))} 
+        genre_params = @@genres.slice(0, 10)  if params[:genre] == "fict"
+        genre_params = @@genres.slice(11, 16) if params[:genre] == "non_fict"
+        genre_params = @@genres               if params[:genre] == ""
+        books = Book.all.select{
+            |b| (genre_params.include?(b.genre) && b.user_id != @current_user.id && !b.hidden) && 
+            (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))
+        } 
         render json: books
     end
 
