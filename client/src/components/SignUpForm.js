@@ -9,16 +9,19 @@ function SignUpForm() {
 
     const [errors, setErrors] = useState([])
 
-    const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+    const genres = [
+        "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action & Adventure", "Crime & Mystery", "Romance", "Humor", "Horror",
+        "Fiction (other)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Non-fiction (other)"
+        ]
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
 
     const [signUpObj, setSignUpObj] = useState({
         username: "", 
         password: "", 
         password_confirmation: "",
-        neighborhood: "Uptown", 
+        neighborhood: hoods[0], 
         bio: "", 
-        fav_genre: "Science Fiction",
+        fav_genre: genres[0],
         fav_author: ""
     })
 
@@ -59,11 +62,13 @@ function SignUpForm() {
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, password: e.target.value})}
                     value={signUpObj.password}
+                    type="password"
                 />
                 <label>Confirm Password: </label>
                 <input 
                     onChange={(e) => setSignUpObj({...signUpObj, password_confirmation: e.target.value})}
                     value={signUpObj.password_confirmation}
+                    type="password"
                 />
                 <br></br>
                 <label>Neighborhood: </label>
@@ -86,9 +91,16 @@ function SignUpForm() {
                     onChange={(e) => setSignUpObj({...signUpObj, fav_genre: e.target.value})} 
                     value={signUpObj.fav_genre}
                 >
-                    {genres.map((g, i) => (
+                    <optgroup label="Fiction">
+                    {genres.slice(0, 10).map((g, i) => (
                         <option key={i} value={g}>{g}</option>
                     ))}
+                    </optgroup>
+                    <optgroup label="Non-fiction">
+                    {genres.slice(11, 16).map((g, i) => (
+                        <option key={i} value={g}>{g}</option>
+                    ))}
+                    </optgroup>
                 </select>
                 <label>Favorite Author: </label>
                 <input 

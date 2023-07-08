@@ -5,11 +5,14 @@ function BookFormNew({setShowForm}) {
 
     const {addUserBooks} = useContext(UserContext)
 
-    const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+    const genres = [
+        "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action & Adventure", "Crime & Mystery", "Romance", "Humor", "Horror",
+        "Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non-fiction)"
+        ]
 
     const [newTitle, setNewTitle] = useState("")
     const [newAuthor, setNewAuthor] = useState("")
-    const [newGenre, setNewGenre] = useState("Science Fiction")
+    const [newGenre, setNewGenre] = useState(genres[0])
     const [newNumPages, setNewNumPages] = useState("")
     const [newNotes, setNewNotes] = useState("")
     const [newHardback, setNewHardback] = useState(true)
@@ -60,11 +63,19 @@ function BookFormNew({setShowForm}) {
                     onChange={(e) => setNewAuthor(e.target.value)}
                     value={newAuthor}
                 />
+                <br></br>
                 <label>Genre: </label>
-                <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre}>
-                    {genres.map((g, i) => (
+                <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre} >
+                    <optgroup label="Fiction">
+                    {genres.slice(0, 10).map((g, i) => (
                         <option key={i} value={g}>{g}</option>
                     ))}
+                    </optgroup>
+                    <optgroup label="Non-fiction">
+                    {genres.slice(11, 16).map((g, i) => (
+                        <option key={i} value={g}>{g}</option>
+                    ))}
+                    </optgroup>
                 </select>
                 <label>Number of pages: </label>
                 <input
@@ -77,6 +88,7 @@ function BookFormNew({setShowForm}) {
                     value={newNotes}
                     rows="4"
                 />
+                <br></br>
                 <label>Book type: </label>
                 <select onChange={(e) => setNewHardback(e.target.value)}>
                     <option value={true}>Hardback</option>
@@ -84,8 +96,8 @@ function BookFormNew({setShowForm}) {
                 </select>
                 <label>Set as hidden: </label>
                 <select onChange={(e) => setNewHidden(e.target.value)}>
-                    <option value={true}>Yes, hide it</option>
                     <option value={false}>No, display it</option>
+                    <option value={true}>Yes, hide it</option>
                 </select>
                 {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <br></br>

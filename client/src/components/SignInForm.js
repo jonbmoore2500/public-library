@@ -42,6 +42,7 @@ function SignInForm() {
                 <input
                     onChange={(e) => setLoginObj({...loginObj, password: e.target.value})}
                     value={loginObj.password}
+                    type="password"
                 />
                 <br></br>
                 {error && <h4>{error.error}</h4>}
