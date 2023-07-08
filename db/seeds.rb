@@ -3,51 +3,54 @@ require "faker"
 puts "🌱 Seeding public_library tables..."
 
 neighborhoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
-genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+genres = [
+    "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror",
+    "Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"
+    ]
 
 User.create(
     username: "TestingUser1", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser2", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser3", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser4", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser5", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser6", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser7", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 User.create(
     username: "TestingUser8", neighborhood: neighborhoods[rand(0..8)], password: "testing", password_confirmation: "testing",
-    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..10)]
+    bio: Faker::Lorem.sentence(word_count: 10), fav_author: Faker::Book.author, fav_genre: genres[rand(0..15)]
 )
 users = User.all
 
 200.times do
     Book.create(
-        user_id: users[rand(0..3)].id, title: Faker::Book.title, author: Faker::Book.author, genre: genres[rand(0..10)], num_pages: rand(50..350),
+        user_id: users[rand(0..3)].id, title: Faker::Book.title, author: Faker::Book.author, genre: genres[rand(0..15)], num_pages: rand(50..350),
         hardback: Faker::Boolean.boolean, notes: Faker::Lorem.sentence(word_count: 10), checked_out: false, hidden: false
     )
 end
 100.times do 
     Book.create(
-        user_id: users[rand(4..7)].id, title: Faker::Book.title, author: Faker::Book.author, genre: genres[rand(0..10)], num_pages: rand(50..350),
+        user_id: users[rand(4..7)].id, title: Faker::Book.title, author: Faker::Book.author, genre: genres[rand(0..15)], num_pages: rand(50..350),
         hardback: Faker::Boolean.boolean, notes: Faker::Lorem.sentence(word_count: 10), checked_out: false, hidden: false
     )
 end

@@ -12,7 +12,7 @@ function SignUpForm() {
 
     const genres = [
         "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action & Adventure", "Crime & Mystery", "Romance", "Humor", "Horror",
-        "Fiction (other)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Non-fiction (other)"
+        "Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"
         ]
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
 

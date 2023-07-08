@@ -25,4 +25,9 @@ class Book < ApplicationRecord
         end
     end
 
+    def genre_type
+        return "fict" unless @@allowed_genres.slice(11, 16).include?(self.genre)
+        "non_fict"
+    end
+
 end

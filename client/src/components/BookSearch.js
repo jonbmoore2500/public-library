@@ -9,7 +9,10 @@ function BookSearch({handleSearchGet}) {
         e.preventDefault()
         handleSearchGet(genre, searchText)
     }
-    const allowed_genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+    const genres = [
+        "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror",
+        "Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"
+        ]
 
     return(
         <>
@@ -18,9 +21,18 @@ function BookSearch({handleSearchGet}) {
                 <input onChange={(e) => setSearchText(e.target.value)} value={searchText} />
                 <select onChange={(e) => setGenre(e.target.value)} value={genre}>
                     <option value="">All genres</option>
-                    {allowed_genres.map((g) => (
-                        <option key={g} value={g}>{g}</option>
-                    ))}
+                    <optgroup label="Fiction">
+                        <option value="fict">All Fiction</option>
+                        {genres.slice(0, 10).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
+                    </optgroup>
+                    <optgroup label="Non-fiction">
+                        <option value="non_fict">All Non-fiction</option>
+                        {genres.slice(11, 16).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
+                    </optgroup>
                 </select>
                 <button type="submit">Submit</button>
             </form>

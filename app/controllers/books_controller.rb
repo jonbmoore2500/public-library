@@ -3,6 +3,9 @@ class BooksController < ApplicationController
     before_action :authorize
     rescue_from ActiveRecord::RecordInvalid, with: :render_unproc_entity
 
+    @@fict_genres = ["Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror","Other (fiction)"]
+    @@non_fict_genres = ["Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"]
+
     def index
         books = Book.all.select{|b| (b.user_id != @current_user.id) && (!b.hidden && !b.checked_out) }
         # tests for presence in active exchange. Alternate checks checked_out status --- b.exchanges.index{|e| e.complete == false } == nil
@@ -12,8 +15,11 @@ class BooksController < ApplicationController
     end
 
     def search_results
-        books = Book.all.select{|b| (b.genre.include?(params[:genre]) && b.user_id != @current_user.id && !b.hidden ) && 
-        (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))} 
+        genre_params = params[:genre]
+        genre_params = @@fict_genres if "fict" == params[:genre]
+        genre_params = @@non_fict_genres if "non_fict" == params[:genre]
+        books = Book.all.select{|b| (genre_params.include?(b.genre) && b.user_id != @current_user.id && !b.hidden) && 
+            (b.title.downcase.include?(params[:text].downcase) || b.author.downcase.include?(params[:text].downcase))} 
         render json: books
     end
 
