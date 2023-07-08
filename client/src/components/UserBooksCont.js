@@ -24,7 +24,7 @@ function UserBooksCont() {
                     </div>
                 }
                 {user.owned_books.map((book) => (
-                    <div key={book.id} className="book-card">
+                    <div key={book.id} className={book.hidden || book.checked_out ? "book-card unavailable" : "book-card"}>
                         <BookCard book={book}/>
                     </div>
                 ))}

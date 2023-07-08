@@ -35,30 +35,30 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             case "approved":
                 return (
                     <>
-                        <h4>Request approved</h4>
-                        <h4>Awaiting borrower to mark as received.</h4>
+                        <p>Request approved</p>
+                        <p>Awaiting borrower to mark as received.</p>
                     </>
                 )
             case "received":
                 return (
                     <>
-                        <h4>Borrower has received the book</h4>
-                        <h4>Awaiting borrower to mark as returned.</h4>
+                        <p>Borrower has received the book</p>
+                        <p>Awaiting borrower to mark as returned.</p>
                     </>
                 )
             case "returned":
                 return (
                     <>
-                        <h4>Borrower has returned the book</h4>
-                        <h4>Complete the exchange?</h4>
+                        <p>Borrower has returned the book</p>
+                        <p>Complete the exchange?</p>
                         <button onClick={() => handleUpdate("complete")}>Complete</button>
                     </>
                 )
             default :
                 return (
                     <>
-                        <h4>Requested on {exchange.created_at.slice(0, 10)}</h4>
-                        <h4>Approve the request?</h4>
+                        <p>Requested on {exchange.created_at.slice(0, 10)}</p>
+                        <p>Approve the request?</p>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
                         <button onClick={() => handleUpdate("denied")}>Deny</button>
                     </>
@@ -75,6 +75,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
             <div className="exchange-right">
                 <h4>Borrower: <Link to={"/profiles/" + exchange.user.id}>{exchange.user.username}</Link></h4>
                 {renderSwitch(exchange.exch_status)}
+                <br></br>
                 <label>Cancel this Exchange? </label>
                 <button onClick={() => setConfirmModal(true)}>Cancel</button>
                 <br></br>

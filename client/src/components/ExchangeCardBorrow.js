@@ -32,30 +32,30 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
             case "approved":
                 return (
                     <>
-                        <h4>Request approved. Mark as received?</h4>
+                        <p>Request approved. Mark as received?</p>
                         <button onClick={() => handleUpdate("received")}>Received</button>
                     </>
                 )
             case "received":
                 return (
                     <>
-                        <h4>Book received</h4>
-                        <h4>Mark as returned?</h4>
+                        <p>Book received</p>
+                        <p>Mark as returned?</p>
                         <button onClick={() => handleUpdate("returned")}>Returned</button>
                     </>
                 )
             case "returned":
                 return (
                     <>
-                        <h4>Book returned</h4>
-                        <h4>Awaiting owner to complete the exchange</h4>
+                        <p>Book returned</p>
+                        <p>Awaiting owner to complete the exchange</p>
                     </>
                 )
             default :
                 return (
                     <>
-                        <h4>Requested on {exchange.updated_at.slice(0, 10)}</h4>
-                        <h4>Awaiting approval</h4>
+                        <p>Requested on {exchange.updated_at.slice(0, 10)}</p>
+                        <p>Awaiting approval</p>
                     </>
                 )
         }

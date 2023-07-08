@@ -269,12 +269,21 @@ li.profile {
   margin-top: 10px;
   border-radius:10px;
   overflow: auto;
-  text-align: center
+  text-align: center;
+  padding-bottom: 10px;
+  background-color: #88a07e86;
+}
+.unavailable {
+  background-color: #3c443886;
 }
 
+.exch-container {
+  display:grid;
+  grid-template-columns: 48.5% 48.5%;
+}
 .exchange-card{
-  width: 80%;
-  margin-left: 10%;
+  width: 95%;
+  margin-left: 5%;
 	border: 2px dashed black;
 	color: black;
   margin-top: 10px;
@@ -290,7 +299,7 @@ li.profile {
 }
 .exchange-right{
   width: 60%;
-  margin-left: 45%;
+  margin-left: 40%;
 }
 
 .title-author{
