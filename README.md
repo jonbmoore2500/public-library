@@ -71,6 +71,7 @@ BookFormNew
 BookCard
  - Displays info about a book, with certain pieces of info dependent on whether it is owned by the current User
  - Includes either a button to open an edit form via BookFormEdit or to open a borrowing form via BookBorrowModal
+ - Displays with a different background color if the book is not available to be borrowed, either due to being checked out or hidden
 
 BookFormEdit
  - allows a User who owns the book to edit information about that book or delete the book altogether
@@ -127,6 +128,9 @@ ConvoContainer
 MessageCard
  - Includes the text of a given message, styled via CSS to show which User participating in the Conversation sent it. 
  - On click will toggle showing/not showing the time the Message was created
+
+HelpPage
+ - Provides basic explanatory info to users new to the app. 
 
 
 #### Context
