@@ -28,26 +28,26 @@ function ProfileCont() {
         <div className="rightcontent other-profile">
             {
             dispUser ? 
-            <>
-                <h2>{dispUser.username}</h2>
-                <h4>Neighborhood: {dispUser.neighborhood}</h4>
-                <h4>Bio: {dispUser.bio}</h4>
-                <h4>Favorite Genre: {dispUser.fav_genre}</h4>
-                <h4>Favorite Author: {dispUser.fav_author}</h4>
-                <h4>Completed Exchanges: {dispUser.num_ex_complete}</h4>
-                <h4>Books:</h4>
-                <div>
-                    {dispUser.owned_books.map((b) => (
-                        <div key={b.id} className={b.checked_out ? "book-card unavailable":"book-card"}>
-                            <BookCard book={b} ownedByOther={false} owner={dispUser} handleExchanged={handleExchanged}/> 
-                        </div>
-                    ))}
-                </div>
-            </>
+                <>
+                    <h2>{dispUser.username}</h2>
+                    <h4>Neighborhood: {dispUser.neighborhood}</h4>
+                    <h4>Bio: {dispUser.bio}</h4>
+                    <h4>Favorite Genre: {dispUser.fav_genre}</h4>
+                    <h4>Favorite Author: {dispUser.fav_author}</h4>
+                    <h4>Completed Exchanges: {dispUser.num_ex_complete}</h4>
+                    <h4>Books:</h4>
+                    <div>
+                        {dispUser.owned_books.map((b) => (
+                            <div key={b.id} className={b.checked_out ? "book-card unavailable" : "book-card"}>
+                                <BookCard book={b} ownedByUser={false} owner={dispUser} handleExchanged={handleExchanged}/> 
+                            </div>
+                        ))}
+                    </div>
+                </>
             :
-            <>
-                Loading...
-            </>
+                <>
+                    Loading...
+                </>
             }
             <br></br>
         </div>

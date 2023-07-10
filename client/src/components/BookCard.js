@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import BookFormEdit from "./BookFormEdit"
 import BookBorrowModal from "./BookBorrowModal"
 
-function BookCard({book, ownedByOther = true, owner = book.owner, handleExchanged}) {
+function BookCard({book, ownedByUser = true, owner = book.owner, handleExchanged}) {
 
     const [showEditModal, setShowEditModal] = useState(false)
     const [showBorrowModal, setShowBorrowModal] = useState(false)
@@ -17,7 +17,7 @@ function BookCard({book, ownedByOther = true, owner = book.owner, handleExchange
                 <div className="other-book-info">
                     <p>{book.genre}</p>
                     <p>{book.num_pages} pages, {book.hardback ? "hardback" : "paperback"}</p>
-                    {ownedByOther ? 
+                    {ownedByUser ? 
                         <p>{book.hidden ? <strong>Hidden</strong>: "On Display"}</p>
                     : 
                         <p>Owned by: {owner.username}</p>
@@ -27,14 +27,14 @@ function BookCard({book, ownedByOther = true, owner = book.owner, handleExchange
                     :
                         <p>Available</p>
                     }
-                    {(ownedByOther || !book.checked_out) && <button onClick={ownedByOther ? () => setShowEditModal(true) : () => setShowBorrowModal(true)}>Show more</button>}
+                    {(ownedByUser || !book.checked_out) && <button onClick={ownedByUser ? () => setShowEditModal(true) : () => setShowBorrowModal(true)}>Show more</button>}
                 </div>
             </div>
             
-            {ownedByOther && showEditModal ? (
+            {ownedByUser && showEditModal ? (
                 <BookFormEdit setShowModal={setShowEditModal} book={book}/>
             ) : null}
-            {(!ownedByOther && !book.checked_out) && showBorrowModal ? (
+            {(!ownedByUser && !book.checked_out) && showBorrowModal ? (
                 <BookBorrowModal setShowModal={setShowBorrowModal} book={book} owner={owner} handleExchanged={handleExchanged}/>
             ) : null}
         </>

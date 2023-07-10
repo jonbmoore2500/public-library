@@ -28,7 +28,7 @@ function LibrarySearch() {
             <div>
                 {dispBooks.map((b) => (
                     <div key={b.id} className="book-card">
-                        <BookCard book={b} owned={false} handleExchanged={handleExchanged}/>
+                        <BookCard book={b} ownedByUser={false} handleExchanged={handleExchanged}/>
                     </div>
                 ))}
             </div>

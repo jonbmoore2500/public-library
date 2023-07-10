@@ -95,14 +95,14 @@ function SignUpForm() {
                     value={signUpObj.fav_genre}
                 >
                     <optgroup label="Fiction">
-                    {genres.slice(0, 10).map((g, i) => (
-                        <option key={i} value={g}>{g}</option>
-                    ))}
+                        {genres.slice(0, 10).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
                     </optgroup>
                     <optgroup label="Non-fiction">
-                    {genres.slice(11, 16).map((g, i) => (
-                        <option key={i} value={g}>{g}</option>
-                    ))}
+                        {genres.slice(11, 16).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
                     </optgroup>
                 </select>
                 <label>Favorite Author: </label>

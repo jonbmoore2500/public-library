@@ -36,13 +36,15 @@ function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
             <div className="modal-content">
                 <h2>{book.title}</h2>
                 <h3>{book.author}</h3>
-                <h5>{book.genre}, {book.num_pages} pages, {book.hardback ? "hardback" : "paperback"}</h5>
+                <p>{book.genre}, {book.num_pages} pages, {book.hardback ? "hardback" : "paperback"}</p>
                 <p>{book.notes}</p>
                 <h4>Owner: <Link to={"/profiles/" + owner.id}>{owner.username}</Link></h4>
+                <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
+                <br></br>
                 <label>Send Message to {owner.username}?</label>
                 <NewMessageForm recipient={book.user_id}/>
                 {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
-                <button onClick={() => handleSubmitRequest()}>Request to borrow?</button>
+                <button onClick={() => setShowModal(false)}>Cancel</button>
             </div>
         </div>
     )

@@ -317,3 +317,9 @@ li.profile {
 .other-profile{
   text-align:left
 }
+
+.help-page{
+  padding:10%;
+  padding-top:2%;
+  padding-bottom:0%
+}

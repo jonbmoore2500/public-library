@@ -27,7 +27,7 @@ function LibraryBrowse() {
                     if (books.length === i + 1) {
                         return <div ref={lastBookRef} key={b.id} className="book-card"> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </div>
                     } else {
-                    return <div key={b.id} className="book-card"> <BookCard book={b} owned={false} handleExchanged={handleExchanged}/> </div>
+                    return <div key={b.id} className="book-card"> <BookCard book={b} ownedByUser={false} handleExchanged={handleExchanged}/> </div>
                     }
                 })}
             </div>

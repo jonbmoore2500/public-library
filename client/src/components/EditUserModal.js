@@ -9,7 +9,10 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
     const [errors, setErrors] = useState([])
 
     const hoods = ["Uptown", "Edgewater", "Ravenswood", "The Loop", "Hyde Park", "Rogers Park", "Lakeview", "Kenwood", "Bronzeville"]
-    const genres = ["Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Fantasy", "Historical Fiction", "Young Adult", "Biography", "Self-Help", "Academic"]
+    const genres = [
+        "Classics", "Tragedy", "Science Fiction", "Fantasy", "Action and Adventure", "Crime and Mystery", "Romance", "Humor", "Horror",
+        "Other (fiction)", "Biography", "Cookbook", "History", "Self Help", "Academic", "Other (non fiction)"
+        ]
 
     function handleEditSubmit(e) {
         e.preventDefault()
@@ -61,9 +64,16 @@ function EditUserModal({setEditModal, user, handleUpdate}) {
                     <br></br>
                     <label>Change your Favorite Genre: </label>
                     <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre}>
-                        {genres.map((g, i) => (
-                            <option key={i} value={g}>{g}</option>
-                        ))}
+                        <optgroup label="Fiction">
+                            {genres.slice(0, 10).map((g, i) => (
+                                <option key={i} value={g}>{g}</option>
+                            ))}
+                        </optgroup>
+                        <optgroup label="Non-fiction">
+                            {genres.slice(11, 16).map((g, i) => (
+                                <option key={i} value={g}>{g}</option>
+                            ))}
+                        </optgroup>
                     </select>
                     <br></br>
                     <label>Change your Favorite Author: </label>

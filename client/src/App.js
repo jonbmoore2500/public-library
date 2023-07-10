@@ -13,6 +13,7 @@ import LibrarySearch from "./components/LibrarySearch.js"
 import ProfilesLayout from "./components/ProfilesLayout.js"
 import ProfileCont from "./components/ProfileCont.js"
 import MessagesCont from "./components/MessagesCont.js"
+import HelpPage from "./components/HelpPage.js"
 import Home from "./components/Home.js"
 
 import './App.css';
@@ -41,6 +42,7 @@ function App() {
                     <Route path=":userID" element={<ProfileCont />} />
                   </Route>
                   <Route path="messages" element={<MessagesCont />} />
+                  <Route path="help" element={<HelpPage />} />
                 </Route>
               </Routes>
             </div>

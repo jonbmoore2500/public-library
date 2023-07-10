@@ -16,26 +16,26 @@ function UserExchangesCont() {
             <h2 className="chapter-header">Chapter 3: Your Exchanges</h2>
             <div className="chapter-content">
                 <h3><u>Lending: </u></h3>
-                <div className="exch-container">
+                <div>
                     {user.exchanges_lend.length > 0 ?
-                    <>
-                        {user.exchanges_lend.map((e) => (
-                            <ExchangeCardLend key={e.id} exchange={e} updateExchanges={updateExchanges}/>
-                        ))}
-                    </>
+                        <div className="exch-container">
+                            {user.exchanges_lend.map((e) => (
+                                <ExchangeCardLend key={e.id} exchange={e} updateExchanges={updateExchanges}/>
+                            ))}
+                        </div>
                     : 
-                        <h4>You aren't lending any books at the moment</h4> 
+                        <h3>You aren't lending any books at the moment</h3> 
                     }
                 </div>
                 <br></br>
                 <h3><u>Borrowing: </u></h3>
-                <div className="exch-container">
+                <div>
                     {user.exchanges_borrow.length > 0 ?
-                    <>
-                        {user.exchanges_borrow.map((e) => (
-                            <ExchangeCardBorrow key={e.id} exchange={e} updateExchanges={updateExchanges}/>
-                        ))}
-                    </>    
+                        <div className="exch-container">
+                            {user.exchanges_borrow.map((e) => (
+                                <ExchangeCardBorrow key={e.id} exchange={e} updateExchanges={updateExchanges}/>
+                            ))}
+                        </div>    
                     :
                         <h3>You aren't borrowing any books at the moment</h3>
                     }

@@ -11,6 +11,7 @@ function Layout() {
                 <NavLink to ="/library_books" className="nav-bar-link">Public Library</NavLink>
                 <NavLink to ="/profiles" className="nav-bar-link">Explore Profiles</NavLink>
                 <NavLink to ="/messages" className="nav-bar-link">Messaging Center</NavLink>
+                <NavLink to ="/help" className="nav-bar-link">Help</NavLink>
             </div>
             <div id="navs-content">
                 <Outlet />
