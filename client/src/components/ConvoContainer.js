@@ -23,8 +23,7 @@ function ConvoContainer({selected, userID}) {
     return(
         <div id="convo-container">
             <div id="convo-header">
-                <h2>Conversation with {otherUser.username}</h2>
-                <Link to={"/profiles/" + otherUser.id}>See {otherUser.username}'s profile</Link>
+                <h2>Conversation with <Link to={"/profiles/" + otherUser.id}>{otherUser.username}</Link></h2>
             </div>
             <div id="convo-content">
                 {selected.messages.map((m) => (
