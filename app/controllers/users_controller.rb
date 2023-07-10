@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        users = User.all.collect {|u| u = {id: u.id, username: u.username}}
+        users = User.all.collect{|u| u = {id: u.id, username: u.username}}.sort_by{|u| u[:id]}
         render json: users
     end 
 
