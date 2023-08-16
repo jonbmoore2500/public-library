@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :create, :update, :destroy]
   resources :users, only: [:index, :show, :create, :update]
   resources :exchanges, only: [:create, :update, :destroy]
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :update]
   resources :conversations, only: [:create]
 
   # login/out routes

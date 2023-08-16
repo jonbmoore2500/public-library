@@ -18,7 +18,14 @@ class UserSerializer < ActiveModel::Serializer
 
   attribute :convos do
     conversations = (self.object.s_conversations + self.object.r_conversations).uniq
-    JSON.parse(conversations.to_json(include: :messages, methods: [:two_users]))
+    sorted_convos = conversations.map do |c|
+      {
+        id: c.id,
+        messages: c.messages.order(id: :asc),
+        two_users: c.two_users
+      }
+    end
+    sorted_convos
   end
 
 end

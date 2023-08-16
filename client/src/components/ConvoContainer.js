@@ -4,6 +4,15 @@ import MessageCard from "./MessageCard"
 import NewMessageForm from "./NewMessageForm"
 
 function ConvoContainer({selected, userID}) {
+    console.log(selected)
+    // mostly works. make sure:
+    // works with new convo
+    // update doesn't run BEFORE rendering. skips straight to read
+    
+    let newIndex = selected.messages.findIndex(msg => msg.recipient_id === userID && msg.msg_read === false)
+
+    let msgArr = []
+    newIndex === -1 ? msgArr = selected.messages : msgArr = selected.messages.slice(0, newIndex)
 
     const divRef = useRef(null)
     const [newMsgCount, setNewMsgCount] = useState(0)
@@ -14,7 +23,7 @@ function ConvoContainer({selected, userID}) {
 
     useEffect(() => {
         if (divRef.current) {
-            divRef.current.scrollIntoView({behavior: 'smooth', block: 'end'})
+            divRef.current.scrollIntoView({behavior: 'instant', block: 'end'})
         }
     }, [selected, newMsgCount])
 
@@ -26,9 +35,17 @@ function ConvoContainer({selected, userID}) {
                 <h2>Conversation with <Link to={"/profiles/" + otherUser.id}>{otherUser.username}</Link></h2>
             </div>
             <div id="convo-content">
-                {selected.messages.map((m) => (
+                {msgArr.map((m) => (
                     <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} />
                 ))}
+                {newIndex >= 0 && 
+                    <>
+                        <h6>----- Unread Messages -----</h6>
+                        {selected.messages.slice(newIndex, selected.messages.length).map((m) => (
+                            <MessageCard key={m.id} message={m} loggedUser={m.sender_id === userID} unread={true}/>
+                        ))}
+                    </>
+                }
                 <div>
                     <NewMessageForm recipient={otherUser.id} convoID={selected.id} handleIncrement={handleIncrement}/>
                 </div>
