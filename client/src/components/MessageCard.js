@@ -1,6 +1,6 @@
 import React, {useState, useRef, useCallback} from "react"
 
-function MessageCard({message, loggedUser, unread = false}) {
+function MessageCard({message, loggedUser, newMsg = false}) {
 
     const [showDate, setShowDate] = useState(false)
     
@@ -23,12 +23,12 @@ function MessageCard({message, loggedUser, unread = false}) {
             })
         })
         if (node) observer.current.observe(node)
-    }, [])
+    }, []) // remove dependency array?
 
     return(
         <div>
             <div 
-                ref={unread ? msgRef : null}
+                ref={newMsg && !loggedUser ? msgRef : null}
                 className={loggedUser ? "chat-bubble-right tri-right round border right-top" : "chat-bubble-left tri-right round border left-top"}
                 onClick={() => setShowDate(!showDate)}
             >
