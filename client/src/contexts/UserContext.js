@@ -5,7 +5,7 @@ const UserContext = React.createContext()
 function UserProvider({children}) {
 
     const [user, setUser] = useState(null)
-    console.log(user)
+
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
@@ -79,6 +79,21 @@ function UserProvider({children}) {
         }
     }
 
+    function exchNotifHelper(arr, ids){
+        return arr.map((e) => {
+            if (ids.includes(e.id)) { e.update_read = true } 
+            return e 
+        })
+    }
+
+    function handleExchNotifRead(lendIDs, borrowIDs) {
+        setUser({
+            ...user, 
+            exchanges_lend: exchNotifHelper(user.exchanges_lend, lendIDs),
+            exchanges_borow: exchNotifHelper(user.exchanges_borrow, borrowIDs)
+        })
+    }
+
     function handleNewMsg(msg) {
         let updatedConvos = user.convos.map((c) => {
             if (msg.conversation_id === c.id) {
@@ -98,7 +113,7 @@ function UserProvider({children}) {
         setUser({...user, bio: data.bio, fav_author: data.fav_author, fav_genre: data.fav_genre, neighborhood: data.neighborhood})
     }
 
-    return <UserContext.Provider value={{user, setUser, addUserBooks, updateUserBook, deleteUserBook, handleNewExch, handleExchUpdate, handleNewMsg, handleNewConvo, handleUpdateUser}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user, setUser, addUserBooks, updateUserBook, deleteUserBook, handleNewExch, handleExchUpdate, handleExchNotifRead, handleNewMsg, handleNewConvo, handleUpdateUser}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

@@ -1,20 +1,27 @@
-import React, {useContext} from "react"
+import React, {useContext, useLayoutEffect} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 import ExchangeCardLend from "./ExchangeCardLend.js"
 import ExchangeCardBorrow from "./ExchangeCardBorrow.js"
 
 function UserExchangesCont() {
 
-    const {user, handleExchUpdate} = useContext(UserContext)
+    const {user, handleExchUpdate, handleExchNotifRead} = useContext(UserContext)
+
+    const lendIDs = user.exchanges_lend.filter((exch) => exch.exch_status !== "approved" && !exch.update_read).map((e) => e.id)
+    const borrowIDs = user.exchanges_borrow.filter((exch) => exch.exch_status === "approved" && !exch.update_read).map((e) => e.id)
+    const numUpdates = lendIDs.length + borrowIDs.length
+
+    useLayoutEffect(() => { // handles UserContext update only on unmount of UserExchangesCont
+        return () => {
+            if (numUpdates > 0) {
+                handleExchNotifRead(lendIDs, borrowIDs)
+            }
+        }
+    }, [])
 
     function updateExchanges(updatedExch, type) {
         handleExchUpdate(updatedExch, type)
     }
-
-    const numUpdates = (
-        user.exchanges_lend.filter((exch) => exch.exch_status !== "approved" && !exch.update_read).length + 
-        user.exchanges_borrow.filter((exch) => exch.exch_status === "approved" && !exch.update_read).length
-        )
 
     return(
         <div>

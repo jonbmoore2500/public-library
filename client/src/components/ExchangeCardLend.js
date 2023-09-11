@@ -12,7 +12,7 @@ function ExchangeCardLend({exchange, updateExchanges}) {
 
     const observer = useRef()
     
-    const updateRef = useCallback(node => {
+    const updateRef = useCallback(node => { // move to other file, nearly identical code in several components. Lend, Borrow, MessageCard
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(() => {
             if (!updated && !exchange.update_read) {
