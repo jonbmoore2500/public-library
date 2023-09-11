@@ -4,7 +4,7 @@ import NewMessageForm from "./NewMessageForm"
 
 function ExchangeCardLend({exchange, updateExchanges}) {
 
-    // determine more eloquent way to notify user. updates at top, but duplicate below? move to top? mark whole card? 
+    // determine more eloquent way to notify user. updates at top, but duplicate below? move to top? mark whole card? open to reorg
 
     const [confirmModal, setConfirmModal] = useState(false)
     const [showMessage, setShowMessage] = useState(false)
@@ -13,8 +13,6 @@ function ExchangeCardLend({exchange, updateExchanges}) {
     const observer = useRef()
     
     const updateRef = useCallback(node => {
-        // how to only do once? too many fetch requests when scrolling on page with multiple observers
-        // updated boolean state not helping
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(() => {
             if (!updated && !exchange.update_read) {
@@ -27,20 +25,15 @@ function ExchangeCardLend({exchange, updateExchanges}) {
                 })
                 .then((r) => {
                     if (r.ok) {
-                        r.json().then(r => {
-                            console.log(r, "good")
+                        r.json().then(() => {
                             setUpdated(true)
-                        })
-                    } else {
-                        r.json().then(r => {
-                            console.log(r)
                         })
                     }
                 })
             }
         })
         if (node) observer.current.observe(node)
-    }, [])
+    }, [updated])
 
     function handleUpdate(param) {
         let updateObj = {}

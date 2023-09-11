@@ -1,15 +1,41 @@
-import React, {useState} from "react"
+import React, {useState, useRef, useCallback} from "react"
 import { Link } from "react-router-dom"
 import NewMessageForm from "./NewMessageForm"
 
 function ExchangeCardBorrow({exchange, updateExchanges}) {
 
     const [showMessage, setShowMessage] = useState(false)
+    const [updated, setUpdated] = useState(false)
+
+    const observer = useRef()
+    
+    const updateRef = useCallback(node => {
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(() => {
+            if (!updated && !exchange.update_read) {
+                fetch(`/exchanges/${exchange.id}`, {
+                method: "PATCH", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({update_read: true})
+                })
+                .then((r) => {
+                    if (r.ok) {
+                        r.json().then(() => {
+                            setUpdated(true)
+                        })
+                    }
+                })
+            }
+        })
+        if (node) observer.current.observe(node)
+    }, [updated])
 
     function handleUpdate(param) {
-        let updateObj = {returned: true}
+        let updateObj = {returned: true, update_read: false}
         if (param === "received") {
-            updateObj = {received: true}
+            updateObj = {received: true, update_read: false}
         }
         fetch(`/exchanges/${exchange.id}`, {
             method: "PATCH",
@@ -31,11 +57,10 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
         switch(param) {
             case "approved":
                 return (
-                    <>
+                    <div ref={updateRef} className={exchange.update_read ? null : "exch-update"}> 
                         <p>Request approved. Mark as received?</p>
                         <button onClick={() => handleUpdate("received")}>Received</button>
-                        {/* needs notif */}
-                    </>
+                    </div>
                 )
             case "received":
                 return (

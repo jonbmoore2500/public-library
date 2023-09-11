@@ -5,12 +5,11 @@ const UserContext = React.createContext()
 function UserProvider({children}) {
 
     const [user, setUser] = useState(null)
-
+    console.log(user)
     useEffect(() => {
         fetch("/me").then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
-                    console.log(user)
                     setUser(user)
                 })
             }
