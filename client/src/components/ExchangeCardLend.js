@@ -1,16 +1,51 @@
-import React, {useState} from "react"
+import React, {useState, useRef, useCallback} from "react"
 import { Link } from "react-router-dom"
 import NewMessageForm from "./NewMessageForm"
 
 function ExchangeCardLend({exchange, updateExchanges}) {
 
+    // determine more eloquent way to notify user. updates at top, but duplicate below? move to top? mark whole card? 
+
     const [confirmModal, setConfirmModal] = useState(false)
     const [showMessage, setShowMessage] = useState(false)
+    const [updated, setUpdated] = useState(false)
+
+    const observer = useRef()
+    
+    const updateRef = useCallback(node => {
+        // how to only do once? too many fetch requests when scrolling on page with multiple observers
+        // updated boolean state not helping
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(() => {
+            if (!updated && !exchange.update_read) {
+                fetch(`/exchanges/${exchange.id}`, {
+                method: "PATCH", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({update_read: true})
+                })
+                .then((r) => {
+                    if (r.ok) {
+                        r.json().then(r => {
+                            console.log(r, "good")
+                            setUpdated(true)
+                        })
+                    } else {
+                        r.json().then(r => {
+                            console.log(r)
+                        })
+                    }
+                })
+            }
+        })
+        if (node) observer.current.observe(node)
+    }, [])
 
     function handleUpdate(param) {
         let updateObj = {}
         if (param === "approved") {
-            updateObj = {approved: true}
+            updateObj = {approved: true, update_read: false}
         } else {
             updateObj = {complete: true}
         }
@@ -41,27 +76,27 @@ function ExchangeCardLend({exchange, updateExchanges}) {
                 )
             case "received":
                 return (
-                    <>
+                    <div ref={updateRef} className={exchange.update_read ? null : "exch-update"}>
                         <p>Borrower has received the book</p>
                         <p>Awaiting borrower to mark as returned.</p>
-                    </>
+                    </div>
                 )
             case "returned":
                 return (
-                    <>
+                    <div ref={updateRef} className={exchange.update_read ? null : "exch-update"}>
                         <p>Borrower has returned the book</p>
                         <p>Complete the exchange?</p>
                         <button onClick={() => handleUpdate("complete")}>Complete</button>
-                    </>
+                    </div>
                 )
             default :
                 return (
-                    <>
+                    <div ref={updateRef} className={exchange.update_read ? null : "exch-update"}>
                         <p>Requested on {exchange.created_at.slice(0, 10)}</p>
                         <p>Approve the request?</p>
                         <button onClick={() => handleUpdate("approved")}>Approve</button>
                         <button onClick={() => handleUpdate("denied")}>Deny</button>
-                    </>
+                    </div>
                 )
         }
     }

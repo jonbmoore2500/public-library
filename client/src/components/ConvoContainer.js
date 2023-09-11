@@ -4,12 +4,9 @@ import MessageCard from "./MessageCard"
 import NewMessageForm from "./NewMessageForm"
 
 function ConvoContainer({selected, userID}) {
-    console.log(selected)
-    // mostly works. make sure:
-    // works with new convo
     
     let newIndex = selected.messages.findIndex(msg => msg.recipient_id === userID && msg.msg_read === false) 
-    // finds first message TO user and unread, -1 if nothing qualifies
+    // finds first message to user and unread, -1 if nothing qualifies
     
     let readArr = []
     newIndex === -1 ? readArr = selected.messages : readArr = selected.messages.slice(0, newIndex) 

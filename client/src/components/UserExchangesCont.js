@@ -11,10 +11,17 @@ function UserExchangesCont() {
         handleExchUpdate(updatedExch, type)
     }
 
+    const numUpdates = (
+        user.exchanges_lend.filter((exch) => exch.exch_status !== "approved" && !exch.update_read).length + 
+        user.exchanges_borrow.filter((exch) => exch.exch_status === "approved" && !exch.update_read).length
+        // count inaccurate
+        )
+
     return(
         <div>
             <h2 className="chapter-header">Chapter 3: Your Exchanges</h2>
             <div className="chapter-content">
+                {numUpdates > 0 ? <h4>There are updates in {numUpdates} of your exchanges</h4> : null}
                 <h3><u>Lending: </u></h3>
                 <div>
                     {user.exchanges_lend.length > 0 ?

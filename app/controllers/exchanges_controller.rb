@@ -15,7 +15,7 @@ class ExchangesController < ApplicationController
         if params[:complete]
             exchange.book.update(checked_out: false)
         end
-        render json: exchange, include: ['book', 'book.owner', 'user']
+        render json: exchange, status: :ok, include: ['book', 'book.owner', 'user']
     end
 
     def destroy
@@ -30,11 +30,12 @@ class ExchangesController < ApplicationController
     private
     
     def create_exch_params
-        params.permit(:book_id, :approved, :received, :complete, :returned)
+        # are all these params needed? it should just need book_id and then everything else autopopulates based on schema
+        params.permit(:book_id, :approved, :received, :complete, :returned, :update_read)
     end
 
     def update_exch_params
-        params.permit(:id, :approved, :received, :complete, :returned)
+        params.permit(:id, :approved, :received, :complete, :returned, :update_read)
     end
 
     def render_unproc_entity(invalid)

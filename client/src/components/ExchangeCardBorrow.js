@@ -34,6 +34,7 @@ function ExchangeCardBorrow({exchange, updateExchanges}) {
                     <>
                         <p>Request approved. Mark as received?</p>
                         <button onClick={() => handleUpdate("received")}>Received</button>
+                        {/* needs notif */}
                     </>
                 )
             case "received":

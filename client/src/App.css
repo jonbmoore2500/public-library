@@ -285,7 +285,7 @@ li.profile {
   width: 95%;
   margin-left: 5%;
 	border: 2px dashed black;
-	color: black;
+	/* color: black; */
   margin-top: 10px;
   border-radius:10px;
   margin-bottom:10px;
@@ -300,6 +300,10 @@ li.profile {
 .exchange-right{
   width: 60%;
   margin-left: 40%;
+}
+.exch-update{
+  color: red;
+  font-weight: 700;
 }
 
 .title-author{
