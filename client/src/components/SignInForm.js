@@ -32,25 +32,39 @@ function SignInForm() {
 
     return(
         <div className="userform">
+            <h1 className="formTitle">Sign in:</h1>
+
             <form onSubmit={handleLogin}>
-                <h3>Sign in!</h3>
-                <label>Username: </label>
-                <input
-                    onChange={(e) => setLoginObj({...loginObj, username: e.target.value})}
-                    value={loginObj.username}
-                /> 
-                <label>Password: </label>
-                <input
-                    onChange={(e) => setLoginObj({...loginObj, password: e.target.value})}
-                    value={loginObj.password}
-                    type={showPWord ? "" : "password"}
-                />
-                <label>Show password</label>
-                <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
-                <br></br>
-                <br></br>
-                {error && <h4>{error.error}</h4>}
-                <button type="submit">Login</button>
+                <div className="formGroup">
+                    <label className="loginLabel">USERNAME</label>
+                    <input
+                        onChange={(e) => setLoginObj({...loginObj, username: e.target.value})} 
+                        value={loginObj.username}
+                        className="logInInput"
+                        placeholder="USERNAME"
+                    />
+                </div>
+
+                <div className="formGroup">
+                    <label className="loginLabel">PASSWORD</label>
+                    <input
+                        onChange={(e) => setLoginObj({...loginObj, password: e.target.value})} 
+                        value={loginObj.password}
+                        className="logInInput"
+                        placeholder="PASSWORD"
+                        type={showPWord ? "" : "password"}
+                    />
+                </div>
+                <div className="homepageSubForm">
+                    <label className="pwSelect">
+                        <span className="pwBoxLabel">Show password</span>
+                        <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
+                    </label>
+                    <br></br>
+                    <br></br>
+                    {error && <h4>{error.error}</h4>}
+                    <button type="submit" className="homepageBtn">Login</button>
+                </div>
             </form>
         </div>
     )

@@ -51,68 +51,99 @@ function SignUpForm() {
 
     return(
         <div className="userform">
+            <h1 className="formTitle">Register:</h1>
             <form onSubmit={handleSignUp}>
-                <h3>Sign up!</h3>
-                <label>Username: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, username: e.target.value})}
-                    value={signUpObj.username}
-                />
-                <br></br>
-                <label>Password: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, password: e.target.value})}
-                    value={signUpObj.password}
-                    type={showPWord ? "" : "password"}
-                />
-                <label>Confirm Password: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, password_confirmation: e.target.value})}
-                    value={signUpObj.password_confirmation}
-                    type={showPWord ? "" : "password"}
-                />
-                <label>Show password</label>
-                <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
-                <br></br>
-                <label>Neighborhood: </label>
-                <select 
-                    onChange={(e) => setSignUpObj({...signUpObj, neighborhood: e.target.value})} 
-                    value={signUpObj.neighborhood}
-                >
-                    {hoods.map((h, i) => (
-                        <option key={i} value={h}>{h}</option>
-                    ))}
-                </select>
-                <label>User Bio: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, bio: e.target.value})}
-                    value={signUpObj.bio}
-                />
-                <br></br>
-                <label>Favorite Genre: </label>
-                <select 
-                    onChange={(e) => setSignUpObj({...signUpObj, fav_genre: e.target.value})} 
-                    value={signUpObj.fav_genre}
-                >
-                    <optgroup label="Fiction">
-                        {genres.slice(0, 10).map((g, i) => (
-                            <option key={i} value={g}>{g}</option>
-                        ))}
-                    </optgroup>
-                    <optgroup label="Non-fiction">
-                        {genres.slice(11, 16).map((g, i) => (
-                            <option key={i} value={g}>{g}</option>
-                        ))}
-                    </optgroup>
-                </select>
-                <label>Favorite Author: </label>
-                <input 
-                    onChange={(e) => setSignUpObj({...signUpObj, fav_author: e.target.value})}
-                    value={signUpObj.fav_author}
-                />
-                {errors && <ul>{errors.map((e) => <li>{e}</li>)}</ul>}
-                <br></br>
-                <button type="submit">Sign up</button>
+                <div id="registerFormTop">
+                    <div className="formGroup">
+                        <label className="loginLabel">USERNAME</label>
+                        <input
+                            onChange={(e) => setSignUpObj({...signUpObj, username: e.target.value})}
+                            value={signUpObj.username}
+                            className="logInInput"
+                            placeholder="USERNAME"
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label className="loginLabel">PASSWORD</label>
+                        <input
+                            onChange={(e) => setSignUpObj({...signUpObj, password: e.target.value})}
+                            value={signUpObj.password}
+                            type={showPWord ? "" : "password"}
+                            className="logInInput"
+                            placeholder="PASSWORD"
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label className="loginLabel">CONFIRM</label>
+                        <input
+                            onChange={(e) => setSignUpObj({...signUpObj, password_confirmation: e.target.value})}
+                            value={signUpObj.password_confirmation}
+                            type={showPWord ? "" : "password"}
+                            className="logInInput"
+                            placeholder="CONFIRM PASSWORD"
+                        />
+                    </div>
+                    <div className="homepageSubForm">
+                        <label>Show password</label>
+                        <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
+                    </div>       
+                </div>
+                <div id="registerFormBottom">
+                    <div className="formGroup firstForm">
+                        <label className="loginLabel">NEIGHBORHOOD</label>
+                        <select 
+                            onChange={(e) => setSignUpObj({...signUpObj, neighborhood: e.target.value})} 
+                            value={signUpObj.neighborhood}
+                            className="logInInput"
+                        >
+                            {hoods.map((h, i) => (
+                                <option key={i} value={h}>{h}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label className="loginLabel">USER BIO</label>
+                        <input
+                            onChange={(e) => setSignUpObj({...signUpObj, bio: e.target.value})}
+                            value={signUpObj.bio}
+                            className="logInInput"
+                            placeholder="USER BIO"
+                        />
+                    </div>
+                    <h3 style={{textAlign: "left", paddingLeft: "10%", marginBottom: 0}}>Favorite: </h3>
+                    <div className="formGroup firstForm">
+                        <label className="loginLabel">GENRE</label>
+                        <select 
+                            onChange={(e) => setSignUpObj({...signUpObj, fav_genre: e.target.value})} 
+                            value={signUpObj.fav_genre}
+                            className="logInInput"
+                        >
+                            <optgroup label="Fiction">
+                                {genres.slice(0, 10).map((g, i) => (
+                                    <option key={i} value={g}>{g}</option>
+                                ))}
+                            </optgroup>
+                            <optgroup label="Non-fiction">
+                                {genres.slice(11, 16).map((g, i) => (
+                                    <option key={i} value={g}>{g}</option>
+                                ))}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label className="loginLabel">AUTHOR</label>
+                        <input
+                            onChange={(e) => setSignUpObj({...signUpObj, fav_author: e.target.value})}
+                            value={signUpObj.fav_author}
+                            className="logInInput"
+                            placeholder="FAVORITE AUTHOR"
+                        />
+                    </div>
+                    {errors && <ul>{errors.map((e) => <li>{e}</li>)}</ul>}
+                    <div className="homepageSubForm">
+                        <button type="submit" className="homepageBtn">Register</button>
+                    </div>
+                </div>
             </form>
         </div>
     )
