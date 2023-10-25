@@ -35,6 +35,7 @@ function SignInForm() {
             <h1 className="formTitle">Sign in:</h1>
 
             <form onSubmit={handleLogin}>
+                <div className="registerFormTop">
                 <div className="formGroup">
                     <label className="loginLabel">USERNAME</label>
                     <input
@@ -60,10 +61,12 @@ function SignInForm() {
                         <span className="pwBoxLabel">Show password</span>
                         <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
                     </label>
-                    <br></br>
-                    <br></br>
+                </div>
+                <br></br>
+                <div className="homepageSubForm">
                     {error && <h4>{error.error}</h4>}
                     <button type="submit" className="homepageBtn">Login</button>
+                </div>
                 </div>
             </form>
         </div>

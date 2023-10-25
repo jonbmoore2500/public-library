@@ -72,8 +72,25 @@
 }
 
 .homepageSubForm{
+  display: flex;
   text-align: right;
   margin-right: 10%;
+  align-items: center;
+}
+#pwordError{
+  flex: 2;
+  margin: 0;
+  color: red
+}
+#landingToggleLabel{
+  text-align: right;
+  margin: 0px 20px;
+  flex:1;
+  font-size: 20px;
+}
+.homepageSubForm label{
+  flex: 1;
+  text-align: right;
 }
 .pwSelect{
   padding-top:0px

@@ -19,6 +19,7 @@ function Home() {
                 {showSignUp ? <SignUpForm /> : <SignInForm />}
                 <div id="loginLineBreak"></div>
                 <div className="homepageSubForm">
+                    <p id="landingToggleLabel">{`${showSignUp ? "Have" : "Need"} an account?`}</p>
                     <button 
                         onClick={() => setShowSignUp(!showSignUp)}
                         className="homepageBtn toggleForm" 

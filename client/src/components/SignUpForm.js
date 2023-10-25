@@ -53,7 +53,7 @@ function SignUpForm() {
         <div className="userform">
             <h1 className="formTitle">Register:</h1>
             <form onSubmit={handleSignUp}>
-                <div id="registerFormTop">
+                <div className="registerFormTop">
                     <div className="formGroup">
                         <label className="loginLabel">USERNAME</label>
                         <input
@@ -84,6 +84,7 @@ function SignUpForm() {
                         />
                     </div>
                     <div className="homepageSubForm">
+                        {signUpObj.password_confirmation.length > 0 && signUpObj.password_confirmation !== signUpObj.password ? <p id="pwordError">Passwords must match</p> : null }
                         <label>Show password</label>
                         <input type="checkbox" checked={showPWord} onChange={() => setShowPWord(!showPWord)} />
                     </div>       
@@ -110,7 +111,7 @@ function SignUpForm() {
                             placeholder="USER BIO"
                         />
                     </div>
-                    <h3 style={{textAlign: "left", paddingLeft: "10%", marginBottom: 0}}>Favorite: </h3>
+                    <h2 style={{textAlign: "left", paddingLeft: "10%", marginBottom: 0}}>Favorite: </h2>
                     <div className="formGroup firstForm">
                         <label className="loginLabel">GENRE</label>
                         <select 
