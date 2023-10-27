@@ -120,13 +120,13 @@ function SignUpForm() {
                             className="logInInput"
                         >
                             <optgroup label="Fiction">
-                                {genres.slice(0, 10).map((g, i) => (
-                                    <option key={i} value={g}>{g}</option>
+                                {genres.slice(0, 10).map((g) => (
+                                    <option key={g} value={g}>{g}</option>
                                 ))}
                             </optgroup>
                             <optgroup label="Non-fiction">
-                                {genres.slice(11, 16).map((g, i) => (
-                                    <option key={i} value={g}>{g}</option>
+                                {genres.slice(11, 16).map((g) => (
+                                    <option key={g} value={g}>{g}</option>
                                 ))}
                             </optgroup>
                         </select>

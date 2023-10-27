@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react"
 import { UserContext } from "../contexts/UserContext.js"
 import ConvoCard from "./ConvoCard.js"
 import ConvoContainer from "./ConvoContainer.js"
+import '../styles/messaging.css'
 
 function MessagesCont() {
 

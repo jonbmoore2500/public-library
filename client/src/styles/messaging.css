@@ -1,0 +1,101 @@
+.chat-bubble-right{
+    margin: 40px;
+    display: block;
+    position: relative;
+      width: .5;
+      height: auto;
+    background-color: rgb(61, 158, 199);
+  }
+  .chat-bubble-left{
+    margin: 40px;
+    display: block;
+    position: relative;
+      width: .5;
+      height: auto;
+    background-color: rgb(169, 212, 230);
+  }
+  .border{
+    border: 8px solid #666;
+  }
+  .round{
+    border-radius: 30px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+  }
+  
+  .tri-right.left-top:before {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: -40px;
+      right: auto;
+    top: -8px;
+      bottom: auto;
+      border: 32px solid;
+      border-color: #666 transparent transparent transparent;
+  }
+  .tri-right.left-top:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: -20px;
+      right: auto;
+    top: 0px;
+      bottom: auto;
+      border: 22px solid;
+      border-color: rgb(169, 212, 230) transparent transparent transparent;
+  }
+  
+  .tri-right.right-top:before {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: -40px;
+    top: -8px;
+      bottom: auto;
+      border: 32px solid;
+      border-color: #666 transparent transparent transparent;
+  }
+  .tri-right.right-top:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: -20px;
+    top: 0px;
+      bottom: auto;
+      border: 20px solid;
+      border-color: rgb(61, 158, 199) transparent transparent transparent;
+  }
+  
+  .chat-text{
+    padding: 1em;
+      text-align: left;
+    line-height: 1.5em;
+  }
+  .chat-text p{
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+  }
+  #convo-container{
+    position: absolute;
+    top:0px;
+    right:0;
+    left:0;
+    bottom:0;
+    overflow-y: scroll;
+  }
+  
+  #convo-content{
+    position: absolute;
+    top:80px;
+    right:0;
+    left:0;
+    bottom:0;
+    overflow-y: scroll;
+  }

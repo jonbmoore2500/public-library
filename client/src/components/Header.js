@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext.js"
+import '../styles/homepage.css'
 
 function Header() {
 
@@ -24,8 +25,8 @@ function Header() {
                 <h1>PUBLIC LIBRARY</h1>
             </div>
             <div id="header-right">
-                <p>User: {user.username}</p>
-                <button onClick={handleLogOut}>Log out</button>
+                <p>User: <strong>{user.username}</strong></p>
+                <button onClick={handleLogOut} id="logoutBtn">Log out</button>
             </div>
         </div>
     )

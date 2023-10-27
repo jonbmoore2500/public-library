@@ -1,11 +1,13 @@
-/* #9C9F84 light green */
-/* #A97D5D clay */
-/* #F7DCB4 cream/tan */
-/* #5C755E dark green*/
+:root {
+  --lightGreen: #9C9F84;
+  --darkGreen: #5C755E;
+  --clay: #A97D5D;
+  --cream: #F7DCB4
+}
 .App {
   text-align: center;
   font-family: "Copperplate", "Papyrus", fantasy;
-  background-color: #F7DCB4;
+  background-color: var(--cream);
   position: absolute;
   top: 0;
   left: 0;
@@ -14,119 +16,9 @@
   overflow: scroll
 }
 
-.homepage{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-}
-#homepageLeft{
-  background-color: #5C755E;
-}
-#homepageLCont{
-  margin-top: 20%;
-}
-.appTitle{
-  font-size: 80px;
-  margin: 0em .67em;
-}
-
-#homepageRight{
-  margin:auto;
-  width: 100%
-}
-.formTitle{
-  text-align: left;
-  margin-left: 10%;
-  /* font-size: ; */
-}
-.formGroup{
-  margin-top: 20px;
-  text-align: left;
-  border-bottom: 1px solid #666;
-  width: 80%;
-  margin-left:10%;
-  display: flex;
-  max-height: 31px;
-}
-.firstForm{
-  margin-top: 3px
-}
-
-.loginLabel{
-  display: block;
-  color: black;
-  font-weight: bold;
-  font-size: 20px;
-  padding: 5px;
-  padding-left: 0;
-  flex:2
-}
-.logInInput{
-  padding: 5px;
-  padding-left: 0;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #333;
-  flex:5;
-}
-
-.homepageSubForm{
-  display: flex;
-  text-align: right;
-  margin-right: 10%;
-  align-items: center;
-}
-#pwordError{
-  flex: 2;
-  margin: 0;
-  color: red
-}
-#landingToggleLabel{
-  text-align: right;
-  margin: 0px 20px;
-  flex:1;
-  font-size: 20px;
-}
-.homepageSubForm label{
-  flex: 1;
-  text-align: right;
-}
-.pwSelect{
-  padding-top:0px
-}
-.pwBoxLabel{
-  font-size: 14px;
-  line-height: 0px;
-}
-
-.homepageBtn{
-  background-color: #5C755E;
-  border: none;
-  border-radius: 24px;
-  font-size: 26px;
-  line-height: 30px;
-  width: 140px;
-  color: #fff;
-  font-family: "Copperplate", "Papyrus", fantasy;
-  margin-left: auto
-}
-.toggleForm{
-  background-color: #A97D5D;
-  border: 2px solid black;
-  font-size: 28px;
-}
-#loginLineBreak{ 
-  align-items: center;
-  border-bottom: 3px solid #5C755E;
-  display: flex;
-  margin: 20px 16px;
-  text-align: center;
-}
-
 #header{
   height:120px;
-  background-color: #8da683;
+  background-color: var(--darkGreen);
   position:fixed;
   width:100%;
   z-index: 100;
@@ -139,10 +31,28 @@
   margin-top:25px
 }
 #header-right{
-  /* position:fixed; */
   float:right;
-  margin-top:-110px
+  margin-top:-90px;
+  padding-right: 20px;
+  font-size: 20px;
+  text-align: right;
 }
+#header-right p{
+  margin: 0
+}
+#logoutBtn{
+  background-color: var(--clay);
+  border: 2px solid black;
+  border-radius: 24px;
+  font-size: 26px;
+  line-height: 24px;
+  width: 100px;
+  color: #fff;
+  font-family: "Copperplate", "Papyrus", fantasy;
+  margin-left: auto;
+  font-size: 20px
+}
+
 #app-content{
   margin-top:130px
 }
@@ -163,7 +73,7 @@
   padding-left:10px;
   margin-right:10px;
   padding-right:10px;
-  background-color: #8da683;
+  background-color: var(--darkGreen);
   padding-top:20px;
   padding-bottom:10px;
   border-radius: 10px;
@@ -201,6 +111,30 @@
   left:0;
   bottom:0;
   overflow-y: scroll;
+}
+#profileHomeOuter{
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-rows: 1fr;
+  grid-gap: 5px
+}
+#profileHomeInner{
+  width: 100%
+}
+#borderDecoLeft{
+  width: 100%;
+  grid-column-start: auto;
+  grid-column-end: 2;
+}
+#borderDecoRight{
+  width: 100%;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .chapter-content{
   position: absolute;
@@ -242,110 +176,6 @@
   overflow-y: scroll
 }
 
-/* messaging */
-.chat-bubble-right{
-  margin: 40px;
-  display: block;
-  position: relative;
-	width: .5;
-	height: auto;
-  background-color: rgb(61, 158, 199);
-}
-.chat-bubble-left{
-  margin: 40px;
-  display: block;
-  position: relative;
-	width: .5;
-	height: auto;
-  background-color: rgb(169, 212, 230);
-}
-.border{
-  border: 8px solid #666;
-}
-.round{
-  border-radius: 30px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-}
-
-.tri-right.left-top:before {
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-  left: -40px;
-	right: auto;
-  top: -8px;
-	bottom: auto;
-	border: 32px solid;
-	border-color: #666 transparent transparent transparent;
-}
-.tri-right.left-top:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-  left: -20px;
-	right: auto;
-  top: 0px;
-	bottom: auto;
-	border: 22px solid;
-	border-color: rgb(169, 212, 230) transparent transparent transparent;
-}
-
-.tri-right.right-top:before {
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-  left: auto;
-	right: -40px;
-  top: -8px;
-	bottom: auto;
-	border: 32px solid;
-	border-color: #666 transparent transparent transparent;
-}
-.tri-right.right-top:after{
-	content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-  left: auto;
-	right: -20px;
-  top: 0px;
-	bottom: auto;
-	border: 20px solid;
-	border-color: rgb(61, 158, 199) transparent transparent transparent;
-}
-
-.chat-text{
-  padding: 1em;
-	text-align: left;
-  line-height: 1.5em;
-}
-.chat-text p{
-  -webkit-margin-before: 0em;
-  -webkit-margin-after: 0em;
-}
-#convo-container{
-  position: absolute;
-  top:0px;
-  right:0;
-  left:0;
-  bottom:0;
-  overflow-y: scroll;
-}
-
-#convo-content{
-  position: absolute;
-  top:80px;
-  right:0;
-  left:0;
-  bottom:0;
-  overflow-y: scroll;
-}
-/* end messaging */
-
 .chapter-header{
   position:relative;
   text-align: center;
@@ -355,24 +185,41 @@
 #profile-home {
   width: 100%;
 }
-
-ul {
-  list-style: none;
+#profileGrid{
+  text-align: left;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
 }
-
-li.profile::before {
-  content: "\2767";
-  font-size: 20px;
-  padding-right: 10px;
+.profileBox{
+  display: flex;
+  min-height: 80px;
 }
-li.profile {
-  font-size: 40px;
+.profile{
+  flex:1;
+}
+.profData{
+  font-weight: bold;
+  flex:4;
+  text-align: left;
+  padding-left: 40px;
+  font-size: 24px
 }
 .bio {
-  font-size: 35px;
+  font-size: 20px;
 }
-.prof-info{
-  color:rgba(41, 40, 40, 0.821)
+
+#editProfBtn{
+  background-color: var(--lightGreen);
+  border: 2px solid black;
+  border-radius: 24px;
+  font-size: 24px;
+  line-height: 40px;
+  width: 200px;
+  color: #fff;
+  font-family: "Copperplate", "Papyrus", fantasy;
+  margin-left: auto;
 }
 
 .book-card {
@@ -399,7 +246,6 @@ li.profile {
   width: 95%;
   margin-left: 5%;
 	border: 2px dashed black;
-	/* color: black; */
   margin-top: 10px;
   border-radius:10px;
   margin-bottom:10px;
