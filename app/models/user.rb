@@ -9,6 +9,10 @@ class User < ApplicationRecord
     has_many :s_conversations, -> {distinct}, through: :s_messages
     has_many :r_conversations, -> {distinct}, through: :r_messages
 
+    has_many :follows, dependent: :destroy
+    has_many :followers, through: :follows
+    has_many :followed_users, through: :follows, source: :followed
+
     has_secure_password
 
     validates :username, presence: true, uniqueness: true
