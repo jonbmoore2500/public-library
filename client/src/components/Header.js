@@ -19,14 +19,24 @@ function Header() {
         })
     }
 
+    function handleGoToProfile(e) {
+        e.preventDefault()
+        console.log("profile!")
+    }
+
     return(
         <div id="header">
-            <div id="header-left">
-                <h1>PUBLIC LIBRARY</h1>
-            </div>
-            <div id="header-right">
-                <p>User: <strong>{user.username}</strong></p>
-                <button onClick={handleLogOut} id="logoutBtn">Log out</button>
+            <div id="header-grid">
+                <div id="header-left">
+                    <button onClick={handleGoToProfile} className="headerBtn" id="profileBtn">View Profile</button>
+                </div>
+                <div id="header-center">
+                    <h1>PUBLIC&#160;&#160;LIBRARY</h1>
+                </div>
+                <div id="header-right">
+                    <p>User: <strong>{user.username}</strong></p>
+                    <button onClick={handleLogOut} className="headerBtn" id="logoutBtn">Log out</button>
+                </div>
             </div>
         </div>
     )

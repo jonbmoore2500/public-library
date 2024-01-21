@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :exchanges, only: [:create, :update, :destroy]
   resources :messages, only: [:create, :update]
   resources :conversations, only: [:create]
+  resources :follows, only: [:create, :destroy]
 
   # login/out routes
   get "/me", to: "users#logged_user"

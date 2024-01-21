@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import SignInForm from "./SignInForm.js"
 import SignUpForm from "./SignUpForm.js"
 
-function Home() {
+function LandingPage() {
 
     const [showSignUp, setShowSignUp] = useState(false)
 
@@ -32,4 +32,4 @@ function Home() {
     )
 }
 
-export default Home 
+export default LandingPage 

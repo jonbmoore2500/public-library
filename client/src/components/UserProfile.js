@@ -54,7 +54,11 @@ function UserProfile() {
                             key={dataItem[0]}
                         >
                             <h2 className="profile">{dataItem[0]}:</h2>
-                            {selected === dataItem[0] ? <h2 className={dataItem[0] === "bio" ? "profData bio" : "profData"}>&#9830;   {dataItem[1]}   &#9830;</h2> : <h2 className="profData"> </h2>}
+                            {selected === dataItem[0] || dataItem[0] === "Username" ? 
+                                <h2 className={dataItem[0] === "bio" ? "profData bio" : "profData"}>&#9830;   {dataItem[1]}   &#9830;</h2> 
+                                : 
+                                <h2 className="profData"> </h2>
+                            }
                         </div>
                     )))}
                     </div>

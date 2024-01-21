@@ -16,5 +16,4 @@ class Follow < ApplicationRecord
         existing_follow = Follow.find_by(user: user, followed: followed)
         errors.add(:base, "user is already being followed") if existing_follow.present?
     end
-    
 end 

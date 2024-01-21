@@ -4,7 +4,7 @@ import { UserContext } from "./contexts/UserContext.js"
 
 import Header from "./components/Header.js"
 import MainRoutes from "./components/MainRoutes.js"
-import Home from "./components/Home.js"
+import LandingPage from "./components/LandingPage.js"
 
 import './App.css';
 import './modal.css'
@@ -23,7 +23,7 @@ function App() {
             </div>
           </BrowserRouter> 
         :
-          <Home />
+          <LandingPage />
         }
     </div>
   );

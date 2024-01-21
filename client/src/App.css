@@ -17,68 +17,89 @@
 }
 
 #header{
-  height:120px;
+  height:80px;
   background-color: var(--darkGreen);
   position:fixed;
   width:100%;
   z-index: 100;
 }
-#header-left{
-  width:100%
+#header-grid{
+  display: grid;
+  grid-template-columns: 25% 1fr 25%;
+  grid-template-rows: 100%;
+  height: 80px;
 }
-#header-left h1{
-  font-size: 3.5pc;
-  margin-top:25px
+#header-left {
+  display:flex;
+  align-items: center;
+  padding-left: 30px;
+}
+#header-center h1{
+  font-size: 3.8pc;
+  margin-top:8px;
+  letter-spacing: .7rem;
 }
 #header-right{
+  display:flex;
+  flex-direction: column;
+  align-items:flex-end;
+  justify-content: center;
   float:right;
-  margin-top:-90px;
-  padding-right: 20px;
+  padding-right: 30px;
   font-size: 20px;
   text-align: right;
 }
 #header-right p{
   margin: 0
 }
-#logoutBtn{
-  background-color: var(--clay);
+.headerBtn{
   border: 2px solid black;
   border-radius: 24px;
   font-size: 26px;
   line-height: 24px;
-  width: 100px;
-  color: #fff;
   font-family: "Copperplate", "Papyrus", fantasy;
-  margin-left: auto;
   font-size: 20px
+}
+#profileBtn {
+  background-color: var(--cream);
+  color: black
+}
+#logoutBtn {
+  background-color: var(--clay);
+  color: #fff;
 }
 
 #app-content{
-  margin-top:130px
+  margin-top:90px
 }
 
 #navs-main{
   position:fixed;
-  width:100%;
-  height:30px;
-  top:120px;
+  width:150px;
+  height:100vh;
+  top:80px;
+  left:0;
   opacity: 1;
   z-index: 100;
+  background-color: var(--lightGreen);
+  padding-top:20px
+}
+#navs-main nav {
+  display: flex;
+  flex-direction: column;
 }
 #navs-content{
+  padding-left: 150px;
   padding-top:20px
 }
 .nav-bar-link{
-  margin-left: 10px;
-  padding-left:10px;
-  margin-right:10px;
-  padding-right:10px;
-  background-color: var(--darkGreen);
-  padding-top:20px;
-  padding-bottom:10px;
+  padding: 10px;
+  background-color: var(--lightGreen);
+  margin-bottom: 20px;
   border-radius: 10px;
-  position: relative;
-  top:5px
+  color: black;
+  font-size: larger;
+  text-decoration: none;
 }
 .nav-bar-link-sub{
   margin-left: 10px;
@@ -94,7 +115,7 @@
 }
 #lib-header{
   position:fixed;
-  top: 160px;
+  top: 110px;
   text-align: center;
   width:100%;
   background:inherit;
@@ -102,11 +123,11 @@
   z-index: 20
 }
 #lib-content{
-  margin-top:115px
+  margin-top:100px
 }
 .lib-content{
   position: absolute;
-  top:260px;
+  top:200px;
   right:0;
   left:0;
   bottom:0;
@@ -137,10 +158,7 @@
   transform: rotate(180deg);
 }
 .chapter-content{
-  position: absolute;
   top:200px;
-  right:0;
-  left:0;
   bottom:0;
   overflow-y: scroll;
 }
@@ -187,7 +205,7 @@
 }
 #profileGrid{
   text-align: left;
-  width: 75%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   display: grid;

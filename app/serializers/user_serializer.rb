@@ -1,10 +1,15 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :neighborhood, :bio, :fav_author, :fav_genre, :num_ex_complete, :num_lend_complete
   has_many :owned_books, serializer: BookSerializer
+  # has_many :followings, serializer: FollowSerializer
 
   def owned_books
       object.owned_books.order(:id)
   end
+
+  # def followings
+  #     object.followed_users
+  # end 
 
   attribute :exchanges_lend do
     lended = Exchange.joins(:book).where('exchanges.complete = ? AND books.user_id = ?', false, self.object.id).order(id: :asc)
