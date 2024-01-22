@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { useParams } from "react-router-dom"
-import BookCard from "./BookCard"
+import BookCard from "../Books/BookCard"
 
 function ProfileCont() {
 

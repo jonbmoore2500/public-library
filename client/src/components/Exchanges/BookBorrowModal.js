@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react"
 import { Link } from "react-router-dom"
-import { UserContext } from "../contexts/UserContext.js"
-import NewMessageForm from "./NewMessageForm.js"
+import { UserContext } from "../../contexts/UserContext.js"
+import NewMessageForm from "../Messaging/NewMessageForm.js"
 
 function BookBorrowModal({setShowModal, book, owner, handleExchanged}) {
 

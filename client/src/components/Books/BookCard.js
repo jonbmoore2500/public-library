@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import BookFormEdit from "./BookFormEdit"
-import BookBorrowModal from "./BookBorrowModal"
+import BookBorrowModal from "../Exchanges/BookBorrowModal"
 
 function BookCard({book, ownedByUser = true, owner = book.owner, handleExchanged}) {
 

@@ -1,5 +1,5 @@
 import React, {useContext, useLayoutEffect} from "react"
-import { UserContext } from "../contexts/UserContext.js"
+import { UserContext } from "../../contexts/UserContext.js"
 import ExchangeCardLend from "./ExchangeCardLend.js"
 import ExchangeCardBorrow from "./ExchangeCardBorrow.js"
 

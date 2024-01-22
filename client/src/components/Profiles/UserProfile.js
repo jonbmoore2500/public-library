@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react"
-import { UserContext } from "../contexts/UserContext.js"
+import { UserContext } from "../../contexts/UserContext.js"
 import EditUserModal from "./EditUserModal.js"
 
 function UserProfile() {
@@ -39,10 +39,11 @@ function UserProfile() {
 
     return(
         <div id="profile-home">
-            <h2 className="chapter-header">Chapter 1: Your Profile</h2>
             <div id="profileHomeOuter">
                 <img src="/border_deco.png" id="borderDecoLeft" alt="profile page decoration"/>
                 <div className="chapter-content" id="profileHomeInner">
+                    <br></br>
+                    <br></br>
                     <div id="profileGrid">
                     {profileData.map((dataItem => (
                         <div 

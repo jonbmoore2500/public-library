@@ -21,7 +21,7 @@ function Header() {
 
     function handleGoToProfile(e) {
         e.preventDefault()
-        console.log("profile!")
+        navigate("/")
     }
 
     return(

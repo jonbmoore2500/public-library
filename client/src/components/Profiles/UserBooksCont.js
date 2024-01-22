@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react"
-import { UserContext } from "../contexts/UserContext.js"
-import BookCard from "./BookCard.js"
-import BookFormNew from "./BookFormNew.js"
+import { UserContext } from "../../contexts/UserContext.js"
+import BookCard from "../Books/BookCard.js"
+import BookFormNew from "../Books/BookFormNew.js"
 
 function UserBooksCont() {
 

@@ -1,7 +1,7 @@
 import React, {useContext} from "react"
 import {Outlet, Link} from "react-router-dom"
-import { ProfilesContext } from "../contexts/ProfilesContext"
-import { UserContext } from "../contexts/UserContext"
+import { ProfilesContext } from "../../contexts/ProfilesContext"
+import { UserContext } from "../../contexts/UserContext"
 
 function ProfilesLayout() {
 

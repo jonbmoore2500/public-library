@@ -1,6 +1,6 @@
 import React, {useState, useRef, useCallback} from "react"
 import { Link } from "react-router-dom"
-import NewMessageForm from "./NewMessageForm"
+import NewMessageForm from "../Messaging/NewMessageForm"
 
 function ExchangeCardBorrow({exchange, updateExchanges}) {
 
