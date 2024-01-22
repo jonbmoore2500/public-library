@@ -48,14 +48,18 @@ function BookFormEdit({setShowModal, book}) {
         <div className="modal">
             <div onClick={() => setShowModal(false)} className="overlay"></div> 
             <div className="modal-content">
-                <h3>Edit "{book.title}": </h3>
+                <div>
+                    <h2>Edit "{book.title}": </h2>
+                </div>
                 <form onSubmit={handleEditSubmit}>
-                    <label>Edit Notes: </label>
-                    <textarea 
-                        onChange={(e) => setNewNotes(e.target.value)}
-                        value={newNotes}
-                        rows="4"
-                    />
+                    <label>
+                        Edit Notes:                     
+                        <textarea 
+                            onChange={(e) => setNewNotes(e.target.value)}
+                            value={newNotes}
+                            rows="4"
+                        />
+                    </label>
                     <br></br>
                     <label>
                         <input type="checkbox" onChange={() => setNewHidden(!newHidden)}/>
@@ -72,8 +76,8 @@ function BookFormEdit({setShowModal, book}) {
                 </form>
                 {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
                 <br></br>
-                <button onClick={() => handleDeleteBook()}>Delete Book</button>
-                <button onClick={() => setShowModal(false)}>Close</button>
+                <button onClick={() => handleDeleteBook()} className="modal-btn">Delete Book</button>
+                <button onClick={() => setShowModal(false)} className="modal-btn">Close</button>
             </div>
         </div>
     )

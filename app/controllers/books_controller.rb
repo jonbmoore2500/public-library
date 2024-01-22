@@ -63,7 +63,7 @@ class BooksController < ApplicationController
     end
 
     def update_book_params
-        params.permit(:id, :notes, :hidden, :checked_out)
+        params.permit(:id, :title, :author, :genre, :notes, :hidden, :checked_out)
     end
 
     def render_unproc_entity(invalid)
