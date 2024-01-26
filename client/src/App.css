@@ -70,7 +70,8 @@
 }
 
 #app-content{
-  margin-top:90px
+  top:80px;
+  height: 100%
 }
 
 #navs-main{
@@ -89,17 +90,23 @@
   flex-direction: column;
 }
 #navs-content{
-  padding-left: 150px;
-  padding-top:20px
+  position:absolute;
+  top: 80px;
+  left: 150px;
+  height: calc(100% - 80px);
+  width: calc(100% - 150px)
 }
 .nav-bar-link{
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
   background-color: var(--lightGreen);
   margin-bottom: 20px;
   border-radius: 10px;
   color: black;
   font-size: larger;
   text-decoration: none;
+}
+.active::after{
+  content: " ▶"
 }
 .nav-bar-link-sub{
   margin-left: 10px;
@@ -158,8 +165,10 @@
   transform: rotate(180deg);
 }
 .chapter-content{
-  top:200px;
-  bottom:0;
+  top:80px;
+  height: 100%;
+  right: 0;
+  left: 150px;
   overflow-y: scroll;
 }
 
@@ -167,14 +176,23 @@
 .App-link {
   color: #61dafb;
 }
+#messages-container-outer{
+  display: flex;
+  /* height: calc(100% - 80px); */
+  height: 100%;
+  bottom: 0;
+}
+
 
 .leftnav {
-  width: 22%;
+  flex:1;
+  /* bottom: 0; */
+  /* width: 22%;
   float: left;
-  position: fixed;
+  position: fixed; */
   border-right:5px dotted black;
-  height:70%;
-  overflow-y: scroll
+  height:100%;
+  overflow-y: auto
 }
 .user-link{
   font-size: x-large;
@@ -187,11 +205,11 @@
 }
 
 .rightcontent{
-  width: 72%;
-  float: right;
-  position: relative;
+  flex: 3;
+  /* float: right; */
+  /* position: relative; */
   height:100%;
-  overflow-y: scroll
+  overflow-y: auto
 }
 
 .chapter-header{
@@ -299,13 +317,24 @@
 /* NEW  */
 
 
-.exch-container {
+#exch-container-outer {
   display:grid;
-  grid-template-columns: 48.5% 48.5%;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:20px;
+  overflow-x: auto;
+  height: 100%;
+  bottom: 0;
+  padding: 0px 10px 0px 10px
+}
+.exchange-container-inner{
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border: 10px solid black
 }
 .exchange-card{
-  width: 95%;
-  margin-left: 5%;
+  border: 2px solid black;
+  width: 100%;
 	border: 2px dashed black;
   margin-top: 10px;
   border-radius:10px;
@@ -321,6 +350,7 @@
 .exchange-right{
   width: 60%;
   margin-left: 40%;
+  padding-top: 10px
 }
 .exch-update{
   color: red;

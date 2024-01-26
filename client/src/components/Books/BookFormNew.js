@@ -51,60 +51,65 @@ function BookFormNew({setShowForm}) {
     }
 
     return(
-        <div>   
-            <form onSubmit={handleNewBookSave}>
-                <label>Title: </label>
-                <input
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    value={newTitle}
-                />
-                <label>Author: </label>
-                <input
-                    onChange={(e) => setNewAuthor(e.target.value)}
-                    value={newAuthor}
-                />
-                <br></br>
-                <label>Genre: </label>
-                <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre} >
-                    <optgroup label="Fiction">
-                    {genres.slice(0, 10).map((g, i) => (
-                        <option key={i} value={g}>{g}</option>
-                    ))}
-                    </optgroup>
-                    <optgroup label="Non-fiction">
-                    {genres.slice(11, 16).map((g, i) => (
-                        <option key={i} value={g}>{g}</option>
-                    ))}
-                    </optgroup>
-                </select>
-                <label>Number of pages: </label>
-                <input
-                    onChange={(e) => setNewNumPages(e.target.value)}
-                    value={newNumPages}
-                />
-                <label>Notes: </label>
-                <textarea
-                    onChange={(e) => setNewNotes(e.target.value)}
-                    value={newNotes}
-                    rows="4"
-                />
-                <br></br>
-                <label>Book type: </label>
-                <select onChange={(e) => setNewHardback(e.target.value)}>
-                    <option value={true}>Hardback</option>
-                    <option value={false}>Paperback</option>
-                </select>
-                <label>Set as hidden: </label>
-                <select onChange={(e) => setNewHidden(e.target.value)}>
-                    <option value={false}>No</option>
-                    <option value={true}>Yes</option>
-                </select>
-                {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
-                <br></br>
-                <button type="submit">Submit new book</button>
-                <button onClick={() => setShowForm(false)}>Cancel</button>
-            </form>
+        <div className="modal">
+            <div onClick={() => setShowForm(false)} className="overlay"></div> 
+            <div className="modal-content">     
+                <form onSubmit={handleNewBookSave}>
+                    <label>Title: </label>
+                    <input
+                        onChange={(e) => setNewTitle(e.target.value)}
+                        value={newTitle}
+                    />
+                    <label>Author: </label>
+                    <input
+                        onChange={(e) => setNewAuthor(e.target.value)}
+                        value={newAuthor}
+                    />
+                    <br></br>
+                    <label>Genre: </label>
+                    <select onChange={(e) => setNewGenre(e.target.value)} value={newGenre} >
+                        <optgroup label="Fiction">
+                        {genres.slice(0, 10).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
+                        </optgroup>
+                        <optgroup label="Non-fiction">
+                        {genres.slice(11, 16).map((g, i) => (
+                            <option key={i} value={g}>{g}</option>
+                        ))}
+                        </optgroup>
+                    </select>
+                    <label>Number of pages: </label>
+                    <input
+                        onChange={(e) => setNewNumPages(e.target.value)}
+                        value={newNumPages}
+                    />
+                    <label>Notes: </label>
+                    <textarea
+                        onChange={(e) => setNewNotes(e.target.value)}
+                        value={newNotes}
+                        rows="4"
+                    />
+                    <br></br>
+                    <label>Book type: </label>
+                    <select onChange={(e) => setNewHardback(e.target.value)}>
+                        <option value={true}>Hardback</option>
+                        <option value={false}>Paperback</option>
+                    </select>
+                    <label>Set as hidden: </label>
+                    <select onChange={(e) => setNewHidden(e.target.value)}>
+                        <option value={false}>No</option>
+                        <option value={true}>Yes</option>
+                    </select>
+                    <br></br>
+                    <button type="submit">Submit new book</button>
+                    <button onClick={() => setShowForm(false)}>Cancel</button>
+                </form>
+            </div>
+            {errors && errors.map((e, i) => <p key={i}>{e}</p>)}
+            <br></br>
         </div>
+
     )
 }
 

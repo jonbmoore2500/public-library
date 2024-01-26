@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_18_035927) do
+ActiveRecord::Schema.define(version: 2024_01_23_173709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2024_01_18_035927) do
     t.string "bio"
     t.string "fav_author"
     t.string "fav_genre"
-    t.date "last_login"
+    t.datetime "last_login"
     t.integer "phone_num"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false

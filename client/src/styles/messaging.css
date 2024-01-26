@@ -83,19 +83,19 @@
     -webkit-margin-after: 0em;
   }
   #convo-container{
-    position: absolute;
+    /* position: absolute;
     top:0px;
     right:0;
     left:0;
-    bottom:0;
-    overflow-y: scroll;
+    bottom:0; */
+    /* overflow-y: scroll; */
   }
   
   #convo-content{
-    position: absolute;
+    /* position: absolute;
     top:80px;
     right:0;
     left:0;
-    bottom:0;
-    overflow-y: scroll;
+    bottom:0; */
+    /* overflow-y: scroll; */
   }

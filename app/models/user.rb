@@ -23,6 +23,10 @@ class User < ApplicationRecord
     validates :fav_genre, presence: true, inclusion: {in: @@allowed_genres}
     validates :fav_author, presence: true
 
+    def update_last_login
+        update(last_login: Time.current)
+    end
+
     def num_ex_complete
         # borrowed
         self.exchanges.count{|e| e.complete == true}

@@ -19,17 +19,17 @@ function MainRoutes() {
     return(
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route index element={<UserProfile />} />
-                <Route path="home" element={<HomePage />} />
+                <Route index element={<HomePage />} />
+                <Route path="profile" element={<UserProfile />} />
                 <Route path="books" element={<UserBooksCont />} />
 
 
                 {/* <Route path="user_books" element={<UserBooksCont />} /> */}
-                {/* <Route path="exchanges" element={<UserExchangesCont />} />
-                <Route path="library_books" element={<LibraryLayout />}>
-                    <Route index element={<LibraryBrowse/>} />
-                    <Route path="search" element={<LibrarySearch />} />
-                </Route> */}
+                <Route path="exchanges" element={<UserExchangesCont />} />
+                {/* <Route path="library_books" element={<LibraryLayout />}> */}
+                    {/* <Route index element={<LibraryBrowse/>} /> */}
+                    {/* <Route path="search" element={<LibrarySearch />} /> */}
+                {/* </Route> */}
                 <Route path="profiles" element={<ProfilesLayout />} >
                     <Route path=":userID" element={<ProfileCont />} />
                 </Route>

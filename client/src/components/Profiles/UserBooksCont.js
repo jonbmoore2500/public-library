@@ -11,32 +11,28 @@ function UserBooksCont() {
     const [filterBy, setFilterBy] = useState("all")
 
     let displayBooks = user.owned_books.filter(book => {
-        if (filterBy === "availableYes") {
-            return !(book.hidden || book.checked_out)
-        } else if (filterBy === "availableNo") {
-            return book.hidden || book.checked_out
-        } else if (filterBy === "checkedOut") {
-            return book.checked_out
-        } else if (filterBy === "hidden") {
-            return book.hidden
-        } 
-        return true
+        switch (filterBy) {
+            case "availableYes":
+                return !(book.hidden || book.checked_out);
+            case "availableNo":
+                return book.hidden || book.checked_out;
+            case "checkedOut":
+                return book.checked_out;
+            case "hidden":
+                return book.hidden;
+            default:
+                return true;
+        }
     })
 
     return(
         <div>
             <div className="chapter-content">
                 <br></br>
-                {showForm ?
-                    <div>
-                        <BookFormNew setShowForm={setShowForm}/>
-                    </div>
-                    :
-                    <div>
-                        <label>Add a book to your library </label>
-                        <button onClick={() => setShowForm(true)}>Open form</button>
-                    </div>
-                }
+                <div>
+                    <label>Add a book to your library </label>
+                    <button onClick={() => setShowForm(true)}>Open form</button>
+                </div>
                 <select onChange={(e) => setFilterBy(e.target.value)}>
                     <option value="all">All</option>
                     <option value="availableYes">Available</option>
@@ -58,6 +54,7 @@ function UserBooksCont() {
                 <br></br>
                 <br></br>
             </div>
+            {showForm ? <BookFormNew setShowForm={setShowForm}/> : null }
         </div>
     )
 }

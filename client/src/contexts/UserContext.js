@@ -16,6 +16,8 @@ function UserProvider({children}) {
         })
     }, [])
 
+    if (user) console.log(user)
+
     function addUserBooks(newBook) {
         setUser({...user, owned_books: [newBook, ...user.owned_books]})
     }

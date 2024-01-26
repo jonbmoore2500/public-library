@@ -40,5 +40,13 @@ body.active-modal {
     height: 30%;
     max-width: 30%; /* Set a reasonable max-width */
 }
+#book-edit-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+/* #book-edit-left{
 
+}
+#book-edit-right{
 
+} */
